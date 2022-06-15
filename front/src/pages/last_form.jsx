@@ -77,7 +77,7 @@ const Last_form = () => {
 
 
     const menu_déroulant = (template, settemplate) => {
-      const names = ['testmercredi', 'CSG', "crédit suisse", "test crédit suisse", "goldman sachs fci", "morgan"]
+      const names = ['BNP', 'CSG', "crédit suisse", "test crédit suisse", "goldman sachs fci", "morgan"]
       
       function importAll(r) {
         return r.keys().map(r);
@@ -154,22 +154,19 @@ const Last_form = () => {
                         </FormControl>
                         
                 </div>
-
+ 
                 <div className="column1">
                 
-                <div style={{marginTop:"1.7%", width:"30%"}}>
-
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker 
-                        label="Date d'émission"
-                        value={Emission}
-                        onChange={(Emission) => {
-                        setEmission(Emission);
-                        }}
-                        renderInput={(params) => <TextField {...params} />}
-                    />
-                </LocalizationProvider>
-                </div>
+                  <TextField
+                        style={{width:"30%"}}
+                        label="Emission <Emission>"
+                        name="Emission"
+                        onChange={(e)=>setEmission(e.target.value)}
+                        margin="normal"
+                        variant="outlined"
+                        autoComplete="on"
+                        fullWidth/>
+                
                 <TextField
             label="Commission"
             style={{width:"30%", marginTop:"2%", marginLeft:"-1.5%"}}
@@ -591,20 +588,18 @@ const Last_form = () => {
                         </div>
                         
                    
-                   
-
-                        <div style={{width:"15%", marginLeft:"2%", marginTop:"1.12%"}}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DatePicker
-                                label="Début dégressivité Phoenix"
-                                value={DDP}
-                                onChange={(DDP) => {
-                                setDDP(DDP);
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                            </LocalizationProvider>
-                        </div>
+                
+                        
+                  <TextField
+                        style={{width:"15%", marginLeft:"1.8%"}}
+                        label="Début dégressivité Phoenix"
+                        name="Début dégressivité Phoenix"
+                        onChange={(e)=>setDDP(e.target.value)}
+                        margin="normal"
+                        variant="outlined"
+                        autoComplete="on"
+                        fullWidth/>
+                
                         <div style={{width:"15%", marginLeft:"2%", marginTop:"1.12%"}}></div>
                         <div style={{width:"15%", marginLeft:"2%", marginTop:"1.12%"}}></div>                
                 </div>

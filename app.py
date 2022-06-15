@@ -30,6 +30,13 @@ def add_articles():
     #probleme de date, je coupe pour que ca enelever la merde apres 
     emission = data["Emission"]
     Myclass.Emission = emission[0:10]
+    tmp = Myclass.Emission
+
+    Myclass.Emission = tmp[6:10] + "-" + tmp[3:5] + "-" + tmp[0:2]
+
+    #2022/02/24
+    #24/02/2022
+    #8-10.5-7.04
 
     dci = data["DCI"]
     Myclass.DCI = dci
@@ -75,13 +82,17 @@ def add_articles():
     Myclass.type_bar = data["type_bar"]
     Myclass.sous_jacent = data["sous_jacent"]
     Myclass.NJO = data["NJO"]
-
     ddp = data["DDP"]
-    if (ddp == None):
-        Myclass.DDP = "error"
 
-    else: 
-        Myclass.DDP = ddp[0:10]
+    try:
+        if (ddp == ""):
+            Myclass.DDP = "error"
+
+        else: 
+            tmp = ddp
+            Myclass.DDP = tmp[6:10] + "-" + tmp[3:5] + "-" + tmp[0:2]
+    except Exception:
+        Myclass.DDP = "error"
     Myclass.type_bar2 = data["type_bar2"]
 
     # Myclass.DCF = "2027-07-14"

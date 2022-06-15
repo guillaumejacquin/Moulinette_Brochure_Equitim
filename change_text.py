@@ -166,7 +166,6 @@ def elementsToReplaceCalcul(Class, shapes):
     pdiperf = pdiperf.replace(".", ",")
 
 
-    replace_text({'<legendetickers>':  Class.legende_tickers}, shapes)
     replace_text({'<PDIPERF>': pdiperf}, shapes)
     replace_text({'<1PR>': Class.PR1}, shapes)
     replace_text({'<DPRR>': Class.DPRR}, shapes)
@@ -234,6 +233,8 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<PAGE>': Class.PAGE}, shapes) 
 
     replace_text({'<DDPP>': Class.DDPP}, shapes) 
+    print("ahhhhhhhhhhhhhhhhhhhhh", Class.legende_tickers)
+    replace_text({'<tickersname>':  Class.legende_tickers}, shapes)
 
     TRA_replace(Class, shapes)
 

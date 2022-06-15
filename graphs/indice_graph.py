@@ -142,6 +142,7 @@ def indice_simple_tickers(tickers, Class, Name):
                 my_array.append(result)
             except Exception:
                 my_array.append("N/A")
+                print("Le tableau des perfs pour mono indice a fail ici")
                 pass
             Class.Yahoo_value.append(my_array)
 

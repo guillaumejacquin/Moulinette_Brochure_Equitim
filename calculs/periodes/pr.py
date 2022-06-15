@@ -29,9 +29,12 @@ def PR1(Class):
             result += 1
 
     if (frequence == "année"):
-        result = int(years)
-        if (years % days >= 182):
+        result = float(years)
+        print("----------")
+        print(result%365)
+        if (days % 365 >= 182):
             result += 1
+        print(int(result))
 
 
     if (frequence == "semestre"):

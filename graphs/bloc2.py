@@ -238,7 +238,7 @@ def bloc2(Class, name, whitestrap=False):
     #le premier parametre de range x, permet de mettre ou non un blanc entre le 0 et le premier bloc
    
     fig.add_shape(type="line",
-    x0=37.5, y0=115, x1=44.5, y1=116,
+    x0=37.5, y0=115, x1=44.5, y1=115,
     line=dict(color=green,width=1),  line_dash="dot")   
     
     fig.add_annotation(x=41.5, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir de la fin du <br>" + Class.F0  + " " + str(int(Class.PR1)) + " jusqu'à la fin du " + Class.F0 + " "  + str(int(Class.DPRR) -1) + " <br> et de versement des gains à <br> l'échéance"), showarrow=False,

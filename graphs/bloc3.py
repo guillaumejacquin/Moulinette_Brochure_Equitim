@@ -72,11 +72,15 @@ def bloc3(Class, name, whitestrap=True):
         thirdvaluexabciss = "Année "  +" " + str(int(int(Class.DPRR)/365))
 
     else:
-        if (int(Class.PR1) -1 == 1):
+        if (int(Class.PR1) -1 < 2):
             firstvaluexabciss = Class.F0 + " 1"
+            if (int(Class.PR1) -1 == 0):
+                second_value = int(Class.PR1) + 1
         else:
+            second_value = int(Class.PR1)
+
             firstvaluexabciss = Class.F0 + Class.F0s + " 1 à " +  str(int(Class.PR1) -1)
-        secondvaluexabciss = Class.F0 + Class.F0s + " " +  str(int(Class.PR1))  + " à " + str(int(Class.DPRR) - 1) 
+        secondvaluexabciss = Class.F0 + Class.F0s + " " +  str(second_value)  + " à " + str(int(Class.DPRR) - 1) 
         thirdvaluexabciss = Class.F0  +" " + str(Class.DPRR)
 
 

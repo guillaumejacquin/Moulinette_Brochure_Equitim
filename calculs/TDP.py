@@ -16,6 +16,7 @@ def TDP(Class):
         Class.TDP = "indice"
 
     #savoir si c'est une action ou un indice
+    
 
     print(Class.TDP)
 
