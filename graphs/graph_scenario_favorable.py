@@ -75,9 +75,9 @@ def traces(Class, fig):
     x_perte_capital = 0
     x_niveau_def = 0
 
-    text_legende = Class.SJR3.capitalize() + " de <br> l'"+ Class.TDP +  " par <br> rapport à son <br>" + Class.NDR
+    text_legende = Class.SJR3.capitalize() + " de <br>l'"+ Class.TDP +  " par <br>rapport à son <br>" + Class.NDR
     
-    fig.add_annotation(x=0.6, y=169, text= (text_legende), showarrow=False,
+    fig.add_annotation(x=0.8, y=170, text= (text_legende), showarrow=False,
                     font=dict(family="Proxima Nova", size=12, color=black ), align="left")
 
     if (niveau_de_référence).is_integer():
@@ -380,6 +380,7 @@ def is_athena_or_phoenix_annotations(Class, fig):
         perfmax = 100 + prappel * cpn
         perfmax = (f'{float(perfmax):.2f}')
         string = str(perfmax)  +"% ="
+        string = string.replace(".", ",")
 
         cpn = float(Class.CPN)
         len_cpn = (str(cpn)[::-1].find('.'))
@@ -387,6 +388,8 @@ def is_athena_or_phoenix_annotations(Class, fig):
         if (len_cpn < 2):
                 cpn = (f'{float(Class.CPN):.2f}')        
         str2 = "100% + " + str(prappel) + " x " + str(cpn) + "%" 
+        
+        str2 = str2.replace(".", ",")
 
     else:
         perfmax = 100 + 1 * cpn

@@ -125,11 +125,11 @@ def bloc2(Class, name, whitestrap=False):
                             hoverinfo ='none',))
                             
 
-    fig.add_annotation(x=24, y=niveau_autocall[1] + 5,text=str(niveau_autocall[1]) + "%", showarrow=False,
+    fig.add_annotation(x=24, y=niveau_autocall[1] + 5,text=str(str(niveau_autocall[1]).replace(".", ",")) + "%", showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=green ),align="left",
                     )
            
-    fig.add_annotation(x=36, y=niveau_autocall[2] + 3,text=str(niveau_autocall[2]) + "%", showarrow=False,
+    fig.add_annotation(x=36, y=niveau_autocall[2] + 3, text=str(str(niveau_autocall[2]).replace(".", ",")) + "%", showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=green ),align="left",
                     )         
     fig.add_shape( # add la ligne horizontale deuxieme block line degressive
@@ -186,7 +186,7 @@ def bloc2(Class, name, whitestrap=False):
 
     fig.add_shape(type="line",
     x0=x0, y0=niveau_autocall[0], x1=x1, y1=niveau_autocall[0],
-    line=dict(color=green,width=3))
+    line=dict(color=green, width=3))
 
     fig.add_shape(type="line",
     x0=x0, y0=niveau_capital, x1=x1, y1=niveau_capital,
@@ -221,16 +221,19 @@ def bloc2(Class, name, whitestrap=False):
         #si le niveau_autocall est égal à 100 , dessiner les options
 
         mystring = str(niveau_autocall[0]) + "%"
-        fig.add_annotation(x=2.25, y=100 ,text= (mystring), showarrow=False,
+        mystring = mystring.replace(".", ",")
+        fig.add_annotation(x=3, y=100 ,text= (mystring), showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=green ),align="left",
                     )
 
     mystring = Class.SJR3 + " de  <br> l'" + Class.TDP + "par <br> rapport à son <br> " + Class.SJR3 + " initial"
+    mystring = mystring.replace(".", ",")
+
     fig.add_annotation(x=2.0, y=130, text= text_legende, showarrow=False,
                     font=dict( family="Proxima Nova", size=11, color=black ),align="right",
                     )
                     
-    fig.add_annotation(x=3.0, y=niveau_capital,text= str(niveau_capital) +"%", showarrow=False,
+    fig.add_annotation(x=3.0, y=niveau_capital,text= str(str(niveau_capital).replace(".",",")) +"%", showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=red ),align="left",
                     )
 # #-------------------------------------!Pas fini, doit gerer les 100%! ----------------------------------------------------
@@ -312,7 +315,11 @@ def bloc2(Class, name, whitestrap=False):
 
     #####################TEXTE DE SES MORTS##############################################
     #autocall[1]
-    texta = "<b>Le produit continue </b>:<br><br><br> Aucun " +  str(Class.GC)+ " n'est versé"
+    if (Class.CPN_is_memoire == "oui"):
+        texta = "<b>Le produit continue </b>:<br><br><br> Aucun " +  str(Class.GC)+ " n'est versé, il <br> est mis en mémoire"
+    else:
+        texta = "<b>Le produit continue </b>:<br><br><br> Aucun " +  str(Class.GC)+ " n'est versé"
+        
     fig.add_annotation(
         x=(15),
         y=(niveau_coupon[1]/2 + 10),
@@ -336,6 +343,7 @@ def bloc2(Class, name, whitestrap=False):
 
 
     mystring = "<b>Remboursement anticipé automatique:</b> <br> <br> L'intégralité du capital initial<br>+<br>Un gain de " + cpn + "% par " + Class.F0 + " écoulé <br> depuis la date de constatation initiale <br> (soit un gain de "+ str(gca) + "% par année écoulée)"
+    mystring = mystring.replace(".", ",")
     fig.add_annotation(
         x=(15),
         y=(niveau_coupon[0] + (130-niveau_coupon[0]) /2 +5),
@@ -346,6 +354,7 @@ def bloc2(Class, name, whitestrap=False):
 
 
     mystring = "<b>Remboursement à l'échéance: </b><br><br>L'intégralité du capital initial<br>+<br>Un gain de " + str(cpn) + "% par " + Class.F0 + " écoulé <br> depuis la date de constatation initiale <br> (soit un gain total de "+ str(gce) + "%)"
+    mystring = mystring.replace(".", ",")
     fig.add_annotation(
         x=(32),
         y=(float(Class.DBAC) + (130 - float(Class.DBAC)) /2 +5),

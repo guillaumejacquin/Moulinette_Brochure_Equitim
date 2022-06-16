@@ -10,7 +10,7 @@ black = "#000000"
 
 def params(fig):
     fig.update_xaxes(range=[0.5,90])
-    fig.update_yaxes(range=[17.75,150])
+    fig.update_yaxes(range=[17.75,155])
     # fig.update_yaxes(ticks="outside", tickwidth=1, tickcolor='crimson', ticklen=10, col=1)
 
     fig.update_yaxes(tickangle=0,
@@ -62,9 +62,9 @@ def axes_ordonees(fig):
     return(fig)
 
 def traces(Class, fig):
-    text_legende = Class.SJR3.capitalize() + " de <br> l'"+ Class.TDP +  " par <br> rapport à son <br>" + Class.NDR
+    text_legende = Class.SJR3.capitalize() + " de <br>l'"+ Class.TDP +  " par <br>rapport à son <br>" + Class.NDR
     
-    fig.add_annotation(x=0.6, y=149, text= (text_legende), showarrow=False,
+    fig.add_annotation(x=0.8, y=152, text= (text_legende), showarrow=False,
                     font=dict(family="Proxima Nova", size=12, color=black ), align="left")
     
     fig.add_annotation(x=82, y=18, ax=1, ay=18, xref='x', yref='y', axref='x', ayref='y', text='',
@@ -125,7 +125,7 @@ def traces(Class, fig):
     # x0=69, y0=avant_dernier_niveau_de_reference + add_remontee_var, x1=73, y1=avant_dernier_niveau_de_reference + add_remontee_var,
     # line=dict(color=green, width=3),  line_dash="dash")
     
-
+    text = (str(niveau_de_référence) + "%" )
     fig.add_annotation(x=x_vertical_line +4.75 - x_niveau_ref, y=niveau_de_référence,text= (str(niveau_de_référence) + "%" ), showarrow=False,
                     font=dict(family="Proxima Nova", size=15, color=green ), align="left")
 

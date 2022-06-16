@@ -3,6 +3,7 @@ import pandas as pd
 import datetime
 from dateutil.relativedelta import relativedelta
 import sys
+from calculs.dates.DR1 import DR1
 from calculs.dates.boucles.getAllDates2Dates import *
 
 def callAllDates2Date(Class):
@@ -75,4 +76,4 @@ def callAllDates2Date(Class):
     Class.date_remb1 = Class.date_remb1[6:10] + "-" + Class.date_remb1[3:5] + "-" + Class.date_remb1[0:2]
     Class.dates_paiement_phoenix = get_all_dates_between_2_dates_with_special_begin_njo(Class, Class.DDCI, Class.DEC, Class.date_remb1, Class.DCF, False, False)
     #Paiements scenarios autocall pour phoenix
-    Class.dates_last_remboursement_rappel = get_all_dates_between_2_dates_with_special_begin_njo(Class, Class.DDCI, Class.DEC, dpr, Class.DADR, False, True)
+    Class.dates_last_remboursement_rappel = get_all_dates_between_2_dates_with_special_begin_njo(Class, Class.DDCI, Class.DEC, Class.DR1, Class.DADR, False, True)

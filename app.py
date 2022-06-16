@@ -45,19 +45,36 @@ def add_articles():
 
     dr1 = data["DR1"]
     Myclass.DR1 = dr1[0:10]
-    
+    tmp = Myclass.DR1
+    Myclass.DR1 = tmp[6:10] + "-" + tmp[3:5] + "-" + tmp[0:2] 
+
     Myclass.DPR = data["DPR"]
+    Myclass.DPR = Myclass.DPR[0:10]
+    tmp = Myclass.DPR
+    Myclass.DPR = tmp[6:10] + "-" + tmp[3:5] + "-" + tmp[0:2]
 
     dadr = data["DADR"]
     Myclass.DADR = dadr[0:10]
+    tmp = Myclass.DADR
+    Myclass.DADR = tmp[6:10] + "-" + tmp[3:5] + "-" + tmp[0:2]
+
     
     dcf = data["DCF"]
     Myclass.DCF = dcf[0:10]
+    tmp = Myclass.DCF
+    Myclass.DCF = tmp[6:10] + "-" + tmp[3:5] + "-" + tmp[0:2]
 
     dec = data["DEC"]
     Myclass.DEC = dec[0:10]
+    tmp = Myclass.DEC
+    Myclass.DEC = tmp[6:10] + "-" + tmp[3:5] + "-" + tmp[0:2]
+
 
     Myclass.ADCF = data["ADCF"]
+    Myclass.ADCF = Myclass.ADCF[0:10]
+    tmp = Myclass.ADCF
+    Myclass.ADCF = tmp[6:10] + "-" + tmp[3:5] + "-" + tmp[0:2]
+    # print("33333", Myclass.ADCF)
     Myclass.F0 = data["F0"]
     TSJ = data["TSJ"]
     Myclass.TSJ = list(TSJ.split(", "))

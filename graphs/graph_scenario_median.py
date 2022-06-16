@@ -10,7 +10,7 @@ black = "#000000"
 
 def params(fig):
     fig.update_xaxes(range=[0.5,90])
-    fig.update_yaxes(range=[17.75,150])
+    fig.update_yaxes(range=[17.75,155])
     # fig.update_yaxes(ticks="outside", tickwidth=1, tickcolor='crimson', ticklen=10, col=1)
 
     fig.update_yaxes(tickangle=0,
@@ -76,9 +76,9 @@ def traces(Class, fig):
     x_niveau_def = 0
     x_scenario_def = 0
 
-    text_legende = Class.SJR3.capitalize() + " de <br> l'"+ Class.TDP +  " par <br> rapport à son <br>" + Class.NDR
+    text_legende = Class.SJR3.capitalize() + " de <br>l'"+ Class.TDP +  " par <br>rapport à son <br>" + Class.NDR
     
-    fig.add_annotation(x=0.6, y=149, text= (text_legende), showarrow=False,
+    fig.add_annotation(x=0.8, y=152, text= (text_legende), showarrow=False,
                     font=dict(family="Proxima Nova", size=12, color=black ), align="left")
 
     if (niveau_de_référence).is_integer():

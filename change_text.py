@@ -17,6 +17,213 @@ from copy import deepcopy
 from pptx.table import Table, _Row, _Column, _Cell
 
 from calculs.periodes.pr import PR1
+from openpyxl import load_workbook
+
+import shutil
+
+def excel(Class):
+
+    original = "database/Resultat.xlsx"
+    target = "result/"+ Class.Nom + "- " + Class.Isin + "result.xlsx"
+    shutil.copyfile(original, target)
+    #le dictionnaire qu'on va injecter dans l excel
+    balises_ref = [
+    {
+    "Nom": "Nom du produit",
+    "Balise": "<NOM>",
+    "Result": Class.Nom,
+    },
+    {
+    "Nom": "Isin",
+    "Balise": "<ISIN>",
+    "Result": Class.Isin,
+    },
+    {
+    "Nom": "Droit",
+    "Balise": "<droit>",
+    "Result": Class.Droit,
+    },
+    {
+    "Nom": "Emission",
+    "Balise": "<émission>",
+    "Result": Class.Emission,
+    },
+    {
+    "Nom": "Commission",
+    "Balise": "<COM>",
+    "Result": Class.COM,
+    },
+    {
+    "Nom": "Template",
+    "Balise": "<>",
+    "Result": Class.template,
+    },
+    {
+    "Nom": "Typologie",
+    "Balise": "<Typologie>",
+    "Result": Class.Typologie,
+    },
+    {
+    "Nom": "Fréquence",
+    "Balise": "<F0>",
+    "Result": Class.F0,
+    },
+     {
+    "Nom": "Coupon périodique",
+    "Balise": "<CPN>",
+    "Result": Class.CPN,
+    },
+     {
+    "Nom": "Sous-jacents",
+    "Balise": "<NOMSOUSJACENT>",
+    "Result": Class.NOMSOUSJACENT,
+    },
+     {
+    "Nom": "Type de sous-jacent",
+    "Balise": "<sous_jacent>",
+    "Result": Class.sous_jacent,
+    },
+     {
+    "Nom": "Barrière de remboursement initiale",
+    "Balise": "<BAC>",
+    "Result": Class.BAC,
+    },
+     {
+    "Nom": "Type de barrière",
+    "Balise": "<type_bar>",
+    "Result": Class.type_bar,
+    },
+     {
+    "Nom": "Pas de dégressivité",
+    "Balise": "<DEG>",
+    "Result": Class.DEG,
+    },
+     {
+    "Nom": "Avant dernier niveau de barrière dégressive",
+    "Balise": "<ABDAC>",
+    "Result": Class.ABDAC,
+    },
+     {
+    "Nom": "Dernier niveau de barrière dégressive",
+    "Balise": "<DBAC>",
+    "Result": Class.DBAC,
+    },
+     {
+    "Nom": "Barrière de coupon",
+    "Balise": "<BCPN>",
+    "Result": Class.BCPN,
+    },
+     {
+    "Nom": "Barrière de coupon dégressive",
+    "Balise": "<BCPN_is_degressif>",
+    "Result": Class.BCPN_is_degressif,
+    },
+       {
+    "Nom": "Début dégressivité",
+    "Balise": "<DDP>",
+    "Result": Class.DDP,
+    },
+       {
+    "Nom": "Barrière coupon mémoire",
+    "Balise": "<CPN_is_memoire>",
+    "Result": Class.CPN_is_memoire,
+    },
+       {
+    "Nom": "Barrière de protection",
+    "Balise": "<PDI>",
+    "Result": Class.PDI,
+    },
+       {
+    "Nom": "Dates de constatations initiales",
+    "Balise": "<DCI>",
+    "Result": Class.DCI,
+    },
+       {
+    "Nom": "Dates de premier rappel",
+    "Balise": "<DPR>",
+    "Result": Class.DPR,
+    },
+    {
+    "Nom": "Avant dernière date de constatation",
+    "Balise": "<ADCF>",
+    "Result": Class.ADCF,
+    },
+       {
+    "Nom": "Date de constatation finale",
+    "Balise": "<DCF>",
+    "Result": Class.DCF,
+    },
+       {
+    "Nom": "Type de strike",
+    "Balise": "<type_strike>",
+    "Result": Class.type_strike,
+    },
+       {
+    "Nom": "Date de remboursement premier rappel",
+    "Balise": "<DR1>",
+    "Result": Class.DR1,
+    },
+    {
+    "Nom": "Avant dernière date de remboursement",
+    "Balise": "<DADR>",
+    "Result": Class.DADR,
+    },
+    {
+    "Nom": "Date d'échéance",
+    "Balise": "<DEC>",
+    "Result": Class.DEC,
+    },
+    {
+    "Nom": "Jour de référence",
+    "Balise": "<JDR>",
+    "Result": Class.JDR,
+    },
+    {
+    "Nom": "Nombre de jours ouvrés",
+    "Balise": "<NJO>",
+    "Result": Class.NJO,
+    },
+    {
+    "Nom": "Niveau de scénario défavorable",
+    "Balise": "<NSD>",
+    "Result": Class.NSD,
+    },
+    {
+    "Nom": "Niveau de scénario médian",
+    "Balise": "<NSM>",
+    "Result": Class.NSM,
+    },
+    {
+    "Nom": "Niveau de scénario Final",
+    "Balise": "<NSF>",
+    "Result": Class.NSF,
+    }]
+    wb = load_workbook(target)
+    ws = wb['Feuil1']
+    ws_tra = wb['TRA']
+    ws_date = wb['DATE']
+
+
+    for i in range(len(balises_ref)):
+        print(balises_ref[i]["Nom"])
+        a = "a"+ str(i+1)
+        b = "b"+ str(i+1)
+        c = "c"+ str(i+1)
+ 
+        ws[a] = balises_ref[i]["Nom"]
+        ws[b] = balises_ref[i]["Balise"]
+        ws[c] = balises_ref[i]["Result"]
+
+    if  (Class.Typologie == "coupon autocall"):
+        ws_date["A2"] = Class.Datesconstatations1
+        ws_date["A4"] = Class.Datesremb1
+
+    else:
+        ws_date["Datesconstatations3"] = Class.Datesconstatations1
+        ws_date["A4"] = Class.Datespaiement1   
+        ws_date["A6"] = Class.Datesremb1   
+
+    wb.save(target)
 
 def elementsToReplaceDegressivite(Class, shapes):
     #si degressif on supprime les balises
@@ -619,7 +826,10 @@ def ChangeTextOnPpt(Class):
 
     # xml_slides = presentation.slides._sldIdLst  
     #slides = list(prs)
-    # xml_slides.remove(slides[index])    
+    # xml_slides.remove(slides[index])
+    # 
+
+    excel(Class) 
     prs.save(NAME)
 
 

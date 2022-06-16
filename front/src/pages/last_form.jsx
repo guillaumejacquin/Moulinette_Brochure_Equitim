@@ -194,7 +194,7 @@ const Last_form = () => {
                         <div className="thirdblocrealtitle" style={{marginLeft:"0%"}}> Dates Constatation & Paiement</div>
                         <div>
                             <TextField
-                                style={{width:"80%", marginLeft:"0%", marginTop:"10%"}}
+                                style={{width:"80%", marginLeft:"1.8%", marginTop:"10%"}}
 
                                 label="Date(s) de constatation(s) initiale(s)"
                                 name="DCI"
@@ -204,50 +204,40 @@ const Last_form = () => {
                                 autoComplete="on"
                                 fullWidth/>
                         </div>
-                        <div style={{width:"80%", marginLeft:"0%", marginTop:"10%"}}>
+                        <TextField
+                        style={{width:"80%", marginLeft:"1.8%"}}
+                        label="Date de premier rappel"
+                        name="Date de premier rappel"
+                        onChange={(e)=>setDPR(e.target.value)}
+                        margin="normal"
+                        variant="outlined"
+                        autoComplete="on"
+                        fullWidth/>
+                        
+                        <TextField
+                        style={{width:"80%", marginLeft:"1.8%"}}
+                        label="Avant dernière date de constatation"
+                        name="Avant dernière date de constatation"
+                        onChange={(e)=>setADCF(e.target.value)}
+                        margin="normal"
+                        variant="outlined"
+                        autoComplete="on"
+                        fullWidth/>
 
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                                label="Date de premier rappel"
-                                value={DPR}
-                                onChange={(DPR) => {
-                                setDPR(DPR);
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                        </LocalizationProvider>
-                        </div>
-                        <div style={{width:"80%", marginLeft:"0%", marginTop:"10%"}}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                                label="Avant dernière date de constatation finale"
-                                value={ADCF}
-                                onChange={(ADCF) => {
-                                setADCF(ADCF);
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                        </LocalizationProvider>
-                        </div>
-                        <div style={{width:"80%", marginLeft:"0%", marginTop:"10%"}}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                                label="Date de constatation finale"
-                                value={DCF}
-                                onChange={(DCF) => {
-                                setDCF(DCF);
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                            </LocalizationProvider>
-                        </div>
-                    
+
+                        <TextField
+                        style={{width:"80%", marginLeft:"1.8%"}}
+                        label="Date de constatation finale"
+                        name="Date de constatation finale"
+                        onChange={(e)=>setDCF(e.target.value)}
+                        margin="normal"
+                        variant="outlined"
+                        autoComplete="on"
+                        fullWidth/>
                     </div>
                     
-        
                     
                     <div className="thirdbloctitle" style={{marginLeft:"1%"}}>
-
                         <div style={{width:"80%", marginLeft:"0%", marginTop:"14.55%"}}>
                         <FormControl>
                             <InputLabel style={{marginTop:"0%", marginLeft:"8.4%"}}id="Type de strike">Type de strike</InputLabel>
@@ -267,43 +257,35 @@ const Last_form = () => {
                         </FormControl>
                         </div>
                         
-                        <div style={{width:"80%", marginLeft:"0%", marginTop:"12%"}}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                                label="Date remboursement premier rappel"
-                                value={DR1}
-                                onChange={(DR1) => {
-                                setDR1(DR1);
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                            </LocalizationProvider>
-                        </div>
-                        <div style={{width:"80%", marginLeft:"0%", marginTop:"10%"}}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                                label="Avant dernière date de remboursement"
-                                value={DADR}
-                                onChange={(DADR) => {
-                                setDADR(DADR);
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                        </LocalizationProvider>
-                        </div>
+                       <TextField
+                        style={{width:"80%", marginLeft:"0.6%", marginTop:"9%"}}
+                        label="Date de remboursement premier rappel"
+                        name="Date de remboursement premier rappel"
+                        onChange={(e)=>setDR1(e.target.value)}
+                        margin="normal"
+                        variant="outlined"
+                        autoComplete="on"
+                        fullWidth/>
+                              
+                        <TextField
+                        style={{width:"80%", marginLeft:"0.6%"}}
+                        label="Avant dernière date de remboursement"
+                        name="Avant dernière date de remboursement"
+                        onChange={(e)=>setDADR(e.target.value)}
+                        margin="normal"
+                        variant="outlined"
+                        autoComplete="on"
+                        fullWidth/>
 
-                        <div style={{width:"80%", marginLeft:"0%", marginTop:"10%"}}>
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                                label="Date d'échéance"
-                                value={DEC}
-                                onChange={(DEC) => {
-                                setDEC(DEC);
-                                }}
-                                renderInput={(params) => <TextField {...params} />}
-                            />
-                        </LocalizationProvider>
-                        </div>
+                        <TextField
+                        style={{width:"80%", marginLeft:"0.6%"}}
+                        label="Date d'échéance"
+                        name="Date d'échéance"
+                        onChange={(e)=>setDEC(e.target.value)}
+                        margin="normal"
+                        variant="outlined"
+                        autoComplete="on"
+                        fullWidth/>
                     
                     </div>
                     <div className="thirdbloctitle" style={{marginLeft:"1%"}}>
@@ -369,9 +351,7 @@ const Last_form = () => {
                             fullWidth/>
                         </div>
                     </div>
-                    
                     </div>
-                
             </div>
         );
     }
@@ -444,7 +424,6 @@ const Last_form = () => {
                             <MenuItem value={"trimestre"}>Trimestrielle</MenuItem>
                             <MenuItem value={"semestre"}>Semestrielle</MenuItem>
                             <MenuItem value={"année"}>Annuelle</MenuItem>
-
                             </Select>
                     </FormControl>
     
@@ -553,8 +532,6 @@ const Last_form = () => {
                         variant="outlined"
                         autoComplete="on"
                         fullWidth/>
-
-
                 </div>
 
                 <div className="column5">
@@ -586,9 +563,6 @@ const Last_form = () => {
                                 </Select>
                             </FormControl>
                         </div>
-                        
-                   
-                
                         
                   <TextField
                         style={{width:"15%", marginLeft:"1.8%"}}
@@ -641,11 +615,10 @@ const Last_form = () => {
         );
     }
 
-
     return (
     <div> 
-        <h1> LA MOULINETTE BROCHURE DE WALLY</h1>
-        <h3>INFORMATIONS GENERALES</h3>
+        <h1> LA MOULINETTE BROCHURE DE WALLY </h1>
+        <h3> INFORMATIONS GENERALES </h3>
         <div className="rect" style={{marginTop:"1.3%"}}>
             {first_bloc()}
         </div>

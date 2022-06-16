@@ -65,6 +65,7 @@ def bloc3(Class, name, whitestrap=True):
 
     fig.add_annotation(x=50, y=0, ax=4.5, ay=0, xref='x', yref='y', axref='x', ayref='y', text='',
     showarrow=True, arrowhead=3, arrowwidth=2, arrowcolor='black')
+    second_value = int(Class.PR1)
 
     if (Class.F0 == "jours"):
         firstvaluexabciss = "Année" + Class.F0s + " 1 à " +  str(int(int(Class.PR1)/365))
@@ -76,10 +77,8 @@ def bloc3(Class, name, whitestrap=True):
             firstvaluexabciss = Class.F0 + " 1"
             if (int(Class.PR1) -1 == 0):
                 second_value = int(Class.PR1) + 1
-        else:
-            second_value = int(Class.PR1)
 
-            firstvaluexabciss = Class.F0 + Class.F0s + " 1 à " +  str(int(Class.PR1) -1)
+        firstvaluexabciss = Class.F0 + Class.F0s + " 1 à " +  str(int(Class.PR1) -1)
         secondvaluexabciss = Class.F0 + Class.F0s + " " +  str(second_value)  + " à " + str(int(Class.DPRR) - 1) 
         thirdvaluexabciss = Class.F0  +" " + str(Class.DPRR)
 
@@ -314,8 +313,10 @@ def bloc3(Class, name, whitestrap=True):
         type="line", line_color=green, line_width=3, opacity=1, line_dash="dot",
         x0=5, x1=15, y0=niveau_autocall[0], y1=niveau_autocall[1]
     )
-
-    texta = "<b>Le produit continue </b>:<br><br> Aucun coupon n'est versé, il <br> est mis en mémoire"
+    if (Class.CPN_is_memoire == "oui"):
+        texta = "<b>Le produit continue </b>:<br><br> Aucun coupon n'est versé, il <br> est mis en mémoire"
+    else:
+        texta = "<b>Le produit continue </b>:<br><br> Aucun coupon n'est versé"
     fig.add_annotation(
         x=(10),
         y=(niveau_coupon[0] - (niveau_coupon[0]/2) + 10),
@@ -335,8 +336,10 @@ def bloc3(Class, name, whitestrap=True):
     gce = ("{:.2f}".format(float(Class.GCE)))
     gce = gce.replace(".", ",")
 
-
-    mystring = "<b>Le produit continue </b>:<br><br>  Un coupon de " + cpn + "% <br> + <br> Les éventuels coupons mémorisés <br> au préalable"
+    if (Class.CPN_is_memoire == "oui"):
+        mystring = "<b>Le produit continue </b>:<br><br>  Un coupon de " + cpn + "% <br> + <br> Les éventuels coupons mémorisés <br> au préalable"
+    else:
+        mystring = "<b>Le produit continue </b>:<br><br>  Un coupon de " + cpn + "% <br>"
     fig.add_annotation(
         x=(10),
         y=(niveau_coupon[0] + (130-niveau_coupon[0]) /2),
@@ -345,8 +348,10 @@ def bloc3(Class, name, whitestrap=True):
         font=dict(color=black, size=12),
         
     )
-
-    mystring = "<b>Le produit continue </b>:<br><br> Aucun coupon versé, il est mis en mémoire"
+    if (Class.CPN_is_memoire == "oui"):
+        mystring = "<b>Le produit continue </b>:<br><br> Aucun coupon versé, il est mis en mémoire"
+    else:
+        mystring = "<b>Le produit continue </b>:<br><br> Aucun coupon versé"
     fig.add_annotation(
         x=(28),
         y=(niveau_autocall[3] /2),
@@ -355,8 +360,11 @@ def bloc3(Class, name, whitestrap=True):
         font=dict(color=black, size=12)
     )
    
+    if (Class.CPN_is_memoire == "oui"):
+        mystring = "<b>Le produit continue </b>:<br><br>Aucun coupon n'est versé, il est mis en mémoire"
+    else:
+        mystring = "<b>Le produit continue </b>:<br><br>Aucun coupon n'est versé"
 
-    mystring = "<b>Le produit continue </b>:<br><br>Aucun coupon n'est versé, il est mis en mémoire"
     fig.add_annotation(
         x=(28),
         y=niveau_autocall[1]/2,
@@ -422,9 +430,13 @@ def bloc3(Class, name, whitestrap=True):
         showarrow=False,
         font=dict(color=black,size=12)
     )
-    mystring = "<b>Remboursement anticipé automatique(1) :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br> Les éventuels coupons mémorisés au préalable"
-    mystring = mystring.replace("(1)", "⁽¹⁾")
 
+    if (Class.CPN_is_memoire == "oui"):
+        mystring = "<b>Remboursement anticipé automatique(1) :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br> Les éventuels coupons mémorisés au préalable"
+        mystring = mystring.replace("(1)", "⁽¹⁾")
+    else:
+        mystring = "<b>Remboursement anticipé automatique(1) :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "%"
+        mystring = mystring.replace("(1)", "⁽¹⁾")
     fig.add_annotation(
         x=(28),
         y= 130 - (130 - niveau_autocall[2])/2,
@@ -447,10 +459,13 @@ def bloc3(Class, name, whitestrap=True):
             # align="left"
         )
         
-    
-    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br>Les éventuels coupons <br> mémorisés au préalable <br>"
-    mystring = mystring.replace("(1)", "⁽¹⁾")
-
+    if (Class.CPN_is_memoire == "oui"):
+        mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br>Les éventuels coupons <br> mémorisés au préalable <br>"
+        mystring = mystring.replace("(1)", "⁽¹⁾")
+    else:
+        mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "%"
+        mystring = mystring.replace("(1)", "⁽¹⁾")
+        
     fig.add_annotation(
         x=(44),
         y= 130 - (130 - niveau_autocall[4])/2,

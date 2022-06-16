@@ -123,11 +123,8 @@ def start_processus_template(Class):
 
     # Class.graph1 = bloc2(Class, "graph1.png", whitestrap=False)
     Class.graph2 = bloc3(Class, "graph2.png", whitestrap=True)
-    print("iciiiiiiiiiiai")
 
-    #ici
-    #bloc4
-    #èèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèè
+
     if  Class.TDP == "indice" :
         indice_main(Class, "graph5.png")
     else:
