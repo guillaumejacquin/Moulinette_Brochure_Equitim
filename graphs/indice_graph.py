@@ -43,6 +43,7 @@ def indice_simple_tickers(tickers, Class, Name):
     df = pd.read_excel (r'database/database_indice.xlsx', sheet_name=tickers[0])
     df = df.iloc[1: , :]
 
+    print("LALALALLAALALLALAL", tickers, Name)
     fig = px.line(data_frame = df[tickers[0]]
                         ,x = df[tickers[0]]
                         ,y = [df["Unnamed: 1"]],
@@ -146,49 +147,13 @@ def indice_simple_tickers(tickers, Class, Name):
                 pass
             Class.Yahoo_value.append(my_array)
 
-def indice_multiple_tickers(tickers, Class, Name):
-    bdays=BDay()    
-    # df = df.iloc[1: , :]
-    df_list = []
 
-    for datas in (tickers):
-        # print(datas)
-        df = pd.read_excel (r'database/database_indice.xlsx', datas)
-        print(datas)
-        df = df.iloc[1: , :]
-        df_list.append(df["Unnamed: 1"])
-
-    # print(df_list[0])
-    print(df_list[0])
-
-    # colors = ['#B9A049', '#0B3371', '#C00000', '#007A37', '#4639F3']
-    df = pd.read_excel (r'database/database_indice.xlsx', sheet_name=tickers[0])
-    df = df.iloc[1: , :]
-
-    # if len(df_list) == 2:
-    #         print("yeah yeah")
-    #         df_list[0] = df_list[0].reset_index(drop=True, inplace=True)
-
-    #         fig = px.line(data_frame = df[0]
-    #                     ,x = df[0]
-    #                     ,y = df_list[0],
-    #                     title="En points",
-    #                     ) 
-    #         print("POUET")
-            # fig.data[0].name = Class.Yahoo_value_name[0]
-            # fig.data[1].name = Class.Yahoo_value_name[1]
-
-            
-    #fig.show()
 
 def indice_main(Class, Name):
         ticker = Class.TSJ
         tickers = Class.Yahoo #vraie
         if (len(tickers) == 1):
             indice_simple_tickers(ticker, Class, Name)
-        
-        elif (len(tickers) > 1):
-            indice_multiple_tickers(ticker, Class, Name)
 
         else: 
             print("error")

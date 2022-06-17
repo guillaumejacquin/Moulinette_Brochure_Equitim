@@ -3,7 +3,7 @@ def balisedeg(Class):
     deg = ("{:.2f}".format(deg))
     if (Class.type_bar == "degressif"):
         Class.balisedeg = ", ou si à la date de constatation finale(¹), <SJR1> clôture à un <SJR3> supérieur ou égal à <DBAC> de son <NDR>"
-        Class.balisedeg2 = "La barrière de remboursement anticipé automatique est dégressive au fil du temps. Elle est fixée à <BAC> du <NDR>  en fin de <F0> <1PR>, puis décroît de " + deg +"% chaque <F0>, pour atteindre <ABDAC>% du <NDR> à la fin du <F0> <ADPR>."
+        Class.balisedeg2 = "La barrière de remboursement anticipé automatique est dégressive au fil du temps. Elle est fixée à <BAC> du <NDR>  en fin de <F0> <1PR>, puis décroît de " + str(str(deg).replace(".",",")) +"% chaque <F0>, pour atteindre <ABDAC>% du <NDR> à la fin du <F0> <ADPR>."
         Class.balisedeg3 = "<balisedeg2>"
 
     else:

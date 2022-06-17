@@ -78,8 +78,8 @@ def traces(Class, fig):
 
     text_legende = Class.SJR3.capitalize() + " de <br>l'"+ Class.TDP +  " par <br>rapport à son <br>" + Class.NDR
     
-    fig.add_annotation(x=0.8, y=152, text= (text_legende), showarrow=False,
-                    font=dict(family="Proxima Nova", size=12, color=black ), align="left")
+    fig.add_annotation(x=2.2, y=152, text= (text_legende), showarrow=False,
+                    font=dict(family="Proxima Nova", size=10, color=black ), align="left")
 
     if (niveau_de_référence).is_integer():
         niveau_de_référence = int(niveau_de_référence)
@@ -184,13 +184,19 @@ def texte(Class, fig):
         degressive = ""
     else:
         degressive = "dégressivité"
-    fig.add_annotation(x=43.5, y=133 ,text= ("Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) ), showarrow=False,
+    
+    if (Class.Typologie == "coupon autocall"):
+        text = "Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
+    else:
+        text = "Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
+
+    fig.add_annotation(x=43.4, y=133 ,text= (text), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
 
-    fig.add_annotation(x=28, y=123.5 ,text= ("Seuil de perte en capital à l'échéance" ), showarrow=False,
+    fig.add_annotation(x=28, y=124.5 ,text= ("Seuil de perte en capital à l'échéance" ), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
    
-    fig.add_annotation(x=25, y=118 ,text= ("Part de capital remboursé" ), showarrow=False,
+    fig.add_annotation(x=24.5, y=118 ,text= ("Part de capital remboursé" ), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")         
 
 
@@ -201,13 +207,13 @@ def texte(Class, fig):
         
 
     fig.add_shape(type="line",
-        x0=7, y0=123, x1=12, y1=123,
+        x0=7, y0=124, x1=12, y1=124,
         line=dict(color=red, width=2))
         
     fig.add_shape(type="circle",
         xref="x", yref="y",
         fillcolor=blue,
-        x0=9.5 - 0.5 , y0= 118 - 1 , x1=9.5 + 0.5, y1 = 118 + 1,
+        x0=9.5 - 0.95 , y0= 117 - 1.5 , x1=9.5 + 0.95, y1 = 118 + 1.5,
         line_color=blue,
 )    
     return(fig)

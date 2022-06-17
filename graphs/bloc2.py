@@ -296,7 +296,7 @@ def bloc2(Class, name, whitestrap=False):
 
       
         fig.add_trace(go.Scatter(x=[27,37,37,27], 
-                                y=[130 ,130 + 1, niveau_autocall[2], niveau_autocall[2]],
+                                y=[130 ,130 + 1, niveau_autocall[2] +1, niveau_autocall[2] + 1],
                                 fill='toself',
                                 fillcolor='#F7F4E9',
                                 line=dict(width=0),
@@ -305,7 +305,7 @@ def bloc2(Class, name, whitestrap=False):
                                 hoverinfo ='none',))  
 
         fig.add_trace(go.Scatter(x=[5,25,25,5],
-                            y=[130 ,130 ,niveau_autocall[1],niveau_autocall[0]],
+                            y=[130 ,130 ,niveau_autocall[1] + 1,niveau_autocall[0] + 1],
                             fill='toself',
                             fillcolor='#F7F4E9',
                             line=dict(width=0),

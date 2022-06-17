@@ -48,7 +48,7 @@ from calculs.style.NOMSOUSJACENTP1 import *
 from calculs.dates.DDPP import *
 from calculs.dates.boucles.callAllDates2Date import *
 from calculs.dates.DDCI_M_B_Strike import *
-
+from calculs.DIVERSACTION import *
 #traitement des données
 def start_processus_template(Class):
     PDC1(Class)
@@ -108,6 +108,7 @@ def start_processus_template(Class):
     DDR1_maj_start(Class)
     callAllDates2Date(Class)
     DDCI_M_B_Strike(Class)
+    diversaction(Class)
     # ABAC2_MAJ(Class)
     ALL_TRA(Class)
 

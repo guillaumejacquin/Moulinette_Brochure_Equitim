@@ -152,6 +152,7 @@ class InformationsForm():
         self.BFP = ""
         self.PAGE = ""
         self.DDCI_M_B_Strike = ""
+        self.DIVERSACTION = ", et ne bénéficie pas de la diversification offerte par les indices de marchés actions"
         self.var_degressivite()
 
     def var_degressivite(self):

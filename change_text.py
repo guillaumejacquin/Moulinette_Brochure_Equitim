@@ -438,9 +438,9 @@ def elementsToReplaceCalcul(Class, shapes):
     bfp = str(Class.BFP) + "%"
     replace_text({'<BFP>': bfp}, shapes) 
     replace_text({'<PAGE>': Class.PAGE}, shapes) 
+    replace_text({'<DIVERSACTION>': Class.DIVERSACTION}, shapes) 
 
     replace_text({'<DDPP>': Class.DDPP}, shapes) 
-    print("ahhhhhhhhhhhhhhhhhhhhh", Class.legende_tickers)
     replace_text({'<tickersname>':  Class.legende_tickers}, shapes)
 
     TRA_replace(Class, shapes)
@@ -830,6 +830,54 @@ def ChangeTextOnPpt(Class):
     # 
 
     excel(Class) 
+    # prs.slides.remove(0)
+   
+    if(Class.Typologie == "coupon autocall"):  #SUPPRIMER LES PAGES EN FONCTION DE SI C EST ATHENA OU PHOENIX       athena: 3,5,6,8;10, 13
+        rId = prs.slides._sldIdLst[2].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[2]
+
+        rId = prs.slides._sldIdLst[3].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[3]
+
+        rId = prs.slides._sldIdLst[3].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[3]
+
+        rId = prs.slides._sldIdLst[4].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[4]
+        
+        rId = prs.slides._sldIdLst[5].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[5]
+
+        rId = prs.slides._sldIdLst[7].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[7]
+    
+    else:
+        rId = prs.slides._sldIdLst[1].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[1]
+
+        rId = prs.slides._sldIdLst[2].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[2]
+
+        rId = prs.slides._sldIdLst[3].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[3]
+        
+        rId = prs.slides._sldIdLst[4].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[4]
+
+        rId = prs.slides._sldIdLst[6].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[6]
+    
     prs.save(NAME)
 
 
