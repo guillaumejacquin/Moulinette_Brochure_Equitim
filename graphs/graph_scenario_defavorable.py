@@ -127,15 +127,16 @@ def traces(Class, fig):
     
     text = (str(niveau_de_référence) + "%" )
     fig.add_annotation(x=x_vertical_line +4.75 - x_niveau_ref, y=niveau_de_référence,text= (str(niveau_de_référence) + "%" ), showarrow=False,
-                    font=dict(family="Proxima Nova", size=15, color=green ), align="left")
+                    font=dict(family="Proxima Nova", size=15, color=black ), align="left")
 
     if (Class.type_bar == "degressif"):
         fig.add_shape(type="line",
         x0=x_vertical_line, y0=niveau_de_référence, x1= x_vertical_line - 3, y1=niveau_de_référence,
-        line=dict(color=green, width=4))
+        line=dict(color=black, width=4))
     
     fig.add_annotation(x=x_vertical_line +4.75 - x_derniere_observation, y=derniere_observation,text= (str(derniere_observation) + "%" ), showarrow=False,
                     font=dict(family="Proxima Nova", size=15, color=blue ), align="left")
+    
     
     fig.add_shape(type="line",
     x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
@@ -151,7 +152,7 @@ def traces(Class, fig):
     fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=niveau_de_scénario_déf,text= (str(niveau_de_scénario_déf) + "%" ), showarrow=False,
                     font=dict(family="Proxima Nova", size=15, color=blue ), align="left")
 
-
+    
 
     fig.add_shape(type="circle",
     xref="x", yref="y",
@@ -159,13 +160,24 @@ def traces(Class, fig):
     x0=x_vertical_line - 0.95 , y0= niveau_de_scénario_déf -1.705, x1=x_vertical_line + 0.95, y1 = niveau_de_scénario_déf + 1.705,
     line_color=blue,
 )
-
-
+    if (Class.Typologie == "coupon autocall"):
+        fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
+            font=dict(family="Proxima Nova", size=15, color=green ), align="left")
+        fig.add_shape(type="line",
+            x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
+            line=dict(color=green, width=4))
+                
+    if (float(niveau_de_référence) == float(Class.DBAC)):
+        fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
+            font=dict(family="Proxima Nova", size=15, color=green ), align="left")
+        fig.add_shape(type="line",
+            x0=x_vertical_line, y0=Class.DBAC, x1= x_vertical_line - 3, y1=Class.DBAC,
+            line=dict(color=green, width=4))
 def texte(Class, fig):
     indice = Class.Nom
 
 
-    fig.add_annotation(x=39, y=145 ,text= ("<b>Evolution "  + Class.SJR7 + "</b>" ), showarrow=False,
+    fig.add_annotation(x=39, y=155 ,text= ("<b>Evolution "  + Class.SJR7 + "</b>" ), showarrow=False,
                         font=dict(family="Proxima Nova", size=20, color=black ), align="left")
     pasdedegressivite = float(Class.DEG)
     if pasdedegressivite == 0:
@@ -175,33 +187,41 @@ def texte(Class, fig):
 
     if (Class.Typologie == "coupon autocall"):
         text = "Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
+        x_a = 46.5
     else:
         text = "Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
-
-    fig.add_annotation(x=43.4, y=133 ,text= (text), showarrow=False,
+        x_a = 43.4
+    fig.add_annotation(x=x_a, y=133 + 8 ,text= (text), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
 
-    fig.add_annotation(x=28, y=124.5 ,text= ("Seuil de perte en capital à l'échéance" ), showarrow=False,
+    fig.add_annotation(x=28, y=124.5 + 8 ,text= ("Seuil de perte en capital à l'échéance" ), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
    
-    fig.add_annotation(x=24.5, y=118 ,text= ("Part de capital remboursé" ), showarrow=False,
-                        font=dict(family="Proxima Nova", size=10, color=black ), align="left")         
+    fig.add_annotation(x=24.5, y=118 + 8 ,text= ("Part de capital remboursé" ), showarrow=False,
+                        font=dict(family="Proxima Nova", size=10, color=black ), align="left")      
+
+    fig.add_annotation(x=28.5, y=112 + 8 ,text= ("Différence entre le montant de remboursement du produit et le niveau du sous_jacent" ), showarrow=False,
+                        font=dict(family="Proxima Nova", size=10, color=black ), align="left")
+                        
+    if (Class.Typologie == "coupon phoenix"):
+        fig.add_annotation(x=26, y=106 + 8 ,text= ("Coupon " + Class.F1 + " de " + str(str(Class.CPN).replace(".", ",")) +"%"), showarrow=False,
+                        font=dict(family="Proxima Nova", size=10, color=black ), align="left")
 
 
     fig.add_shape(type="line",
-        x0=7, y0=133, x1=12, y1=133,
+        x0=7, y0=133 + 8, x1=12, y1=133 + 8,
         line=dict(color=green, width=2), line_dash="dot")    
 
         
 
     fig.add_shape(type="line",
-        x0=7, y0=124, x1=12, y1=124,
+        x0=7, y0=124 + 8, x1=12, y1=124 + 8,
         line=dict(color=red, width=2))
         
     fig.add_shape(type="circle",
         xref="x", yref="y",
         fillcolor=blue,
-        x0=9.5 - 0.95 , y0= 117 - 1.5 , x1=9.5 + 0.95, y1 = 118 + 1.5,
+        x0=9.5 - 0.95 , y0= 117 - 1.5 + 8 , x1=9.5 + 0.95, y1 = 118 + 1.5 + 8,
         line_color=blue,
 )    
     return(fig)

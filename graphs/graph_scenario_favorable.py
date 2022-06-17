@@ -10,7 +10,7 @@ black = "#000000"
 
 def params(fig):
     fig.update_xaxes(range=[0.5,90])
-    fig.update_yaxes(range=[27.75,175])
+    fig.update_yaxes(range=[27.75,195])
     # fig.update_yaxes(ticks="outside", tickwidth=1, tickcolor='crimson', ticklen=10, col=1)
 
     fig.update_yaxes(tickangle=0,
@@ -156,6 +156,19 @@ def traces(Class, fig):
     # x0=x_vertical_line, y0=niveau_de_scénario_déf, x1= x_vertical_line - 3.5, y1=niveau_de_scénario_déf,
     # line=dict(color=blue, width=6))
 
+    if (Class.Typologie == "coupon autocall"):
+        fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
+            font=dict(family="Proxima Nova", size=15, color=green ), align="left")
+        fig.add_shape(type="line",
+            x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
+            line=dict(color=green, width=4))
+                
+    if (float(niveau_de_référence) == float(Class.DBAC)):
+        fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
+            font=dict(family="Proxima Nova", size=15, color=green ), align="left")
+        fig.add_shape(type="line",
+            x0=x_vertical_line, y0=Class.DBAC, x1= x_vertical_line - 3, y1=Class.DBAC,
+            line=dict(color=green, width=4))
 
 def texte(Class, fig):
     indice = Class.Nom
@@ -172,10 +185,13 @@ def texte(Class, fig):
 
     if (Class.Typologie == "coupon autocall"):
         text = "Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
+        x_a = 46.5
+
     else:
         text = "Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
+        x_a = 44.5
 
-    fig.add_annotation(x=43.4, y=153 ,text= text, showarrow=False,
+    fig.add_annotation(x=x_a, y=153 ,text= text, showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
     fig.add_annotation(x=28, y=14.5 ,text= ("Seuil de perte en capital à l'échéance" ), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
