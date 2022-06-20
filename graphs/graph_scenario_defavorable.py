@@ -113,34 +113,29 @@ def traces(Class, fig):
 
     #la ligne horizontale = niveau de référence verte
 
-    # fig.add_shape(type="line",
-    # x0=30, y0=premier_niveau_autocall, x1=61, y1=avant_dernier_niveau_de_reference + 2 * pasdedegressivite,
-    # line=dict(color=green, width=3),  line_dash="dash")
+
 
     add_remontee_var = 0    
     if Class.type_bar == "degressif":
         add_remontee_var = 1
 
-    # fig.add_shape(type="line",
-    # x0=69, y0=avant_dernier_niveau_de_reference + add_remontee_var, x1=73, y1=avant_dernier_niveau_de_reference + add_remontee_var,
-    # line=dict(color=green, width=3),  line_dash="dash")
-    
+
     text = (str(niveau_de_référence) + "%" )
     fig.add_annotation(x=x_vertical_line +4.75 - x_niveau_ref, y=niveau_de_référence,text= (str(niveau_de_référence) + "%" ), showarrow=False,
                     font=dict(family="Proxima Nova", size=15, color=black ), align="left")
 
-    if (Class.type_bar == "degressif"):
+    if (float(Class.DBAC) <= niveau_de_référence):
         fig.add_shape(type="line",
         x0=x_vertical_line, y0=niveau_de_référence, x1= x_vertical_line - 3, y1=niveau_de_référence,
         line=dict(color=black, width=4))
     
     fig.add_annotation(x=x_vertical_line +4.75 - x_derniere_observation, y=derniere_observation,text= (str(derniere_observation) + "%" ), showarrow=False,
-                    font=dict(family="Proxima Nova", size=15, color=blue ), align="left")
+                    font=dict(family="Proxima Nova", size=15, color=green ), align="left")
     
     
     fig.add_shape(type="line",
     x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
-    line=dict(color=blue, width=4))
+    line=dict(color=green, width=4))
 
     fig.add_annotation(x=x_vertical_line +4.75 - x_perte_capital, y=perte_capital,text= (str(perte_capital) + "%" ), showarrow=False,
                     font=dict(family="Proxima Nova", size=15, color=red ), align="left")
@@ -161,11 +156,13 @@ def traces(Class, fig):
     line_color=blue,
 )
     if (Class.Typologie == "coupon autocall"):
-        fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
-            font=dict(family="Proxima Nova", size=15, color=green ), align="left")
-        fig.add_shape(type="line",
-            x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
-            line=dict(color=green, width=4))
+        if (Class.type_bar != "degressif"):
+           
+            fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
+                font=dict(family="Proxima Nova", size=15, color=green ), align="left")
+            fig.add_shape(type="line",
+                x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
+                line=dict(color=green, width=4))
                 
     if (float(niveau_de_référence) == float(Class.DBAC)):
         fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
@@ -200,11 +197,25 @@ def texte(Class, fig):
     fig.add_annotation(x=24.5, y=118 + 8 ,text= ("Part de capital remboursé" ), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")      
 
-    fig.add_annotation(x=28.5, y=112 + 8 ,text= ("Différence entre le montant de remboursement du produit et le niveau du sous_jacent" ), showarrow=False,
+    #----------------------------------------#
+    # fig.add_annotation(x=42.5, y=110 + 8 ,text= ("Différence entre le montant de remboursement du produit et le niveau du sous-jacent" ), showarrow=False,
+    #                     font=dict(family="Proxima Nova", size=10, color=black ), align="left")
+
+    # fig.add_shape(type="line",
+    #     x0=7, y0=110 + 8, x1=12, y1=110 + 8,
+    #     line=dict(color="orange", width=1), line_dash="dot")    
+    #----------------------------------------#
+
+    fig.add_annotation(x=27.5, y=110 + 8 ,text= ("Simulation de l'évolution de l'" + Class.SJR1 ), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
+    
+    fig.add_shape(type="line",
+        x0=7, y0=110 + 8, x1=12, y1=110 + 8,
+        line=dict(color="#D9CD9F", width=2))    
+
                         
     if (Class.Typologie == "coupon phoenix"):
-        fig.add_annotation(x=26, y=106 + 8 ,text= ("Coupon " + Class.F1 + " de " + str(str(Class.CPN).replace(".", ",")) +"%"), showarrow=False,
+        fig.add_annotation(x=26, y=104 + 8 ,text= ("Coupon " + Class.F1 + " de " + str(str(Class.CPN).replace(".", ",")) +"%"), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
 
 
@@ -264,7 +275,7 @@ def athena_annotations(Class, fig):
         add_remontee_var = 4
 
     fig.add_shape(type="line",
-                    x0=23, y0=premier_niveau_autocall, x1=71, y1=avant_dernier_niveau_de_reference + 2 * pasdedegressivite + add_remontee_var,
+                    x0=23, y0=premier_niveau_autocall, x1=78, y1=float(Class.DBAC),
                     line=dict(color=green, width=3),  line_dash="dash")
 
     if (float(avant_dernier_niveau_de_reference) < premier_niveau_autocall):
@@ -371,7 +382,7 @@ def phoenix_annotations(Class, fig):
             line=dict(color=green, width=3))
 
             fig.add_shape(type="line",
-                    x0=start_green_line + 3, y0=premier_niveau_autocall, x1=71, y1=avant_dernier_niveau_de_reference + 2 * pasdedegressivite,
+                    x0=start_green_line + 3, y0=premier_niveau_autocall, x1=79, y1=float(Class.DBAC),
                     line=dict(color=green, width=3),  line_dash="dash")
 
     fig.add_shape(type="line",

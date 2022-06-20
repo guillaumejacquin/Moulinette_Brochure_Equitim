@@ -365,32 +365,26 @@ def bloc2(Class, name, whitestrap=False):
 
     
     mystring = "<b>Remboursement à l'échéance: </b><br><br>L'intégralité du capital initial"
+    mystring_first = "<b>Remboursement à l'échéance: </b><br>*"
+    mystring_second = "L'intégralité du capital initial"
     #FLECHE ET MOUVEMENT DE TEXTE SI PAS ASSEZ DE PLACE
     if (float(Class.DBAC) - niveau_capital < 10):
+
         fig.add_annotation(
-        x=(41.5),
+          x=(32),
+            y=(float(Class.DBAC) - (float(Class.DBAC) - niveau_capital)/2),
+            text=mystring_first,
+            showarrow=False,
+            font=dict(color=black, size=10))
+
+        fig.add_annotation(
+        x=(40.5),
         y=(30),
-        text=mystring,
+        text=mystring_second,
         showarrow=False,
         font=dict(color=black, size=10)
     )       
     
-        fig.add_annotation(
-            x=32,  # arrows' head
-            ay=31,  # arrows' head
-            ax=38,  # arrows' tail
-            y=float(Class.DBAC) - (float(Class.DBAC) - niveau_capital)/2 - 10,  # arrows' tail
-            xref='x',
-            yref='y',
-            axref='x',
-            ayref='y',
-            text='',  # if you want only the arrow
-            showarrow=True,
-            arrowhead=3,
-            arrowsize=1,
-            arrowwidth=1,
-            arrowcolor='black'
-        )
     
     else:
         fig.add_annotation(

@@ -318,6 +318,13 @@ def elementsToReplaceRemplacement(Class, shapes):
     nsf = str(Class.NSF) + "%"
     replace_text({'<NSF>':  nsf}, shapes)
 
+    abdac = float(Class.ABDAC)
+    len_cpn = (str(abdac)[::-1].find('.'))
+
+    if (len_cpn < 2):
+            cpn = (f'{float(Class.ABDAC):.2f}')
+
+            
     abdac = str(Class.ABDAC).replace(".", ",")
     replace_text({'<ABDAC>':  abdac}, shapes)
     
@@ -558,7 +565,7 @@ def TRA_replace(Class, shapes):
     replace_text({'<TRA.RM.P>': tra_rm_p}, shapes)
 
     tra_mp = Class.TRA_MP.replace(".", ",")
-    tra_mp = tra_rm_p + "%" 
+    tra_mp = tra_mp + "%" 
     replace_text({'<TRA.MP>': tra_mp}, shapes)
 
 
@@ -833,50 +840,46 @@ def ChangeTextOnPpt(Class):
     # prs.slides.remove(0)
    
     if(Class.Typologie == "coupon autocall"):  #SUPPRIMER LES PAGES EN FONCTION DE SI C EST ATHENA OU PHOENIX       athena: 3,5,6,8;10, 13
-        rId = prs.slides._sldIdLst[2].rId
+        rId = prs.slides._sldIdLst[11].rId
         prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[2]
+        del prs.slides._sldIdLst[11]
 
-        rId = prs.slides._sldIdLst[3].rId
+        rId = prs.slides._sldIdLst[8].rId
         prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[3]
+        del prs.slides._sldIdLst[8]
 
-        rId = prs.slides._sldIdLst[3].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[3]
-
-        rId = prs.slides._sldIdLst[4].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[4]
-        
         rId = prs.slides._sldIdLst[5].rId
         prs.part.drop_rel(rId)
         del prs.slides._sldIdLst[5]
 
-        rId = prs.slides._sldIdLst[7].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[7]
-    
-    else:
-        rId = prs.slides._sldIdLst[1].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[1]
-
-        rId = prs.slides._sldIdLst[2].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[2]
-
-        rId = prs.slides._sldIdLst[3].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[3]
-        
         rId = prs.slides._sldIdLst[4].rId
         prs.part.drop_rel(rId)
         del prs.slides._sldIdLst[4]
+        
+        rId = prs.slides._sldIdLst[2].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[2]
+    
+    else:
+        rId = prs.slides._sldIdLst[11].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[11]
+
+        rId = prs.slides._sldIdLst[8].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[8]
 
         rId = prs.slides._sldIdLst[6].rId
         prs.part.drop_rel(rId)
         del prs.slides._sldIdLst[6]
+        
+        rId = prs.slides._sldIdLst[3].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[3]
+
+        rId = prs.slides._sldIdLst[1].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[1]
     
     prs.save(NAME)
 
