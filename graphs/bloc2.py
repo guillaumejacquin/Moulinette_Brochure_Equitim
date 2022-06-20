@@ -378,7 +378,7 @@ def bloc2(Class, name, whitestrap=False):
             font=dict(color=black, size=10))
 
         fig.add_annotation(
-        x=(40.5),
+        x=(40),
         y=(30),
         text=mystring_second,
         showarrow=False,
