@@ -37,7 +37,7 @@ from graphs.graph_scenario_defavorable import *
 from graphs.graph_scenario_median import *
 from graphs.graph_scenario_favorable import *
 from graphs.indice_graph import *
-
+from calculs.decrement import *
 from calculs.dates.dates_maj import *
 from calculs.GainOuCoupon import *
 from calculs.Memoire.memoire import *
@@ -109,6 +109,7 @@ def start_processus_template(Class):
     callAllDates2Date(Class)
     DDCI_M_B_Strike(Class)
     diversaction(Class)
+    decrement(Class)
     # ABAC2_MAJ(Class)
     ALL_TRA(Class)
 

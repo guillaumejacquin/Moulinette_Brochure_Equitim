@@ -840,14 +840,18 @@ def ChangeTextOnPpt(Class):
     # prs.slides.remove(0)
    
     if(Class.Typologie == "coupon autocall"):  #SUPPRIMER LES PAGES EN FONCTION DE SI C EST ATHENA OU PHOENIX       athena: 3,5,6,8;10, 13
-        rId = prs.slides._sldIdLst[11].rId
+        rId = prs.slides._sldIdLst[12].rId
         prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[11]
+        del prs.slides._sldIdLst[12]
 
-        rId = prs.slides._sldIdLst[8].rId
+        rId = prs.slides._sldIdLst[9].rId
         prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[8]
+        del prs.slides._sldIdLst[9]
 
+        rId = prs.slides._sldIdLst[7].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[7]
+    
         rId = prs.slides._sldIdLst[5].rId
         prs.part.drop_rel(rId)
         del prs.slides._sldIdLst[5]

@@ -152,6 +152,7 @@ class InformationsForm():
         self.BFP = ""
         self.PAGE = ""
         self.DDCI_M_B_Strike = ""
+        self.decrement = "Les fluctuations du prix du produit en cours de vie sont également plus importantes en cas de baisse des marchés en raison de la méthode de prélèvement forfaitaire en points."
         self.DIVERSACTION = ", et ne bénéficie pas de la diversification offerte par les indices de marchés actions"
         self.var_degressivite()
 
