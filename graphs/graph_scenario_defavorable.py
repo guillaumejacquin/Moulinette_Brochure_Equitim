@@ -159,7 +159,7 @@ def traces(Class, fig):
         if (Class.type_bar != "degressif"):
            
             fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
-                font=dict(family="Proxima Nova", size=15, color="yellow" ), align="left")
+                font=dict(family="Proxima Nova", size=15, color="green" ), align="left")
             fig.add_shape(type="line",
                 x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
                 line=dict(color=green, width=4))
@@ -183,11 +183,11 @@ def texte(Class, fig):
         degressive = "dégressivité"
 
     if (Class.Typologie == "coupon autocall"):
-        text = "Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
-        x_a = 46.5
+        text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
+        x_a = 43.75
     else:
-        text = "Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
-        x_a = 43.4
+        text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
+        x_a = 43.75
     fig.add_annotation(x=x_a, y=133 + 8 ,text= (text), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
 
@@ -215,7 +215,7 @@ def texte(Class, fig):
 
                         
     if (Class.Typologie == "coupon phoenix"):
-        fig.add_annotation(x=26, y=104 + 8 ,text= ("Coupon " + Class.F1 + " de " + str(str(Class.CPN).replace(".", ",")) +"%"), showarrow=False,
+        fig.add_annotation(x=26, y=99 + 8 ,text= ("Coupon " + Class.F1 + " de " + str(str(Class.CPN).replace(".", ",")) +"%"), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
 
 
@@ -275,9 +275,13 @@ def athena_annotations(Class, fig):
         add_remontee_var = 4
 
     fig.add_shape(type="line",
-                    x0=23, y0=premier_niveau_autocall, x1=78, y1=float(Class.DBAC),
+                    x0=23, y0=premier_niveau_autocall, x1=70, y1=float(Class.ABDAC),
                     line=dict(color=green, width=3),  line_dash="dash")
 
+    if (Class.type_bar != "airbag"):
+        fig.add_shape(type="line",
+                        x0=70, y0=float(Class.ABDAC), x1=80.5, y1=float(Class.DBAC),
+                        line=dict(color=green, width=3),  line_dash="dash")
     if (float(avant_dernier_niveau_de_reference) < premier_niveau_autocall):
             fig.add_annotation(x=70, y=avant_dernier_niveau_de_reference + 2 * pasdedegressivite + add_remontee_var + 8 ,text= str(avant_dernier_niveau_de_reference) + "%", showarrow=False,
             font=dict(family="Proxima Nova", size=14, color=green), align="left")
@@ -382,12 +386,12 @@ def phoenix_annotations(Class, fig):
             line=dict(color=green, width=3))
 
             fig.add_shape(type="line",
-                    x0=start_green_line + 3, y0=premier_niveau_autocall, x1=79, y1=float(Class.DBAC),
+                    x0=start_green_line + 3, y0=premier_niveau_autocall, x1=71, y1=float(Class.ABDAC),
                     line=dict(color=green, width=3),  line_dash="dash")
 
     fig.add_shape(type="line",
             x0=start_green_line - 1.5 , y0=premier_niveau_autocall, x1=start_green_line + 2 , y1=premier_niveau_autocall ,
-            line=dict(color=blue, width=3))        
+            line=dict(color=green, width=3))        
 
     fig.add_shape(type="line",
             x0=2 , y0=float(Class.BCPN), x1=78 + 2 , y1=float(Class.BCPN) ,

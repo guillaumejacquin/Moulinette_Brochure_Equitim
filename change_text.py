@@ -537,8 +537,8 @@ def TRA_replace(Class, shapes):
     tra_mra_min_p = Class.TRA_MRA_MIN_P.replace(".", ",")
     tra_mra_min_p = tra_mra_min_p + "%"    
     replace_text({'<TRA.MRA.MIN.P>': tra_mra_min_p}, shapes)
-
-    tra_f_p = Class.TRA_F_P.replace(".", ",")
+    
+    tra_f_p = str(Class.TRA_F_P).replace(".", ",")
     tra_f_p = tra_f_p + "%"   
     replace_text({'<TRA.F.P>': tra_f_p}, shapes)
 
@@ -569,7 +569,7 @@ def TRA_replace(Class, shapes):
     tra_mre_min_pm = Class.TRA_MRE_MIN_PM.replace(".", ",")
     tra_mre_min_pm = tra_mre_min_pm + "%" 
     replace_text({'<TRA.MRE.MIN.PM>': tra_mre_min_pm}, shapes)
-    tra_max_p = Class.TRA_MAX_P.replace(".", ",")
+    tra_max_p = str(Class.TRA_MAX_P).replace(".", ",")
     tra_max_p = tra_max_p + "%" 
     replace_text({'<TRA.MAX.P>':tra_max_p}, shapes)
     tra_em_p = Class.TRA_EM_P.replace(".", ",")
@@ -602,11 +602,19 @@ def Replace_Boucle_Dates(Class, shapes):
     if Class.F0 == "jours":
         Class.dates_constat_autocall = "Chaque jour ouvré entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
         Class.dates_paiement_autocall = "Le " + str(Class.NJO) + "e jour ouvré suivant la date de constatation quotidienne."
+        Class.Datesconstatations1 = Class.dates_constat_autocall
+        Class.Datesremb1 = Class.dates_paiement_autocall
+        date_constatation =  Class.Datesconstatations1
+        datesremb1 = Class.Datesremb1
+        date_constatation3 =  "Chaque jour ouvré entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
+        Class.Datespaiement1 = "Chaque jour ouvré entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
 
-    if (Class.F0 == "mois"):
+    elif (Class.F0 == "mois"):
         jours = str(Class.PDC1)[8:10]
         date_constatation = "chaque " + jours + " du mois, à partir de la fin du  mois, à partir de la date du " + Class.PDC1 + "(inclus),  et jusqu'au " + Class.DCF + " (inclus), ou le jour ouvré suivant si le " + jours + " du mois n'est pas un jour ouvré"
         date_constatation3 = date_constatation
+        Class.Datespaiement1 = date_constatation
+
     else:
         date_constatation = Class.Datesconstatations1
         date_constatation3 = Class.Datesconstatations3
@@ -908,6 +916,25 @@ def ChangeTextOnPpt(Class):
     prs.save(NAME)
 
 
+    #le ppt de sauvegarde
+    NAME = "result/Base graphique "+ Class.Nom + "- " + Class.Isin + "result.pptx" 
+    prs_string = "templates/Base graphique.pptx" 
+    prs = Presentation(prs_string)
+    shapes = getAllSlides(prs)
+    Class.shapes = shapes
+
+    elementsToReplaceDegressivite(Class, shapes)
+
+    elementsToReplaceRemplacement(Class, shapes)
+    elementsToReplaceCalcul(Class, shapes)
+
+    #on repasse une 2 eme fois au cas ou certaines transformations soient mal placées
+    elementsToReplaceDegressivite(Class, shapes)
+
+    elementsToReplaceRemplacement(Class, shapes)
+    elementsToReplaceCalcul(Class, shapes)
+
+    prs.save(NAME)
 
 
 

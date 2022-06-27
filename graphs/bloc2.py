@@ -10,8 +10,8 @@ def bloc2(Class, name, whitestrap=False):
     
    #valeurs des x_tickers
     if (Class.F0 == "jours"):
-        secondvaluexabciss = "Année" + Class.F0s + " " + str(int(int(Class.PR1)/365 + 1))  + " à " + str(int(int(Class.DPRR)/365))
-        thirdvaluexabciss = "Année "  + " " + str(int(int(Class.DPRR)/365 + 1))
+        secondvaluexabciss = "Année" + Class.F0s + " " + str(int(int(Class.PR1)))  + " à " + str(int(Class.DPRR))
+        thirdvaluexabciss = "Année "  + " " + str(int(int(Class.DPRR) + 1))
 
     else:
         secondvaluexabciss = Class.F0 + Class.F0s + " " + str(int(Class.PR1))  + " à " + str(int(Class.DPRR) - 1)
@@ -124,12 +124,27 @@ def bloc2(Class, name, whitestrap=False):
                             mode='lines',  
                             hoverinfo ='none',))
                             
+    autocall1 = float(niveau_autocall[1])         #GESITON D ERREUR, enlever les .0 , si c est un int
+    if (float(autocall1) == int(autocall1)):
+        autocall1 = int(autocall1)
+    else:
+        autocall1 = (f'{float(niveau_autocall[1])}') #si plus petit que 2, on laisse
 
-    fig.add_annotation(x=24, y=niveau_autocall[1] + 5,text=str(str(niveau_autocall[1]).replace(".", ",")) + "%", showarrow=False,
+    autocall1 = str(autocall1).replace(".", ",")
+
+    autocall2 = float(niveau_autocall[2])
+    if (float(autocall2) == int(autocall2)):
+        autocall2 = int(autocall2)
+    else:
+        autocall2 = (f'{float(niveau_autocall[2])}')
+
+    autocall2 = str(autocall2).replace(".", ",")
+
+    fig.add_annotation(x=24, y=niveau_autocall[1] + 5,text=str(autocall1) + "%", showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=green ),align="left",
                     )
            
-    fig.add_annotation(x=36, y=niveau_autocall[2] + 3, text=str(str(niveau_autocall[2]).replace(".", ",")) + "%", showarrow=False,
+    fig.add_annotation(x=36, y=niveau_autocall[2] + 3, text=str(str(autocall2)) + "%", showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=green ),align="left",
                     )         
     fig.add_shape( # add la ligne horizontale deuxieme block line degressive
@@ -215,12 +230,15 @@ def bloc2(Class, name, whitestrap=False):
         else:
             autocall0 = niveau_autocall[0]
 
-        fig.add_annotation(x=3.0, y=niveau_autocall[0], text= str(autocall0) +"%", showarrow=False,
+        fig.add_annotation(x=3.0, y=niveau_autocall[0], text= str(autocall0).replace(".", ",") +"%", showarrow=False,
                         font=dict( family="Proxima Nova", size=14, color="red" ),align="left")
     else:
         #si le niveau_autocall est égal à 100 , dessiner les options
-
-        mystring = str(niveau_autocall[0]) + "%"
+        if int(niveau_autocall[0]) == float(niveau_autocall[0]):
+            autocall0 = int(niveau_autocall[0])
+        else:
+            autocall0 = niveau_autocall[0]
+        mystring = str(autocall0)+ "%"
         mystring = mystring.replace(".", ",")
         fig.add_annotation(x=3, y=100 ,text= (mystring), showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=green ),align="left",
@@ -232,8 +250,11 @@ def bloc2(Class, name, whitestrap=False):
     fig.add_annotation(x=2.0, y=130, text= text_legende, showarrow=False,
                     font=dict( family="Proxima Nova", size=11, color=black ),align="right",
                     )
-                    
-    fig.add_annotation(x=3.0, y=niveau_capital,text= str(str(niveau_capital).replace(".",",")) +"%", showarrow=False,
+    if (int(niveau_capital) == float(niveau_capital)):
+        capital = int(niveau_capital)
+    else:
+        capital = float(niveau_capital)
+    fig.add_annotation(x=3.0, y=niveau_capital,text= str(str(capital).replace(".",",")) +"%", showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=red ),align="left",
                     )
 # #-------------------------------------!Pas fini, doit gerer les 100%! ----------------------------------------------------
@@ -330,9 +351,10 @@ def bloc2(Class, name, whitestrap=False):
     gca = ("{:.2f}".format(float(Class.GCA)))
 
     if (Class.type_strike == "best strike"):
-        mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital inital diminué de l'intégralité <br> de la baisse enregistrée par <br> l'action la moins performante <br> entre la date de constatation initiale <br> et la date de constatation finale <br><br> <b>(perte en capital partielle voire totale)</b>"
+        mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité <br> de la baisse enregistrée par <br> l'action la moins performante <br> entre la date de constatation initiale <br> et la date de constatation finale <br><br> <b>(perte en capital partielle voire totale)</b>"
     else:
         mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité  <br> de la baisse enregistrée par <br> l"+ str(Class.TSJ) + " entre <br> la date de constatation initiale  <br> et la date de constatation finale."
+    
     fig.add_annotation(
         x=32,
         y=(niveau_capital/2),
@@ -387,9 +409,11 @@ def bloc2(Class, name, whitestrap=False):
         showarrow=False,
         font=dict(color=black, size=10)
     )       
-    
-    
+
+   
     else:
+        if (float(Class.DBAC) == float(Class.PDI)):
+            mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité <br> de la baisse enregistrée par <br> l'action la moins performante <br> entre la date de constatation initiale <br> et la date de constatation finale <br><br> <b>(perte en capital partielle voire totale)</b>"
         fig.add_annotation(
             x=(32),
             y=(float(Class.DBAC) - (float(Class.DBAC) - niveau_capital)/2),

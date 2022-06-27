@@ -99,7 +99,7 @@ def texte(Class, fig):
 
                         
     if (Class.Typologie == "coupon phoenix"):
-        fig.add_annotation(x=26, y=104 + 8 ,text= ("Coupon " + Class.F1 + " de " + str(str(Class.CPN).replace(".", ",")) +"%"), showarrow=False,
+        fig.add_annotation(x=26, y=99 + 8 ,text= ("Coupon " + Class.F1 + " de " + str(str(Class.CPN).replace(".", ",")) +"%"), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
 
 

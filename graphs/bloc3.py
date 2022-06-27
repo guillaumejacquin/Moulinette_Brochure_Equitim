@@ -68,9 +68,9 @@ def bloc3(Class, name, whitestrap=True):
     second_value = int(Class.PR1)
 
     if (Class.F0 == "jours"):
-        firstvaluexabciss = "Année" + Class.F0s + " 1 à " +  str(int(int(Class.PR1)/365))
-        secondvaluexabciss = "Année " + Class.F0s + " " +  str(int(int(Class.PR1)/365 +1))  + " à " + str(int(int(Class.DPRR)/365))
-        thirdvaluexabciss = "Année "  +" " + str(int(int(Class.DPRR)/365))
+        firstvaluexabciss = "Année" + Class.F0s + " 1 à " +  str(int(Class.PR1))
+        secondvaluexabciss = "Année " + Class.F0s + " " +  str(int(Class.PR1))  + " à " + str(int(Class.DPRR))
+        thirdvaluexabciss = "Année "  +" " + str(int(int(Class.DPRR)))
 
     else:
         if (int(Class.PR1) -1 < 2):

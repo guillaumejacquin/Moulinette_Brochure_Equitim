@@ -120,13 +120,14 @@ def traces(Class, fig):
     fig.add_annotation(x=x_vertical_line +4.75 - x_niveau_ref, y=niveau_de_référence,text= (str(niveau_de_référence) + "%" ), showarrow=False,
                     font=dict(family="Proxima Nova", size=15, color=green ), align="left")
 
-    print("ICI LES PTITS POTES", Class.DBAC, niveau_de_référence)
     if (float(niveau_de_référence) != float(Class.DBAC)):
         fig.add_shape(type="line",
         x0=x_vertical_line, y0=niveau_de_référence, x1= x_vertical_line - 3, y1=niveau_de_référence,
         line=dict(color="black", width=4))
         
-        fig.add_annotation(x=x_vertical_line +4.75 - x_derniere_observation, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
+        
+        if (Class.type_bar != "airbag"):
+            fig.add_annotation(x=x_vertical_line +4.75 - x_derniere_observation, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
                     font=dict(family="Proxima Nova", size=15, color=black ), align="left")
     
     fig.add_annotation(x=x_vertical_line +4.75 - x_derniere_observation, y=niveau_de_référence ,text= (str(niveau_de_référence) + "%" ), showarrow=False,
@@ -135,8 +136,8 @@ def traces(Class, fig):
     # fig.add_shape(type="line",
     # x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
     # line=dict(color=blue, width=4))
-
-    fig.add_annotation(x=x_vertical_line +4.75 - x_perte_capital, y=perte_capital,text= (str(perte_capital) + "%" ), showarrow=False,
+    if (Class.type_bar != "airbag"):
+        fig.add_annotation(x=x_vertical_line +4.75 - x_perte_capital, y=perte_capital,text= (str(perte_capital) + "%" ), showarrow=False,
                     font=dict(family="Proxima Nova", size=15, color=red ), align="left")
 
     fig.add_shape(type="line",
@@ -175,14 +176,16 @@ def traces(Class, fig):
     )
 
     if (Class.Typologie == "coupon autocall"):
-        fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
-            font=dict(family="Proxima Nova", size=15, color=green ), align="left")
+        # fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
+        #     font=dict(family="Proxima Nova", size=15, color=green ), align="left")
         
         if (float(niveau_de_référence) != float(Class.DBAC)):
             fig.add_shape(type="line",
             x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
             line=dict(color=green, width=4))
-                
+    
+
+
     if (float(niveau_de_référence) == float(Class.DBAC)):
         fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
             font=dict(family="Proxima Nova", size=15, color=green ), align="left")
@@ -191,6 +194,19 @@ def traces(Class, fig):
             fig.add_shape(type="line",
                 x0=x_vertical_line, y0=Class.DBAC, x1= x_vertical_line - 3, y1=Class.DBAC,
                 line=dict(color=green, width=4))
+
+    if float(Class.DBAC) != float(Class.BAC):
+            if (derniere_observation.is_integer()):
+                thelast = int(derniere_observation)
+                thelast = str(thelast).replace(".", ",")
+            else:
+                thelast = derniere_observation
+            fig.add_annotation(x=x_vertical_line +4.75 - x_derniere_observation, y=derniere_observation,text= (str(thelast) + "%" ), showarrow=False,
+                font=dict(family="Proxima Nova", size=15, color=green ), align="left")
+        
+            fig.add_shape(type="line",
+            x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
+            line=dict(color=green, width=4))
 
 def texte(Class, fig):
     indice = Class.Nom
@@ -207,12 +223,12 @@ def texte(Class, fig):
         degressive = "dégressivité"
     
     if (Class.Typologie == "coupon autocall"):
-        text = "Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
-        x_a = 46.5
+        text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
+        x_a = 43.75
 
     else:
-        text = "Seuil d'activation du mécanisme de la barrière "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
-        x_a = 44.5
+        text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
+        x_a = 43.75
 
     fig.add_annotation(x=x_a, y=133 + 8 ,text= (text), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
@@ -235,7 +251,7 @@ def texte(Class, fig):
         line=dict(color=green, width=2), line_dash="dot")    
                  
     if (Class.Typologie == "coupon phoenix"):
-        fig.add_annotation(x=26, y=104 + 8 ,text= ("Coupon " + Class.F1 + " de " + str(str(Class.CPN).replace(".", ",")) +"%"), showarrow=False,
+        fig.add_annotation(x=26, y=99 + 8 ,text= ("Coupon " + Class.F1 + " de " + str(str(Class.CPN).replace(".", ",")) +"%"), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
 
     fig.add_shape(type="line",
@@ -287,9 +303,15 @@ def athena_annotations(Class, fig):
         add_remontee_var = 4
         add_remontee_2 = 1
         
+
     fig.add_shape(type="line",
-                    x0=23, y0=premier_niveau_autocall, x1=79, y1=Class.DBAC,
+                    x0=23, y0=premier_niveau_autocall, x1=70, y1=float(Class.ABDAC),
                     line=dict(color=green, width=3),  line_dash="dash")
+
+    if (Class.type_bar != "airbag"):
+        fig.add_shape(type="line",
+                        x0=70, y0=float(Class.ABDAC), x1=80.5, y1=float(Class.DBAC),
+                        line=dict(color=green, width=3),  line_dash="dash")
                         
     fig.update_xaxes(tickangle=0,
                     tickmode = 'array',
@@ -388,9 +410,15 @@ def phoenix_annotations(Class, fig):
             x0=start_green_line, y0=premier_niveau_autocall, x1=start_green_line + 2.4 , y1=premier_niveau_autocall ,
             line=dict(color=green, width=3))
 
+                
             fig.add_shape(type="line",
-                    x0=start_green_line + 3, y0=premier_niveau_autocall, x1=79, y1=float(Class.DBAC),
-                    line=dict(color=green, width=3),  line_dash="dash")
+                            x0=start_green_line, y0=premier_niveau_autocall, x1=70, y1=float(Class.ABDAC),
+                            line=dict(color=green, width=3),  line_dash="dash")
+
+            if (Class.type_bar != "airbag"):
+                fig.add_shape(type="line",
+                                x0=70, y0=float(Class.ABDAC), x1=80.5, y1=float(Class.DBAC),
+                                line=dict(color=green, width=3),  line_dash="dash")
            
     fig.add_shape(type="line",
             x0=start_green_line - 1.5 , y0=premier_niveau_autocall, x1=start_green_line + 2 , y1=premier_niveau_autocall ,

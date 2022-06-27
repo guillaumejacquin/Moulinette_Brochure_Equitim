@@ -77,7 +77,7 @@ const Last_form = () => {
 
 
     const menu_déroulant = (template, settemplate) => {
-      const names = ['BNP', 'CSG', "crédit suisse", "test crédit suisse", "goldman sachs fci", "morgan"]
+      const names = ['BNP', "crédit suisse", "SG", "goldman sachs fci", "morgan"]
       
       function importAll(r) {
         return r.keys().map(r);
