@@ -138,7 +138,7 @@ def bloc4_simple_tickers(tickers, Class, Name):
                     color='#000000'
                 )
             ),
-            showlegend=True,
+            showlegend=False,
             legend_title=" ",
 
             plot_bgcolor='white',
@@ -173,7 +173,7 @@ def bloc4_simple_tickers(tickers, Class, Name):
         thirddate = firstdate + 2 *2 * time_to_add
         fourthdate = firstdate + 3 *2 * time_to_add
         fivthdate = firstdate + 4 *2 * time_to_add
-        sixthdate = firstdate + 5 *2 * time_to_add - relativedelta(months=4)
+        sixthdate = firstdate + 5 *2 * time_to_add
 
         month = str(firstdate)[5:7]
         day = str(firstdate)[8:10]
@@ -379,7 +379,7 @@ def bloc4_multiple_tickers(tickers, Class, Name):
                     color='#000000'
                 )
             ),
-                showlegend=True,
+                showlegend=False,
                 legend_title=" ",
 
                  legend=dict(

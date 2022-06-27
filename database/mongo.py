@@ -93,6 +93,12 @@ def takeinformations(Class):
             Class.Site = Class.Site + mot + test["SiteWeb"]
             Class.TICKER = Class.TICKER + mot + test["Ticker"]
             Class.BLOCDIVIDENDE = Class.BLOCDIVIDENDE + mot + test["Equity"] + " (" + test["Dividende"] + " ; code Bloomberg : " + test["Ticker"] +  " ;  <sponsor> : "+ test["Sponsor"] +  " ; " + test["SiteWeb"] + ")" 
+            
+            try:
+                Class.inconvenient = str(Class.inconvenient) + mot + test["Inconvénient"]
+            except Exception:
+                Class.inconvenient = str(Class.inconvenient) + mot + "NULL"
+
             Class.Yahoo.append(test["Yahoo"])
             Class.Yahoo_value_name.append(test["Equity"])
             Class.Yahoo_value_dividende.append(test["Dividende"])

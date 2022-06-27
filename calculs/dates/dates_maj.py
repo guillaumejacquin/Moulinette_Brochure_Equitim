@@ -86,8 +86,9 @@ def DDR1_maj(Class):
     month_string = (month[month_string])
 
     DDR_maj_constructor = ddr1[8:10] + " " + month_string + " " + ddr1[0:4] 
-    DDR_maj_constructor = DDR_maj_constructor.upper()
     ddr_min = DDR_maj_constructor
+
+    DDR_maj_constructor = DDR_maj_constructor.upper()
 
     Class.DDR1_MAJ = DDR_maj_constructor
     Class.DDR1_MAJ_MIN = ddr_min
@@ -106,6 +107,8 @@ def DDR1_maj_start(Class):
 
     DDR_maj_constructor = ddr1[8:10] + " " + month_string + " " + ddr1[0:4] 
     DDR_maj_constructor = DDR_maj_constructor.upper()
+
+    Class.DDR1_12 = ddr1[8:10] + "/" + ddr1[5:7] + "/" + ddr1[0:4] 
 
     Class.DDR1_12_MAJ = DDR_maj_constructor
 

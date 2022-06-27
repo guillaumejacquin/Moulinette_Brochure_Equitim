@@ -203,7 +203,6 @@ def excel(Class):
     ws_tra = wb['TRA']
     ws_date = wb['DATE']
 
-
     for i in range(len(balises_ref)):
         print(balises_ref[i]["Nom"])
         a = "a"+ str(i+1)
@@ -215,13 +214,25 @@ def excel(Class):
         ws[c] = balises_ref[i]["Result"]
 
     if  (Class.Typologie == "coupon autocall"):
+        ws_date["A1"] = "Dates de constatations"
         ws_date["A2"] = Class.Datesconstatations1
+        ws_date["A3"] = "Dates de remboursement"
         ws_date["A4"] = Class.Datesremb1
 
     else:
-        ws_date["Datesconstatations3"] = Class.Datesconstatations1
+        ws_date["A1"] = "Dates de constatations"
+        ws_date["A2"] = Class.Datesconstatations1
+        ws_date["A3"] = "Dates de paiement1"
         ws_date["A4"] = Class.Datespaiement1   
-        ws_date["A6"] = Class.Datesremb1   
+        ws_date["A5"] = "Dates de remboursement"
+        ws_date["A6"] = Class.Datesremb1
+
+
+        ws_tra["A2"] = "1" 
+        ws_tra["A3"] = "1"  
+        ws_tra["A4"] = "1"  
+        ws_tra["A5"] = "1"  
+        ws_tra["A6"] = "1"  
 
     wb.save(target)
 
@@ -373,6 +384,7 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<DDR1_MAJ_MIN>': Class.DDR1_MAJ_MIN}, shapes)
 
     replace_text({'<DDR1-12_MAJ>': Class.DDR1_12_MAJ}, shapes)
+    replace_text({'<DDR1-12>': Class.DDR1_12}, shapes)
 
     replace_text({'<DIC>': Class.DIC}, shapes)
     
@@ -392,6 +404,8 @@ def elementsToReplaceCalcul(Class, shapes):
     gce = ("{:.2f}".format(Class.GCE))
     gce = str(gce) + "%"
     gce = gce.replace(".", ",")
+    replace_text({'<inconv>': Class.inconvenient}, shapes)
+    replace_text({'<inconvénient>': Class.inconvenient}, shapes)
 
     replace_text({'<GCE>': gce}, shapes)
     replace_text({'<ABAC>': Class.ABAC}, shapes)
@@ -448,7 +462,8 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<DIVERSACTION>': Class.DIVERSACTION}, shapes) 
 
     replace_text({'<DDPP>': Class.DDPP}, shapes) 
-    replace_text({'<tickersname>':  Class.legende_tickers}, shapes)
+    replace_text({'<legendeticker>':  Class.legende_tickers}, shapes)
+    replace_text({'<ticker>':  Class.legende_tickers}, shapes)
 
     TRA_replace(Class, shapes)
 
@@ -813,7 +828,12 @@ def ChangeTextOnPpt(Class):
                         new_text = cur_text.replace(str("<graph5>"), str(""))
                         shape.text = new_text
                         pic = slide.shapes.add_picture("graph5.png", Inches(0.35), Inches(4.7), width=Inches(7.5), height=Inches(4.3))
-
+                        
+                if ("graph_legende.png" in shape.text):
+                    cur_text = shape.text
+                    new_text = cur_text.replace(str("graph_legende.png"), str(""))
+                    shape.text = new_text
+                    pic = slide.shapes.add_picture("graph_legende.png", Inches(0), Inches(6.71), Inches(8))
 
     try:
         print("Nettoyage du projet, supression des documents inutiles")

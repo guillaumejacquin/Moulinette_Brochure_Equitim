@@ -17,11 +17,12 @@ def balise(Class):
 
     if (strike == "strike normal"):
         sjr3_tmp = sjr3[:-1]
-        print("SJR3_TMPPPPPPPPPPPPPPPPPP", sjr3_tmp)
         mystring = "Le "+ Class.NDR + " correspond au " + sjr3_tmp + " de clôture de " + sjr1 + "" + Class.NOMSOUSJACENT +  " le " + ddi
 
     if (strike == "strike moyen"):
-        mystring = "Le "+ Class.NDR + " correspond à la moyenne arithmétique des " + sjr3 + " de clôture de " + sjr1 + " " + Class.NOMSOUSJACENT + " du " + ddi2 + " au " + ddi
+        hebdo = ""
+
+        mystring = "Le "+ Class.NDR + " correspond à la moyenne arithmétique "+ hebdo + " des " + sjr3 + " de clôture de " + sjr1 + " " + Class.NOMSOUSJACENT + " du " + ddi2 + " au " + ddi
 
     if (strike == "best strike"):
         mystring = "Le "+ Class.NDR + " correspond au " + sjr3 + " de clôture " + Class.NOMSOUSJACENT + " le plus bas observé aux dates suivantes : \n" + Class.DCI + "."

@@ -329,7 +329,10 @@ def bloc2(Class, name, whitestrap=False):
     )
     gca = ("{:.2f}".format(float(Class.GCA)))
 
-    mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital inital diminué de l'intégralité <br> de la baisse enregistrée par <br> l'action la moins performante <br> entre la date de constatation initiale <br> et la date de constatation finale <br><br> <b>(perte en capital partielle voire totale)</b>"
+    if (Class.type_strike == "best strike"):
+        mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital inital diminué de l'intégralité <br> de la baisse enregistrée par <br> l'action la moins performante <br> entre la date de constatation initiale <br> et la date de constatation finale <br><br> <b>(perte en capital partielle voire totale)</b>"
+    else:
+        mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité  <br> de la baisse enregistrée par <br> l"+ str(Class.TSJ) + " entre <br> la date de constatation initiale  <br> et la date de constatation finale."
     fig.add_annotation(
         x=32,
         y=(niveau_capital/2),

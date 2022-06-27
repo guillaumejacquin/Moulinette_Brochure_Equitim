@@ -159,7 +159,7 @@ def traces(Class, fig):
         if (Class.type_bar != "degressif"):
            
             fig.add_annotation(x=x_vertical_line + 4.75 - x_niveau_ref, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
-                font=dict(family="Proxima Nova", size=15, color=green ), align="left")
+                font=dict(family="Proxima Nova", size=15, color="yellow" ), align="left")
             fig.add_shape(type="line",
                 x0=x_vertical_line, y0=derniere_observation, x1= x_vertical_line - 3, y1=derniere_observation,
                 line=dict(color=green, width=4))

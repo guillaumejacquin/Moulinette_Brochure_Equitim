@@ -49,6 +49,7 @@ from calculs.dates.DDPP import *
 from calculs.dates.boucles.callAllDates2Date import *
 from calculs.dates.DDCI_M_B_Strike import *
 from calculs.DIVERSACTION import *
+from graphs.graph_scenario_header import *
 #traitement des données
 def start_processus_template(Class):
     PDC1(Class)
@@ -77,7 +78,6 @@ def start_processus_template(Class):
     f0s(Class)
     sponsor(Class)
     F0du(Class)
-    balise(Class)
     takeinformations(Class)
     NOMP1(Class)
     NOMSOUSJACENTP1(Class)
@@ -96,6 +96,7 @@ def start_processus_template(Class):
     PAGE(Class)
     DDPP(Class)
     GainOuCoupon(Class)
+    balise(Class)
     PDC1_maj(Class)
     PDC2_maj(Class)
     DDR_maj(Class)
@@ -136,7 +137,7 @@ def start_processus_template(Class):
     Class.smallgraph1 = smallgraph1(Class, "graph_scenario_def.png")
     Class.smallgraph2 = smallgraph2(Class, "graph_scenario_median.png")
     Class.smallgraph3 = smallgraph3(Class, "graph_scenario_fav.png")
-
+    Class.header = header(Class, "graph_legende.png")
     SV(Class)
     balisedeg(Class)
     BaliseCMTRA(Class)

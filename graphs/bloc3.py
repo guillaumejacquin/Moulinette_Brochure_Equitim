@@ -397,14 +397,22 @@ def bloc3(Class, name, whitestrap=True):
     if (float(Class.DBAC) - niveau_capital < 15 or  niveau_capital < 0):
         mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>L'intégralité du capital initial"
         mystring = mystring.replace("(1)", "⁽¹⁾")
-
+        mystring_start = "<b>Remboursement à l'échéance(1):</b>"
+        mystring_end ="L'intégralité du capital initial"
         fig.add_annotation(
-        x=(55),
+        x=(50),
         y=(30),
-        text=mystring,
+        text=mystring_end,
         showarrow=False,
         font=dict(color=black, size=12)
     )
+        fig.add_annotation(
+            x=(44.5),
+            y= float(Class.DBAC) - (float(Class.DBAC) - niveau_capital)/2,
+            text=mystring_start,
+            showarrow=False,
+            font=dict(color=black,size=12)
+        )
         y_arrow =abs(float(myvar - (myvar  - float(Class.DBAC))))
         fig.add_annotation(
             x=43.5,  # arrows' head
