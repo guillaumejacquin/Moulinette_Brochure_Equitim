@@ -148,8 +148,8 @@ def second_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black):
     cpn = cpn.replace(".", ",")
     gce = ("{:.2f}".format(float(Class.GCE)))
     gce = gce.replace(".", ",")
-    mystring = "<b>Remboursement anticipé automatique(1) :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br> Les éventuels coupons mémorisés au préalable"
-    mystring = mystring.replace("(1)", "⁽¹⁾")
+    mystring = "<b>Remboursement anticipé automatique\u00281\u0029 :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br> Les éventuels coupons mémorisés au préalable"
+    mystring = mystring.replace("\u00281\u0029", "⁽¹⁾")
 
     fig.add_annotation(
         x=(29.5),
@@ -183,8 +183,8 @@ def third_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black):
     cpn = cpn.replace(".", ",")
     gce = ("{:.2f}".format(float(Class.GCE)))
     gce = gce.replace(".", ",")
-    mystring = "<b>Remboursement anticipé automatique(1) :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br> Les éventuels coupons mémorisés au préalable"
-    mystring = mystring.replace("(1)", "⁽¹⁾")
+    mystring = "<b>Remboursement anticipé automatique\u00281\u0029 :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br> Les éventuels coupons mémorisés au préalable"
+    mystring = mystring.replace("\u00281\u0029", "⁽¹⁾")
     
     fig.add_annotation(
         x=(46.5),
@@ -196,8 +196,8 @@ def third_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black):
     
 
 def last_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black, niveau_capital):
-    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>Le capital initial diminué de <br> l'intégralité de la baisse enregistrée <br> par l'indice entre <br> la date de constatation initiale <br> et la date de constatation finale"
-    mystring = mystring.replace("(1)", "⁽¹⁾")
+    mystring = "<b>Remboursement à l'échéance\u00281\u0029</b> :<br><br>Le capital initial diminué de <br> l'intégralité de la baisse enregistrée <br> par l'indice entre <br> la date de constatation initiale <br> et la date de constatation finale"
+    mystring = mystring.replace("\u00281\u0029", "⁽¹⁾")
 
     cpn = ("{:.2f}".format(float(Class.CPN)))
     cpn = cpn.replace(".", ",")
@@ -212,8 +212,8 @@ def last_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black, niveau_cap
         font=dict(color=black, size=10)
     )
 
-    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + cpn + "% est versé<br> + <br> Les éventuels coupons <br> mémorisés au préalable"
-    mystring = mystring.replace("(1)", "⁽¹⁾")
+    mystring = "<b>Remboursement à l'échéance\u00281\u0029</b> :<br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + cpn + "% est versé<br> + <br> Les éventuels coupons <br> mémorisés au préalable"
+    mystring = mystring.replace("\u00281\u0029", "⁽¹⁾")
     y = niveau_capital
     fig.add_annotation(
         x=(65.5),
@@ -222,8 +222,8 @@ def last_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black, niveau_cap
         showarrow=False,
         font=dict(color=black,size=10)
     )
-    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>L'intégralité du capital initial "
-    mystring = mystring.replace("(1)", "⁽¹⁾")
+    mystring = "<b>Remboursement à l'échéance\u00281\u0029</b> :<br><br>L'intégralité du capital initial "
+    mystring = mystring.replace("\u00281\u0029", "⁽¹⁾")
 
     fig.add_annotation(
         x=(65.5),

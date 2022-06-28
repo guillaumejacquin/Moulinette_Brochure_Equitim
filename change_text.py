@@ -273,7 +273,7 @@ def elementsToReplaceRemplacement(Class, shapes):
     replace_text({'<DEC>':  Class.DEC_affichage}, shapes)
     
     if (Class.F0 == "jours"):
-        Class.F0_affichage = "ans"
+        Class.F0_affichage = "jour"
     else:
         Class.F0_affichage = Class.F0
 
@@ -317,7 +317,8 @@ def elementsToReplaceRemplacement(Class, shapes):
 
     replace_text({'<BAC>':  bac}, shapes)
     
-    replace_text({'<BCPN>':  Class.BCPN}, shapes)
+
+    replace_text({'<BCPN>':  Class.BCPN + "%"}, shapes)
 
     com = str(Class.COM) + "%"
     com = com.replace(".", ",")
@@ -406,6 +407,8 @@ def elementsToReplaceCalcul(Class, shapes):
     gce = gce.replace(".", ",")
     replace_text({'<inconv>': Class.inconvenient}, shapes)
     replace_text({'<inconvénient>': Class.inconvenient}, shapes)
+    
+
 
     replace_text({'<GCE>': gce}, shapes)
     replace_text({'<ABAC>': Class.ABAC}, shapes)
@@ -464,19 +467,21 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<DDPP>': Class.DDPP}, shapes) 
     replace_text({'<legendeticker>':  Class.legende_tickers}, shapes)
     replace_text({'<ticker>':  Class.legende_tickers}, shapes)
-
+    cpr1 = str(Class.CPR1) + "%"
+    cpr1 = cpr1.replace(".", ",")
+    replace_text({'<CPR1>': cpr1}, shapes)
     TRA_replace(Class, shapes)
 
     #CHANGER LE NOM DE LA BALISE ET DE LA CLASS dans myclass.py
     replace_text({'<balise>': Class.balise}, shapes)
 
-    hardcode_replace(Class, shapes)
 
 def hardcode_replace(Class, shapes):
     replace_text({"l' année": "l'année"}, shapes)
     replace_text({" , ": ", "}, shapes)
-    replace_text({"(1)": "⁽¹⁾"}, shapes)
-    replace_text({"(2)": "⁽²⁾"}, shapes)
+    replace_text({"(1)": '\u00281\u0029'}, shapes)
+    replace_text({"(2)": "'\u00282\u0029'"}, shapes)
+    Class.ABAC= Class.ABAC.replace("(1)", "\u00281\u0029")
 
 def TRA_replace(Class, shapes):
     tra_a_s1 = Class.TRA_A_S1.replace(".", ",")
@@ -600,14 +605,14 @@ def Dates_maj(Class, shapes):
 def Replace_Boucle_Dates(Class, shapes):
 
     if Class.F0 == "jours":
-        Class.dates_constat_autocall = "Chaque jour ouvré entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
+        Class.dates_constat_autocall = "Chaque jour de bourse entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
         Class.dates_paiement_autocall = "Le " + str(Class.NJO) + "e jour ouvré suivant la date de constatation quotidienne."
         Class.Datesconstatations1 = Class.dates_constat_autocall
         Class.Datesremb1 = Class.dates_paiement_autocall
         date_constatation =  Class.Datesconstatations1
         datesremb1 = Class.Datesremb1
-        date_constatation3 =  "Chaque jour ouvré entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
-        Class.Datespaiement1 = "Chaque jour ouvré entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
+        date_constatation3 =  "Chaque jour de bourse entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
+        Class.Datespaiement1 = "Chaque jour de bourse entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
 
     elif (Class.F0 == "mois"):
         jours = str(Class.PDC1)[8:10]
@@ -656,6 +661,7 @@ def Replace_Boucle_Dates(Class, shapes):
     replace_text({'<dates_constat_phoenix>': Class.dates_constat_phoenix}, shapes)
     replace_text({'<dates_paiement_phoenix>': Class.dates_paiement_phoenix}, shapes)
     replace_text({'<dates_last_remboursement_rappel>': Class.dates_last_remboursement_rappel}, shapes)
+    hardcode_replace(Class, shapes)
 
 #PREMIER RAPPEL A DATE DERNIER RAPPEL
 
@@ -867,51 +873,51 @@ def ChangeTextOnPpt(Class):
     excel(Class) 
     # prs.slides.remove(0)
    
-    if(Class.Typologie == "coupon autocall"):  #SUPPRIMER LES PAGES EN FONCTION DE SI C EST ATHENA OU PHOENIX       athena: 3,5,6,8;10, 13
-        rId = prs.slides._sldIdLst[12].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[12]
+    # if(Class.Typologie == "coupon autocall"):  #SUPPRIMER LES PAGES EN FONCTION DE SI C EST ATHENA OU PHOENIX       athena: 3,5,6,8;10, 13
+    #     rId = prs.slides._sldIdLst[12].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[12]
 
-        rId = prs.slides._sldIdLst[9].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[9]
+    #     rId = prs.slides._sldIdLst[9].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[9]
 
-        rId = prs.slides._sldIdLst[7].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[7]
+    #     rId = prs.slides._sldIdLst[7].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[7]
     
-        rId = prs.slides._sldIdLst[5].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[5]
+    #     rId = prs.slides._sldIdLst[5].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[5]
 
-        rId = prs.slides._sldIdLst[4].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[4]
+    #     rId = prs.slides._sldIdLst[4].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[4]
         
-        rId = prs.slides._sldIdLst[2].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[2]
+    #     rId = prs.slides._sldIdLst[2].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[2]
     
-    else:
-        rId = prs.slides._sldIdLst[11].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[11]
+    # else:
+    #     rId = prs.slides._sldIdLst[11].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[11]
 
-        rId = prs.slides._sldIdLst[8].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[8]
+    #     rId = prs.slides._sldIdLst[8].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[8]
 
-        rId = prs.slides._sldIdLst[6].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[6]
+    #     rId = prs.slides._sldIdLst[6].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[6]
         
-        rId = prs.slides._sldIdLst[3].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[3]
+    #     rId = prs.slides._sldIdLst[3].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[3]
 
-        rId = prs.slides._sldIdLst[1].rId
-        prs.part.drop_rel(rId)
-        del prs.slides._sldIdLst[1]
+    #     rId = prs.slides._sldIdLst[1].rId
+    #     prs.part.drop_rel(rId)
+    #     del prs.slides._sldIdLst[1]
     
     prs.save(NAME)
 

@@ -486,7 +486,14 @@ def bloc3(Class, name, whitestrap=True):
     fig.add_shape(type="line",
     x0=50.5, y0=116, x1=60, y1=116,
     line=dict(color=green,width=3),  line_dash="dot")
-    fig.add_annotation(x=55, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir de la fin du <br>" + Class.F0 +" " + str(int(Class.PR1)) + " jusqu'à la fin du " + str(Class.F0) +"<br> " + str(int(Class.DPRR)-1) ), showarrow=False,
+
+    if (Class.F0 == "jours"):
+        fig.add_annotation(x=55, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir de la fin du <br>" +" jours " + str(int(Class.PR1)) + " jusqu'à la fin du " + str(Class.F0) +"<br> " + str(int(Class.DPRR)-1) ), showarrow=False,
+                    font=dict(family="Proxima Nova", size=13, color=black ), align="left"
+                    )    
+                    
+    else:
+        fig.add_annotation(x=55, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir de la fin du <br>" + Class.F0 +" " + str(int(Class.PR1)) + " jusqu'à la fin du " + str(Class.F0) +"<br> " + str(int(Class.DPRR)-1) ), showarrow=False,
                     font=dict(family="Proxima Nova", size=13, color=black ), align="left"
                     )
 

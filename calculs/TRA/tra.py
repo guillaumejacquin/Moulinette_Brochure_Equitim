@@ -208,7 +208,7 @@ def ALL_TRA(Class):
     Class.TRA_F_P = (boucleTRA(Class, Class.PDC2, Class.DR1, df, Class.CPN, float(Class.CPN)+100)) #Scénario favorable phoenix
     df = pd.DataFrame({'col':dataframe_dates})
     df.columns=["dates"]
-    # df.drop(df.tail(1).index,inplace=True)
+    # df.drop(df.tail\u00281\u0029.index,inplace=True)
   
     # Class.MDR_P = (boucleTRA(Class, Class.PDC2, df2, Class.CPN, Class.PDI)) #Scénario favorable phoenix( -100,CPN,…,PDI)
     # Class.MDR_TRA_TOUT_SAUF_P = (boucleTRA(Class, Class.PDC2, df2, Class.CPN, 100)) #TRA remboursement échéance médian max( -100,CPN,…,100)

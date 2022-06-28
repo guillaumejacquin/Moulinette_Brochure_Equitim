@@ -50,6 +50,7 @@ from calculs.dates.boucles.callAllDates2Date import *
 from calculs.dates.DDCI_M_B_Strike import *
 from calculs.DIVERSACTION import *
 from graphs.graph_scenario_header import *
+from calculs.CPR1 import *
 #traitement des données
 def start_processus_template(Class):
     PDC1(Class)
@@ -83,6 +84,7 @@ def start_processus_template(Class):
     NOMSOUSJACENTP1(Class)
     SJR6P1(Class)
     abac2(Class)
+    CPR1(Class)
     # apdr_(Class)
     ebac(Class)
     Memoire(Class)
@@ -155,7 +157,7 @@ def main(Class):
         print("Votre pdf a été réalisé en", round(elapsed, 2), "secondes")
         return(0)
     # except Exception:
-    #     return(1)
+    #     return\u00281\u0029
 
 
 

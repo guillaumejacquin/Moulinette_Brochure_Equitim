@@ -10,8 +10,16 @@ def bloc2(Class, name, whitestrap=False):
     
    #valeurs des x_tickers
     if (Class.F0 == "jours"):
-        secondvaluexabciss = "Année" + Class.F0s + " " + str(int(int(Class.PR1)))  + " à " + str(int(Class.DPRR))
-        thirdvaluexabciss = "Année "  + " " + str(int(int(Class.DPRR) + 1))
+        adcf_tmp = str(Class.ADCF)
+        adcf_tmp = adcf_tmp[8:10] + "/"+ adcf_tmp[5:7]+ "/" + adcf_tmp[0:4]
+
+        dr1_tmp = str(Class.DR1)
+        dr1_tmp = dr1_tmp[8:10] + "/"+ dr1_tmp[5:7]+ "/" + dr1_tmp[0:4]
+        
+        secondvaluexabciss = "Du " + dr1_tmp + " au " + adcf_tmp
+        dcf_tmp = str(Class.DCF)
+        dcf_tmp = dcf_tmp[8:10] + "/"+ dcf_tmp[5:7]+ "/" + dcf_tmp[0:4]
+        thirdvaluexabciss =  (Class.DCF)
 
     else:
         secondvaluexabciss = Class.F0 + Class.F0s + " " + str(int(Class.PR1))  + " à " + str(int(Class.DPRR) - 1)
@@ -265,7 +273,13 @@ def bloc2(Class, name, whitestrap=False):
     x0=37.5, y0=115, x1=44.5, y1=115,
     line=dict(color=green,width=1),  line_dash="dot")   
     
-    fig.add_annotation(x=41.5, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir de la fin du <br>" + Class.F0  + " " + str(int(Class.PR1)) + " jusqu'à la fin du " + Class.F0 + " "  + str(int(Class.DPRR) -1) + " <br> et de versement des gains à <br> l'échéance"), showarrow=False,
+    
+    if (Class.F0 == "jours"):
+        fig.add_annotation(x=41.5, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir du  <br>  " + dr1_tmp  +  " au "  +  adcf_tmp + " <br> et de versement des gains à <br> l'échéance"), showarrow=False,
+                    font=dict(family="Proxima Nova", size=12, color=black ), align="left"
+                    )
+    else:
+        fig.add_annotation(x=41.5, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir de la fin du <br>" + Class.F0  + " " + str(int(Class.PR1)) + " jusqu'à la fin du " + Class.F0 + " "  + str(int(Class.DPRR) -1) + " <br> et de versement des gains à <br> l'échéance"), showarrow=False,
                     font=dict(family="Proxima Nova", size=12, color=black ), align="left"
                     )
 

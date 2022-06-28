@@ -75,7 +75,7 @@ def traces(Class, fig):
     x_perte_capital = 0
     x_niveau_def = 0
 
-    text_legende = Class.SJR3.capitalize() + " de <br>l'"+ Class.TDP +  " par <br>rapport à son <br>" + Class.NDR
+    text_legende = Class.SJR3.capitalize() + "<br>"+ Class.SJR7 +  " par <br>rapport à son <br>" + Class.NDR
     
     fig.add_annotation(x=2.2, y=172, text= (text_legende), showarrow=False,
                     font=dict(family="Proxima Nova", size=10, color=black ), align="left")
@@ -335,7 +335,18 @@ def athena_annotations(Class, fig):
                         ticktext= ["<b>Lancement</b>", prefix + str(int(first)), "...", prefix + str(int(prappel)), "....", prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
                         color="black"
                         ),
+    if (Class.F0 == "jours"):
+        dcf_tmp = str(Class.DCF)
+        dcf_tmp = dcf_tmp[8:10] + "/"+ dcf_tmp[5:7]+ "/" + dcf_tmp[0:4]
 
+        dr1_tmp = str(Class.DR1)
+        dr1_tmp = dr1_tmp[8:10] + "/"+ dr1_tmp[5:7]+ "/" + dr1_tmp[0:4]
+        fig.update_xaxes(tickangle=0,
+                        tickmode = 'array',
+                        tickvals = [1.5, 20, 40.5, 81],
+                        ticktext= ["<b>Lancement</b>", dr1_tmp, "....",  dcf_tmp],
+                        color="black"
+                        ),
  # fig.add_shape(type="line",
     # x0=76, y0=avant_dernier_niveau_de_reference, x1=79, y1=avant_dernier_niveau_de_reference,
     # line=dict(color=green, width=3),  line_dash="dash")
@@ -518,7 +529,6 @@ def is_athena_or_phoenix_annotations(Class, fig):
         if (len_cpn < 2):
             perfmax = (f'{float(perfmax):.2f}')
 
-        perfmax = perfmax
 
         cpn = (f'{float(cpn):.2f}')
         cpn = float(Class.CPN)

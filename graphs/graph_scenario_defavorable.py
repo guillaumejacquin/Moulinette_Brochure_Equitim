@@ -315,7 +315,18 @@ def athena_annotations(Class, fig):
                         ticktext= ["<b>Lancement</b>", prefix + str(int(first)), "...", prefix + str(int(prappel)), "....", prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
                         color="black"
                         ),
+    if (Class.F0 == "jours"):
+        dcf_tmp = str(Class.DCF)
+        dcf_tmp = dcf_tmp[8:10] + "/"+ dcf_tmp[5:7]+ "/" + dcf_tmp[0:4]
 
+        dr1_tmp = str(Class.DR1)
+        dr1_tmp = dr1_tmp[8:10] + "/"+ dr1_tmp[5:7]+ "/" + dr1_tmp[0:4]
+        fig.update_xaxes(tickangle=0,
+                        tickmode = 'array',
+                        tickvals = [1.5, 20, 40.5, 81],
+                        ticktext= ["<b>Lancement</b>", dr1_tmp, "....",  dcf_tmp],
+                        color="black"
+                        ),
  # fig.add_shape(type="line",
     # x0=76, y0=avant_dernier_niveau_de_reference, x1=79, y1=avant_dernier_niveau_de_reference,
     # line=dict(color=green, width=3),  line_dash="dash")

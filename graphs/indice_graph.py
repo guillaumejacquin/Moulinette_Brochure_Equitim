@@ -137,7 +137,7 @@ def indice_simple_tickers(tickers, Class, Name):
                 pass
             Class.Yahoo_value.append(my_array)
         # print(last_date, ",k,,,,,,,,,,,,,,,,,,,,,,,,,,")
-        # result = get_value_array(int(1), last_date, df, tickers)
+        # result = get_value_array(int\u00281\u0029, last_date, df, tickers)
         # print(registerResult)
 
 
