@@ -50,8 +50,8 @@ def PR1(Class):
     result = abs(result)
     
     #avant derniere date 
-    Class.PR1_1 = result -1
-    Class.PR1 = result
+    Class.PR1_1 = int(result -1)
+    Class.PR1 = int(result)
 
 
 

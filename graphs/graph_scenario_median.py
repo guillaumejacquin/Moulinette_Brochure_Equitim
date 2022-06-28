@@ -223,12 +223,12 @@ def texte(Class, fig):
         degressive = "dégressivité"
     
     if (Class.Typologie == "coupon autocall"):
-        text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
-        x_a = 43.75
+        text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(int(Class.PR1)) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
+        x_a = 44.5
 
     else:
-        text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(Class.PR1) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
-        x_a = 43.75
+        text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(int(Class.PR1)) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
+        x_a = 44.5
 
     fig.add_annotation(x=x_a, y=133 + 8 ,text= (text), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
@@ -313,12 +313,36 @@ def athena_annotations(Class, fig):
                         x0=70, y0=float(Class.ABDAC), x1=80.5, y1=float(Class.DBAC),
                         line=dict(color=green, width=3),  line_dash="dash")
                         
-    fig.update_xaxes(tickangle=0,
-                    tickmode = 'array',
-                    tickvals = [1.5, 10, 15,  20, 40.5, 61, 71, 81],
-                    ticktext= ["<b>Lancement</b>", prefix + str(first), "...", prefix + str(prappel), "....", prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
-                    color="black"
-                    ),
+    if (Class.F0 != "année"):
+        fig.update_xaxes(tickangle=0,
+                        tickmode = 'array',
+                        tickvals = [1.5, 10, 15,  20, 40.5, 61, 71, 81],
+                        ticktext= ["<b>Lancement</b>", prefix + str(int(first)), "...", prefix + str(int(prappel)), "....", prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
+                        color="black"
+                        ),
+    else:
+        if (int(prappel) == 2):
+            fig.update_xaxes(tickangle=0,
+                            tickmode = 'array',
+                            tickvals = [1.5, 10,  20, 40.5, 61, 71, 81],
+                            ticktext= ["<b>Lancement</b>", prefix + str(int(first)), prefix + str(int(prappel)), "....", prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
+                            color="black"
+                            ),
+        elif (int(prappel) == 1):
+            fig.update_xaxes(tickangle=0,
+                            tickmode = 'array',
+                            tickvals = [1.5, 10, 40.5, 61, 71, 81],
+                            ticktext= ["<b>Lancement</b>", prefix + str(int(first)), "....", prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
+                            color="black"
+                            ),
+        else:
+              fig.update_xaxes(tickangle=0,
+                        tickmode = 'array',
+                        tickvals = [1.5, 10, 15,  20, 40.5, 61, 71, 81],
+                        ticktext= ["<b>Lancement</b>", prefix + str(int(first)), "...", prefix + str(int(prappel)), "....", prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
+                        color="black"
+                        ),
+
  # fig.add_shape(type="line",
     # x0=76, y0=avant_dernier_niveau_de_reference, x1=79, y1=avant_dernier_niveau_de_reference,
     # line=dict(color=green, width=3),  line_dash="dash")
@@ -371,7 +395,7 @@ def phoenix_annotations(Class, fig):
         fig.update_xaxes(tickangle=0,
                     tickmode = 'array',
                     tickvals = [1.5, 10, 20, 41,  61, 71, 81],
-                    ticktext= ["<b>Lancement</b>", prefix + str(first), prefix + str(p2), "......." , prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
+                    ticktext= ["<b>Lancement</b>", prefix + str(first), prefix + str(int(p2)), "......." , prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
                     color="black"),   
         start_green_line = 20
     
@@ -379,7 +403,7 @@ def phoenix_annotations(Class, fig):
         fig.update_xaxes(tickangle=0,
                     tickmode = 'array',
                     tickvals = [1.5, 10, 15, 22.5, 30, 45, 61, 71, 81],
-                    ticktext= ["<b>Lancement</b>", prefix + str(first), str(prefix) + str(p2), ".....", prefix + str(prappel),".......",  prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
+                    ticktext= ["<b>Lancement</b>", prefix + str(first), str(prefix) + str(int(p2)), ".....", prefix + str(int(prappel)),".......",  prefix + str(last - 2), prefix + str(last - 1), prefix + str(last)],
                     color="black"              ),
         start_green_line = 30
     
