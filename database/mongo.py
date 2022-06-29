@@ -4,6 +4,8 @@ from pymongo import MongoClient
 from openpyxl import load_workbook
 import certifi
 
+from calculs.style.NOMSOUSJACENTP1 import NOMSOUSJACENTP1
+
 ca = certifi.where()
 # from calculs.sponsor import sponsor
 
@@ -70,10 +72,7 @@ def takeinformations(Class):
     db = cluster["templates"]
     collection = db["clients"]
 
-    stringlongue = ""
     #remplacer par le bon element(ici ticker)
-
-
 
     myresults = []
     #j ajoute les tickers
@@ -94,7 +93,7 @@ def takeinformations(Class):
             Class.SPONSOR = Class.SPONSOR + mot + test["Sponsor"]
             Class.Site = Class.Site + mot + test["SiteWeb"]
             Class.TICKER = Class.TICKER + mot + test["Ticker"]
-            Class.BLOCDIVIDENDE = Class.BLOCDIVIDENDE + mot + test["Equity"] + " (" + test["Dividende"] + " ; code Bloomberg : " + test["Ticker"] +  " ;  <sponsor> : "+ test["Sponsor"] +  " ; " + test["SiteWeb"] + ")" 
+            Class.BLOCDIVIDENDE = Class.BLOCDIVIDENDE + mot + test["Equity"] + " , la performance positive ou négative de ce placement dépendant de l'évolution "+ Class.SJR7+ " " + Class.NOMSOUSJACENT +" (" + test["Dividende"] + " ; code Bloomberg : " + test["Ticker"] +  " ;  <sponsor> : "+ test["Sponsor"] +  " ; " + test["SiteWeb"] + ")" 
             
             try:
                 Class.inconvenient = str(Class.inconvenient) + mot + test["Inconvénient"]

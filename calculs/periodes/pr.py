@@ -110,7 +110,7 @@ def f1_f2(Class):
 
     if (frequence == "jours"):
         Class.F1 = "quotidienne"
-        Class.F2 = "calendaire écoulé"
+        Class.F2 = "calendaire"
     
     if (frequence == "mois"):
         Class.F1 = "mensuelle"

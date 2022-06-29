@@ -21,8 +21,9 @@ def balisedeg(Class):
         Class.baliseCM2 = "Le capital n’est donc exposé à un risque de perte à l’échéance(¹) que si <SJR1> clôture à un <SJR3> strictement inférieur à <PDI> de son <NDR> à la date de constatation finale(1)."
         # Class.deleteblocs.append("Cas médian :")
     else:
-        Class.baliseCM22 = ("Sinon, si le mécanisme automatique de remboursement anticipé n’a pas été activé au préalable et si, à la date de constatation finale(1), <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> de son <NDR> mais supérieur ou égal à <PDI> de ce dernier, l’investisseur récupère l’intégralité de son capital initialement investi. Le capital n’est donc exposé à un risque de perte à l’échéance(1) que si <SJR1> clôture à un <SJR3> strictement inférieur à <PDI> de son <NDR> à la date de constatation finale(1).")
-
+        pdi = Class.PDI.replace(".",",")
+        Class.baliseCM22 = ("Sinon, si le mécanisme automatique de remboursement anticipé n’a pas été activé au préalable et si, à la date de constatation finale(1), <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> de son <NDR> mais supérieur ou égal à  <PDI> % de ce dernier, l’investisseur récupère l’intégralité de son capital initialement investi. Le capital n’est donc exposé à un risque de perte à l’échéance(1) que si <SJR1> clôture à un <SJR3> strictement inférieur à <PDI> de son <NDR> à la date de constatation finale(1).")
+        Class.baliseCM22 = Class.baliseCM22.replace("(1)", '\u00281\u0029')
 
     #!INCOMPREHENSION!#
 
@@ -39,7 +40,7 @@ def balisedeg(Class):
         Class.baliseCM4 = """À la date de constatation finale(¹), <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi.
         """
 
-    if (Class.type_bar == "degressif"):
+    if (Class.type_bar2 == "oui"):
         Class.balisedeg4 = "La barrière de versement du coupon est dégressive au fil du temps. Elle est fixée à <BCPN>% du <NDR> en fin <DU> <F0> 1, puis décroît de <DEG>% chaque <F0> à partir de la fin <DU> <F0> <DDPP> (inclus), pour atteindre <DBAC> du <NDR> à la fin <DU> <F0> <DPRR>."
 
     if (Class.BFP == Class.PDI):

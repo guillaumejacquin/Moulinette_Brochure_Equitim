@@ -81,20 +81,44 @@ def add_articles():
 
 
     Myclass.CPN = data["CPN"]
+    Myclass.CPN = str(Myclass.CPN).replace(",", ".")
+
     Myclass.CPN_is_memoire = data["CPN_is_memoire"]
     Myclass.PDI = data["PDI"]
+    Myclass.PDI = str(Myclass.PDI).replace(",", ".")
+
     Myclass.BAC = data["BAC"]
+    Myclass.BAC = str(Myclass.BAC).replace(",", ".")
+
     Myclass.BAC_is_degressif = data["BAC_is_degressif"]
+    
     Myclass.BCPN = data["BCPN"]
+    Myclass.BCPN = str(Myclass.DEG).replace(",", ".")
+
     Myclass.BCPN_is_degressif = data["BCPN_is_degressif"]
 
     Myclass.COM = data["COM"]
+    Myclass.COM = str(Myclass.COM).replace(",", ".")
+
     Myclass.NSD = data["NSD"]
+    Myclass.NSD = str(Myclass.NSD).replace(",", ".")
+
     Myclass.NSM = data["NSM"]
+    Myclass.NSM = str(Myclass.NSM).replace(",", ".")
+
     Myclass.NSF = data["NSF"]
+    Myclass.NSF = str(Myclass.NSF).replace(",", ".")
+
     Myclass.ABDAC = data["ABDAC"]
+    Myclass.ABDAC = str(Myclass.ABDAC).replace(",", ".")
+
     Myclass.DBAC = data["DBAC"]
+    Myclass.DBAC = str(Myclass.DBAC).replace(",", ".")
+
+
     Myclass.DEG = data["DEG"]
+    Myclass.DEG = str(Myclass.DEG).replace(",", ".")
+
     Myclass.type_strike = data["type_strike"]
     Myclass.type_bar = data["type_bar"]
 
@@ -116,7 +140,7 @@ def add_articles():
             Myclass.DDP = tmp[6:10] + "-" + tmp[3:5] + "-" + tmp[0:2]
     except Exception:
         Myclass.DDP = "error"
-    Myclass.type_bar2 = data["type_bar2"]
+    Myclass.type_bar2 = data["BCPN_is_degressif"]
 
     # Myclass.DCF = "2027-07-14"
     try:

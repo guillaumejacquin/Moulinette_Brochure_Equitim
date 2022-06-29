@@ -317,8 +317,13 @@ def elementsToReplaceRemplacement(Class, shapes):
 
     replace_text({'<BAC>':  bac}, shapes)
     
+    if (Class.F0 == "jours"):
+        Class.BCPN = Class.BCPN + "% environ"
+    else:
+        Class.BCPN = Class.BCPN + "%"
 
-    replace_text({'<BCPN>':  Class.BCPN + "%"}, shapes)
+
+    replace_text({'<BCPN>':  Class.BCPN}, shapes)
 
     com = str(Class.COM) + "%"
     com = com.replace(".", ",")
@@ -366,10 +371,26 @@ def elementsToReplaceCalcul(Class, shapes):
 
     replace_text({'<SV>': Class.SV}, shapes) 
 
+    if (Class.F0 == "jours"):
+        Class.DDCI = str(Class.DDCI) + " (exclu)"
     replace_text({'<DDCI>': Class.DDCI}, shapes) 
 
     replace_text({'<BLOCDIVIDENDE>': Class.BLOCDIVIDENDE}, shapes)
+    bloc2 = str(Class.BLOCDIVIDENDE).capitalize()
+    replace_text({'<BLOCDIVIDENDE2>': bloc2}, shapes)
+
+    deg = float(Class.DEG)
+    deg = ("{:.2f}".format(deg))
+        
    
+
+    replace_text({'<WALLY>': str(Class.WALLY)}, shapes)
+    replace_text({'<DUREE>': str(Class.DUREE)}, shapes)
+
+    replace_text({'<BRA>': str(Class.BRA)}, shapes)
+    replace_text({'<BVC>': str(Class.BVC)}, shapes)
+    replace_text({'<ANNUALISE>': str(Class.ANNUALISE)}, shapes)
+
     replace_text({'<F0s>':  Class.F0s}, shapes)
 
 
@@ -413,6 +434,12 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<GCE>': gce}, shapes)
     replace_text({'<ABAC>': Class.ABAC}, shapes)
     replace_text({'<NDR>': Class.NDR }, shapes)
+    print("?????????????????", Class.NDR)
+    if (Class.type_bar == "degressif"):
+        #Class.BVC = "La barrière de versement du coupon est dégressive au fil du temps. Elle est fixée à <BCPN>% du <NDR> en fin <DU> <F0> 1, puis décroît de <DEG>% chaque <F0> à partir de la fin <DU> <F0> <DDPP> (inclus), pour atteindre <DBAC> du <NDR> à la fin <DU> <F0> <DPRR>."
+        Class.BRA = "La barrière de remboursement anticipé automatique est dégressive au fil du temps. Elle est fixée à " + str(Class.BAC)  + " du " + str(Class.NDR) + "en fin de " + str(str(deg).replace(".", ",")) + "% chaque " + Class.F0 + ", pour atteindre , " + str(Class.ABDAC) + "% du "+ str(Class.NDR) + " à la fin du "  + Class.F0 + " " + str(Class.ADPR) +"."
+        # Class.BVC = "La barrière de versement du coupon est dégressive au fil du temps. Elle est fixée à <BCPN>% du <NDR>"
+        pass
     replace_text({'<ADPR>': Class.ADPR}, shapes)
     replace_text({'<SJR1>': Class.SJR1}, shapes)
     replace_text({'<SJR2>': Class.SJR2}, shapes)
@@ -451,6 +478,8 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<ABAC2>': Class.ABAC2}, shapes) 
     replace_text({'<ABAC2_MAJ>': Class.ABAC2_MAJ}, shapes) 
     replace_text({'<gainoucoupon>': Class.GainOuCoupon}, shapes) 
+    replace_text({'<PERIODE_DE_REMBOURSEMENT>': Class.PERIODE_DE_REMBOURSEMENT}, shapes) 
+    replace_text({'<PERIODE_DE_REMBOURSEMENT2>': Class.PERIODE_DE_REMBOURSEMENT2}, shapes) 
 
     replace_text({'<DDP>': Class.DDP}, shapes) 
     replace_text({'<Mémoire>': Class.Memoire}, shapes) 

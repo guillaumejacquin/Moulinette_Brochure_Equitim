@@ -16,3 +16,4 @@ def ndr(Class):
         Class.NDR = "Niveau initial"
     else:
         Class.NDR = "ERREUR!!!!!!"
+

@@ -126,7 +126,7 @@ def traces(Class, fig):
         line=dict(color="black", width=4))
         
         
-        if (Class.type_bar != "airbag"):
+        if (Class.type_bar != "airbag" or Class.type_bar != "degressif"):
             fig.add_annotation(x=x_vertical_line +4.75 - x_derniere_observation, y=Class.DBAC,text= (str(Class.DBAC) + "%" ), showarrow=False,
                     font=dict(family="Proxima Nova", size=15, color=black ), align="left")
     
@@ -225,10 +225,16 @@ def texte(Class, fig):
     if (Class.Typologie == "coupon autocall"):
         text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(int(Class.PR1)) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
         x_a = 44.5
+    
 
     else:
         text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(int(Class.PR1)) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
         x_a = 44.5
+
+    if (Class.F0 == "jours"):
+        text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir " + Class.PERIODE_DE_REMBOURSEMENT
+        x_a = 44.5
+  
 
     fig.add_annotation(x=x_a, y=133 + 8 ,text= (text), showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")

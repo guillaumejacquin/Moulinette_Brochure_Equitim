@@ -13,13 +13,13 @@ def bloc2(Class, name, whitestrap=False):
         adcf_tmp = str(Class.ADCF)
         adcf_tmp = adcf_tmp[8:10] + "/"+ adcf_tmp[5:7]+ "/" + adcf_tmp[0:4]
 
-        dr1_tmp = str(Class.DR1)
+        dr1_tmp = str(Class.DPR)
         dr1_tmp = dr1_tmp[8:10] + "/"+ dr1_tmp[5:7]+ "/" + dr1_tmp[0:4]
         
         secondvaluexabciss = "Du " + dr1_tmp + " au " + adcf_tmp
         dcf_tmp = str(Class.DCF)
         dcf_tmp = dcf_tmp[8:10] + "/"+ dcf_tmp[5:7]+ "/" + dcf_tmp[0:4]
-        thirdvaluexabciss =  (Class.DCF)
+        thirdvaluexabciss =  dcf_tmp
 
     else:
         secondvaluexabciss = Class.F0 + Class.F0s + " " + str(int(Class.PR1))  + " à " + str(int(Class.DPRR) - 1)
@@ -275,7 +275,7 @@ def bloc2(Class, name, whitestrap=False):
     
     
     if (Class.F0 == "jours"):
-        fig.add_annotation(x=41.5, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir du  <br>  " + dr1_tmp  +  " au "  +  adcf_tmp + " <br> et de versement des gains à <br> l'échéance"), showarrow=False,
+        fig.add_annotation(x=41.5, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir du  <br>  " + dr1_tmp  +  " (inclus) au "  +  adcf_tmp + " (inclus) <br> et de versement des gains à <br> l'échéance"), showarrow=False,
                     font=dict(family="Proxima Nova", size=12, color=black ), align="left"
                     )
     else:
@@ -367,7 +367,7 @@ def bloc2(Class, name, whitestrap=False):
     if (Class.type_strike == "best strike"):
         mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité <br> de la baisse enregistrée par <br> l'action la moins performante <br> entre la date de constatation initiale <br> et la date de constatation finale <br><br> <b>(perte en capital partielle voire totale)</b>"
     else:
-        mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité  <br> de la baisse enregistrée par <br> l"+ str(Class.TSJ) + " entre <br> la date de constatation initiale  <br> et la date de constatation finale."
+        mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité  <br> de la baisse enregistrée par <br> l"+ str(Class.SJR1) + " entre <br> la date de constatation initiale  <br> et la date de constatation finale."
     
     fig.add_annotation(
         x=32,
@@ -380,8 +380,8 @@ def bloc2(Class, name, whitestrap=False):
 
     cpn = Class.CPN.replace(".", ",")
 
-
-    mystring = "<b>Remboursement anticipé automatique:</b> <br> <br> L'intégralité du capital initial<br>+<br>Un gain de " + cpn + "% par " + Class.F0 + " écoulé <br> depuis la date de constatation initiale <br> (soit un gain de "+ str(gca) + "% par année écoulée)"
+    
+    mystring = "<b>Remboursement anticipé automatique :</b> <br> <br> L'intégralité du capital initial<br>+<br>Un gain de " + cpn + "% par " + Class.F0 +  " " + Class.F2  + " écoulé <br> depuis la date de constatation initiale <br> (soit un gain de "+ str(gca) + "% par année écoulée)"
     mystring = mystring.replace(".", ",")
     fig.add_annotation(
         x=(15),
@@ -392,7 +392,7 @@ def bloc2(Class, name, whitestrap=False):
     )      
 
 
-    mystring = "<b>Remboursement à l'échéance: </b><br><br>L'intégralité du capital initial<br>+<br>Un gain de " + str(cpn) + "% par " + Class.F0 + " écoulé <br> depuis la date de constatation initiale <br> (soit un gain total de "+ str(gce) + "%)"
+    mystring = "<b>Remboursement à l'échéance : </b><br><br>L'intégralité du capital initial<br>+<br>Un gain de " + str(cpn) + "% par " + Class.F0  + " " +Class.F2 + " écoulé <br> depuis la date de constatation initiale <br> (soit un gain total de "+ str(gce) + "%)"
     mystring = mystring.replace(".", ",")
     fig.add_annotation(
         x=(32),
@@ -403,8 +403,8 @@ def bloc2(Class, name, whitestrap=False):
     )   
 
     
-    mystring = "<b>Remboursement à l'échéance: </b><br><br>L'intégralité du capital initial"
-    mystring_first = "<b>Remboursement à l'échéance: </b><br>*"
+    mystring = "<b>Remboursement à l'échéance : </b><br><br>L'intégralité du capital initial est versé"
+    mystring_first = "<b>Remboursement à l'échéance : </b><br>*"
     mystring_second = "L'intégralité du capital initial"
     #FLECHE ET MOUVEMENT DE TEXTE SI PAS ASSEZ DE PLACE
     if (float(Class.DBAC) - niveau_capital < 10):

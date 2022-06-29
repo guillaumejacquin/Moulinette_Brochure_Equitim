@@ -51,6 +51,10 @@ from calculs.dates.DDCI_M_B_Strike import *
 from calculs.DIVERSACTION import *
 from graphs.graph_scenario_header import *
 from calculs.CPR1 import *
+from calculs.PERIODEDEREMBOURSEMENT import *
+from calculs.bra import *
+from calculs.ANNUALISE import *
+from calculs.DUREE import *
 #traitement des données
 def start_processus_template(Class):
     PDC1(Class)
@@ -59,6 +63,7 @@ def start_processus_template(Class):
     dec(Class)
     dic(Class)
     pdiperf(Class)
+    bra(Class)
     PR1(Class)
     DPRR(Class)
     adcf(Class)
@@ -70,6 +75,7 @@ def start_processus_template(Class):
     abac(Class)
     f1_f2(Class)
     SJR(Class)
+
 
     tds(Class)
     DCF(Class)
@@ -93,7 +99,7 @@ def start_processus_template(Class):
     Memoire4(Class)
     Memoire5(Class)
     Memoire6(Class)
-
+    periodederemboursement(Class)
     BFP(Class)
     PAGE(Class)
     DDPP(Class)
@@ -112,7 +118,9 @@ def start_processus_template(Class):
     callAllDates2Date(Class)
     DDCI_M_B_Strike(Class)
     diversaction(Class)
+    ANNUALISE(Class)
     decrement(Class)
+    duree(Class)
     # ABAC2_MAJ(Class)
     ALL_TRA(Class)
 

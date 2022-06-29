@@ -209,7 +209,10 @@ def texte(Class, fig):
     else:
         text = "Seuil d'activation du mécanisme  "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(int(Class.PR1)) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
         x_a = 44.5
-
+        
+    if (Class.F0 == "jours"):
+        text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir " + Class.PERIODE_DE_REMBOURSEMENT
+        x_a = 44.5
     fig.add_annotation(x=x_a, y=153+8 ,text= text, showarrow=False,
                         font=dict(family="Proxima Nova", size=10, color=black ), align="left")
 
