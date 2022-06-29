@@ -2,12 +2,14 @@ import site
 import pymongo
 from pymongo import MongoClient
 from openpyxl import load_workbook
+import certifi
 
+ca = certifi.where()
 # from calculs.sponsor import sponsor
 
 #ajoute une valeud dans la collection clients qui se trouve dans la base de donnees templates
 def add_value_data_base(ticker, equity, inconvénient, dividende="", siteweb="", sponsor="", yahoo=""): 
-    cluster = MongoClient("mongodb+srv://guillaume:guigui@cluster0.eczef.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    cluster = MongoClient("mongodb+srv://guillaume:guigui@cluster0.eczef.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", tlsCAFile=ca)
     
     db = cluster["templates"]
     collection = db["clients"]
@@ -21,7 +23,7 @@ def add_value_data_base(ticker, equity, inconvénient, dividende="", siteweb="",
 
 #montre les valeurs de la base de la collections clients de la base de données templates
 def show_database():
-    cluster = MongoClient("mongodb+srv://guillaume:guigui@cluster0.eczef.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    cluster = MongoClient("mongodb+srv://guillaume:guigui@cluster0.eczef.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", tlsCAFile=ca)
 
     db = cluster["templates"]
     collection = db["clients"]
@@ -63,7 +65,7 @@ def add_value():
 
 def takeinformations(Class):
     #Recupere le sous jacent
-    cluster = MongoClient("mongodb+srv://guillaume:guigui@cluster0.eczef.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    cluster = MongoClient("mongodb+srv://guillaume:guigui@cluster0.eczef.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", tlsCAFile=ca)
 
     db = cluster["templates"]
     collection = db["clients"]
