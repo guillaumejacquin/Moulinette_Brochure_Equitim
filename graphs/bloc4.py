@@ -36,14 +36,12 @@ def abcisse_ordonnee(Class, fig, niveau_autocall, niveau_coupon,niveau_capital, 
     fig.add_annotation(x=80, y=0, ax=4.5, ay=0, xref='x', yref='y', axref='x', ayref='y', text='',
     showarrow=True, arrowhead=3, arrowwidth=2, arrowcolor='black')
     
-    # Periode + le nombre (exempla trimestre 1 a 3)
     if (int(Class.PR1) != 2):
         firstvaluexabciss = Class.F0 + Class.F0s + " 1 à " +  str(int(Class.PR1) - 1)
     else:
         firstvaluexabciss = Class.F0 + " 1"
 
-    #ICIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII UN TRUC A CHANGER ################################################################
-    firstvaluexabcissa = firstvaluexabciss.capitalize() #les legendes sous les blocs
+    firstvaluexabciss = firstvaluexabciss.capitalize() #les legendes sous les blocs
 
     degressivite =  float(Class.DEG)
 
@@ -52,9 +50,6 @@ def abcisse_ordonnee(Class, fig, niveau_autocall, niveau_coupon,niveau_capital, 
     while i  >= float(Class.BCPN):
         croisement += 1
         i -= degressivite
-        
-
-        pass
 
     secondvaluexabciss = Class.F0 + Class.F0s + " " +  str(int(Class.PR1))  + " à " + str(int(croisement))
     secondvaluexabciss = secondvaluexabciss.capitalize()
@@ -100,13 +95,11 @@ def abcisse_ordonnee(Class, fig, niveau_autocall, niveau_coupon,niveau_capital, 
     fig.add_annotation(x=2.0, y=130, text= text_legende, showarrow=False, font=dict(family="Proxima Nova", size=12, color="black" ),
                     )
 
-    
     #le premier parametre de range x, permet de mettre ou non un blanc entre le 0 et le premier bloc
     fig.update_xaxes(range=[0,88])
     fig.update_yaxes(range=[-3,130])
     
     return(fig)
-
 
 #le bloc le plus a gauche
 def firstbloc_text(Class, fig, niveau_coupon, niveau_autocall, black):
@@ -148,8 +141,8 @@ def second_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black):
     cpn = cpn.replace(".", ",")
     gce = ("{:.2f}".format(float(Class.GCE)))
     gce = gce.replace(".", ",")
-    mystring = "<b>Remboursement anticipé automatique\u00281\u0029 :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br> Les éventuels coupons mémorisés au préalable"
-    mystring = mystring.replace("\u00281\u0029", "⁽¹⁾")
+    mystring = "<b>Remboursement anticipé automatique(1) :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br> Les éventuels coupons mémorisés au préalable"
+    mystring = mystring.replace("(1)", "⁽¹⁾")
 
     fig.add_annotation(
         x=(29.5),
@@ -183,8 +176,8 @@ def third_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black):
     cpn = cpn.replace(".", ",")
     gce = ("{:.2f}".format(float(Class.GCE)))
     gce = gce.replace(".", ",")
-    mystring = "<b>Remboursement anticipé automatique\u00281\u0029 :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br> Les éventuels coupons mémorisés au préalable"
-    mystring = mystring.replace("\u00281\u0029", "⁽¹⁾")
+    mystring = "<b>Remboursement anticipé automatique(1) :</b><br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + str(cpn) + "% <br> + <br> Les éventuels coupons mémorisés au préalable"
+    mystring = mystring.replace("(1)", "⁽¹⁾")
     
     fig.add_annotation(
         x=(46.5),
@@ -196,8 +189,8 @@ def third_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black):
     
 
 def last_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black, niveau_capital):
-    mystring = "<b>Remboursement à l'échéance\u00281\u0029</b> :<br><br>Le capital initial diminué de <br> l'intégralité de la baisse enregistrée <br> par l'indice entre <br> la date de constatation initiale <br> et la date de constatation finale"
-    mystring = mystring.replace("\u00281\u0029", "⁽¹⁾")
+    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>Le capital initial diminué de <br> l'intégralité de la baisse enregistrée <br> par l'indice entre <br> la date de constatation initiale <br> et la date de constatation finale"
+    mystring = mystring.replace("(1)", "⁽¹⁾")
 
     cpn = ("{:.2f}".format(float(Class.CPN)))
     cpn = cpn.replace(".", ",")
@@ -212,8 +205,8 @@ def last_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black, niveau_cap
         font=dict(color=black, size=10)
     )
 
-    mystring = "<b>Remboursement à l'échéance\u00281\u0029</b> :<br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + cpn + "% est versé<br> + <br> Les éventuels coupons <br> mémorisés au préalable"
-    mystring = mystring.replace("\u00281\u0029", "⁽¹⁾")
+    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>L'intégralité du capital initial <br> + <br> Un coupon de " + cpn + "% est versé<br> + <br> Les éventuels coupons <br> mémorisés au préalable"
+    mystring = mystring.replace("(1)", "⁽¹⁾")
     y = niveau_capital
     fig.add_annotation(
         x=(65.5),
@@ -222,8 +215,8 @@ def last_bloc_text(Class, fig, niveau_coupon, niveau_autocall, black, niveau_cap
         showarrow=False,
         font=dict(color=black,size=10)
     )
-    mystring = "<b>Remboursement à l'échéance\u00281\u0029</b> :<br><br>L'intégralité du capital initial "
-    mystring = mystring.replace("\u00281\u0029", "⁽¹⁾")
+    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>L'intégralité du capital initial "
+    mystring = mystring.replace("(1)", "⁽¹⁾")
 
     fig.add_annotation(
         x=(65.5),
@@ -247,7 +240,6 @@ def first_bloc(Class, fig, blue, niveau_coupon): #first bloc design
                                     showlegend=False,
                                     mode='lines',  
                                     hoverinfo ='none',))
-
     return(fig)
 
 
@@ -394,7 +386,6 @@ def bloc3_4(Class, name, whitestrap=False):
         "x1": '#E5EBF7',
         "x2":  '#D9CD9F',
         "x3":  '#F7F4E9',
-
     }
 
     for key in data:
@@ -418,7 +409,6 @@ def bloc3_4(Class, name, whitestrap=False):
     )
 #axe des abcisses
 #-
-
     abcisse_ordonnee(Class, fig, niveau_autocall, niveau_coupon,niveau_capital, green, blue)
     
     #ici on remplace les valeurs x (ecrites abcisses(ne plus avoir 10 20 30 40 mais trimestre1 etc))
@@ -462,21 +452,7 @@ def bloc3_4(Class, name, whitestrap=False):
     last_bloc_text(Class, fig,niveau_coupon, blue, black, niveau_capital)
     lastblock(Class, fig, green, red, blue)
 
-#     fig.add_trace(go.Scatter(x=[39,54,54,39],
-#                             y=[float(Class.BCPN),float(Class.BCPN),float(Class.BCPN),float(Class.BCPN)],
-#                             fill='toself',
-#                             fillcolor='#D9CD9F',
-#                             line=dict(width=0),
-#                             showlegend=False,
-#                             mode='lines',  
-#                             hoverinfo ='none',
-# ))
-
-
-
     legende(Class, fig, green, black, blue, red, niveau_capital)
-
-
 
     fig.update_layout( #les options
         legend=dict(

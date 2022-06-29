@@ -480,8 +480,8 @@ def hardcode_replace(Class, shapes):
     replace_text({"l' année": "l'année"}, shapes)
     replace_text({" , ": ", "}, shapes)
     replace_text({"(1)": '\u00281\u0029'}, shapes)
-    replace_text({"(2)": "'\u00282\u0029'"}, shapes)
-    Class.ABAC= Class.ABAC.replace("(1)", "\u00281\u0029")
+    replace_text({"(2)": '\u00282\u0029'}, shapes)
+    Class.ABAC= Class.ABAC.replace("(1)", '\u00281\u0029')
 
 def TRA_replace(Class, shapes):
     tra_a_s1 = Class.TRA_A_S1.replace(".", ",")

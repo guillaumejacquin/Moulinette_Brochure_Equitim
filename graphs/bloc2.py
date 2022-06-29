@@ -239,7 +239,7 @@ def bloc2(Class, name, whitestrap=False):
             autocall0 = niveau_autocall[0]
 
         fig.add_annotation(x=3.0, y=niveau_autocall[0], text= str(autocall0).replace(".", ",") +"%", showarrow=False,
-                        font=dict( family="Proxima Nova", size=14, color="red" ),align="left")
+                        font=dict( family="Proxima Nova", size=14, color=green ),align="left")
     else:
         #si le niveau_autocall est égal à 100 , dessiner les options
         if int(niveau_autocall[0]) == float(niveau_autocall[0]):

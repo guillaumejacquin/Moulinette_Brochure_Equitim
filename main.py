@@ -157,7 +157,7 @@ def main(Class):
         print("Votre pdf a été réalisé en", round(elapsed, 2), "secondes")
         return(0)
     # except Exception:
-    #     return\u00281\u0029
+    #     return(1)
 
 
 
