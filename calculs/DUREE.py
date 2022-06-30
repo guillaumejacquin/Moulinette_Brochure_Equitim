@@ -25,7 +25,7 @@ def duree(Class):
 
 
     
-    first = abs(result)
+        first = abs(result)
 
     frequence = Class.F0
 
@@ -45,12 +45,12 @@ def duree(Class):
             result += 1
 
     #derniere periode
-    second = abs(result)
+        second = abs(result)
 
     #avant derniere periode
 
     if (Class.F0 == "jours"):
-        Class.DUREE = " de " + first + " à  " +  second + "ans"   
+        Class.DUREE = " de " + str(first) + " à  " +  str(second) + "ans"   
     #avant derniere date 
 
         

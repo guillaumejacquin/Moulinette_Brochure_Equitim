@@ -26,8 +26,7 @@ def bloc4(Class, Name):
     except Exception:
         print("Error sous hacent")
 
-    for ticker in Class.Yahoo_value_name:
-        Class.legende_tickers += "\n" + ticker
+
 
 
 def get_value_array(yearstoadd, start_date , df):
@@ -61,10 +60,12 @@ def get_value_array(yearstoadd, start_date , df):
 def bloc4_simple_tickers(tickers, Class, Name):
     bdays=BDay()
     
-    end_date = Class.DPCI
+    end_date = str(date.today())
     
     end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d')
     end_date = end_date - datetime.timedelta(days=1)
+
+    print(end_date)
     is_business_day = bdays.is_on_offset(end_date)
 
     try:
@@ -121,8 +122,7 @@ def bloc4_simple_tickers(tickers, Class, Name):
                 gridcolor='rgb(242, 242, 242)',
                 linecolor='rgb(0, 0, 0)',
                 linewidth= 1,
-                title=None,
-                
+                title=None,                
                 tickfont=dict(
                     family='Proxima Nova',
                     size=13,
@@ -130,13 +130,12 @@ def bloc4_simple_tickers(tickers, Class, Name):
                     )
             ),#E5EBF7  
             title=dict(
-                x=0.09,
+                x = 0.1,
                 y=0.85,
                 font=dict(
-                    family="Arial",
-                    size=10,
-                    color='#000000'
-                )
+                family="Proxima Nova",
+                    size=14,
+                    )        
             ),
             showlegend=False,
             legend_title=" ",
@@ -149,6 +148,11 @@ def bloc4_simple_tickers(tickers, Class, Name):
             x=0.05
             )
         )
+        fig.add_annotation( x=adj_close.index[0] - relativedelta(days=50), y=max_value + 10, ax=adj_close.index[0] - relativedelta(days=50), ay=-1, xref='x', yref='y', axref='x', ayref='y',
+     text='', showarrow=False, arrowhead=3, arrowwidth=1, arrowcolor='white')
+
+        fig.add_annotation(x=adj_close.index[-1] +  relativedelta(months=10), y=-1, ax=adj_close.index[0] - relativedelta(days=50) , ay=-1, xref='x', yref='y', axref='x', ayref='y',
+     text='', showarrow=False, arrowhead=3, arrowwidth=1, arrowcolor='white')
 
         fig.add_annotation( x=adj_close.index[0] - relativedelta(days=10), y=max_value + 10, ax=adj_close.index[0] - relativedelta(days=10), ay=0, xref='x', yref='y', axref='x', ayref='y',
      text='', showarrow=True, arrowhead=3, arrowwidth=1, arrowcolor='black')
@@ -160,8 +164,6 @@ def bloc4_simple_tickers(tickers, Class, Name):
         fig.data[0].line.width = 1
         fig.data[0].name = Class.Yahoo_value_name[0]
         
-
-
         time_to_add_style = relativedelta(days=5)    
         time_to_add = relativedelta(years=1)    
         
@@ -181,7 +183,8 @@ def bloc4_simple_tickers(tickers, Class, Name):
 
         monthfin = str(lastdate)[5:7]
         dayfin = str(lastdate)[8:10]
-        yearfin = str(lastdate)[0:4]        # ###############LE STYLE D AFFICHAGE###########
+        yearfin = str(lastdate)[0:4]        
+        # ###############LE STYLE D AFFICHAGE###########
         
         firstdate_visu = str(day) + "/" + str(month) + "/" + str(year) 
         seconddate_visu = str(day) + "/" + str(month) + "/" + str(int(year) + 2)
@@ -209,6 +212,9 @@ def bloc4_simple_tickers(tickers, Class, Name):
         print("error yahoo")
 
     simple_yahoo_value_arrays = [1, 3 ,5 , 10 ] # le tableau pour la boucle pour les années
+
+
+   
     for i in Class.Yahoo:
         my_array = [] #j'initie un nouveau tableau a chaque sousjacent
 
@@ -243,7 +249,7 @@ def bloc4_simple_tickers(tickers, Class, Name):
 def bloc4_multiple_tickers(tickers, Class, Name):
     bdays=BDay()
 
-    end_date = Class.DPCI    
+    end_date = str(date.today())   
     end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d')
     end_date = end_date - datetime.timedelta(days=1)
     is_business_day = bdays.is_on_offset(end_date)
@@ -278,7 +284,6 @@ def bloc4_multiple_tickers(tickers, Class, Name):
                 panel_data[datas] = (panel_data['Adj Close'] / lastvalue) * 100
                 result[datas] = (panel_data['Adj Close'] / lastvalue) * 100
                 name.append(datas)
-                print("aasoikjoasjaisooajisioaj", Class.Yahoo_value_name)
                 i += 1
             except Exception:
                 print("erreur tickers")
@@ -374,7 +379,7 @@ def bloc4_multiple_tickers(tickers, Class, Name):
                 x=0.09,
                 y=0.85,
                 font=dict(
-                    family="Arial",
+                    family='Proxima Nova',
                     size=10,
                     color='#000000'
                 )
@@ -396,6 +401,11 @@ def bloc4_multiple_tickers(tickers, Class, Name):
         max_value = result.max() + 20
 
         max_max_value = (max(max_value))
+        fig.add_annotation( x=adj_close.index[0] - relativedelta(days=50), y=max_value + 10, ax=adj_close.index[0] - relativedelta(days=50), ay=-1, xref='x', yref='y', axref='x', ayref='y',
+     text='', showarrow=False, arrowhead=3, arrowwidth=1, arrowcolor='white')
+
+        fig.add_annotation(x=adj_close.index[-1] +  relativedelta(months=10), y=-1, ax=adj_close.index[0] - relativedelta(days=50) , ay=-1, xref='x', yref='y', axref='x', ayref='y',
+     text='', showarrow=False, arrowhead=3, arrowwidth=1, arrowcolor='white')
 
         fig.add_annotation( x=result.index[0] -  relativedelta(days=10), y=max_max_value + 10, ax=result.index[0] - relativedelta(days=10), ay=0, xref='x', yref='y', axref='x', ayref='y',
      text='', showarrow=True, arrowhead=3, arrowwidth=1, arrowcolor='black')

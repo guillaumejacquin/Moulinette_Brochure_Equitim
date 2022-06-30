@@ -148,13 +148,15 @@ def bloc2(Class, name, whitestrap=False):
 
     autocall2 = str(autocall2).replace(".", ",")
 
-    fig.add_annotation(x=24, y=niveau_autocall[1] + 5,text=str(autocall1) + "%", showarrow=False,
+    if (Class.type_bar == "degressif"):
+        fig.add_annotation(x=24, y=niveau_autocall[1] + 5,text=str(autocall1) + "%", showarrow=False,
+                        font=dict( family="Proxima Nova", size=14, color=green ),align="left",
+                        )
+    if (Class.type_bar == "degressif"):
+        fig.add_annotation(x=36, y=niveau_autocall[2] + 3, text=str(str(autocall2)) + "%", showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=green ),align="left",
                     )
-           
-    fig.add_annotation(x=36, y=niveau_autocall[2] + 3, text=str(str(autocall2)) + "%", showarrow=False,
-                    font=dict( family="Proxima Nova", size=14, color=green ),align="left",
-                    )         
+
     fig.add_shape( # add la ligne horizontale deuxieme block line degressive
         type="line", line_color=green, line_width=3, opacity=1, line_dash="dot",
         x0=5, x1=25, y0=niveau_autocall[0], y1=niveau_autocall[1]

@@ -18,7 +18,7 @@ def balisedeg(Class):
 
     #INCOMPHRENSION#
     if (Class.type_bar == "degressif" or Class.type_bar == "airbag") and Class.DBAC == Class.PDI:
-        Class.baliseCM2 = "Le capital n’est donc exposé à un risque de perte à l’échéance(¹) que si <SJR1> clôture à un <SJR3> strictement inférieur à <PDI> de son <NDR> à la date de constatation finale(1)."
+        Class.baliseCM2 = "Le capital n’est donc exposé à un risque de perte à l’échéance\u00281\u0029 que si <SJR1> clôture à un <SJR3> strictement inférieur à <PDI> de son <NDR> à la date de constatation finale(1)."
         # Class.deleteblocs.append("Cas médian :")
     else:
         pdi = Class.PDI.replace(".",",")
@@ -28,32 +28,32 @@ def balisedeg(Class):
     #!INCOMPREHENSION!#
 
     if (Class.type_bar == "degressif" or Class.type_bar == "airbag") and float(Class.DBAC) == float(Class.PDI):
-        Class.baliseCM3 = "À la date de constatation finale(¹), <SJR1> clôture à un <SJR3> strictement supérieur à <DBAC> de son <NDR>"
+        Class.baliseCM3 = "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement supérieur à <DBAC> de son <NDR>"
     else:
-        Class.baliseCM3 = "À la date de constatation finale(¹), <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> mais supérieur ou égal à <PDI> de son <NDR>"
+        Class.baliseCM3 = "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> mais supérieur ou égal à <PDI> de son <NDR>"
 
 
     if (Class.type_bar == "degressif" or Class.type_bar == "airbag") and float(Class.DBAC) == float(Class.PDI):
-        Class.baliseCM4 = """À la date de constatation finale(¹), <SJR1> clôture à un <SJR3> strictement supérieur à <DBAC> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi majorée d’un <GC> de <CPN> par <F0> écoulé depuis le <DDCI> (soit un gain total de <GCE> total)."""
+        Class.baliseCM4 = """À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement supérieur à <DBAC> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi majorée d’un <GC> de <CPN> par <F0> écoulé depuis le <DDCI> (soit un gain total de <GCE> total)."""
 
     else: 
-        Class.baliseCM4 = """À la date de constatation finale(¹), <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi.
+        Class.baliseCM4 = """À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi.
         """
 
     if (Class.type_bar2 == "oui"):
         Class.balisedeg4 = "La barrière de versement du coupon est dégressive au fil du temps. Elle est fixée à <BCPN>% du <NDR> en fin <DU> <F0> 1, puis décroît de <DEG>% chaque <F0> à partir de la fin <DU> <F0> <DDPP> (inclus), pour atteindre <DBAC> du <NDR> à la fin <DU> <F0> <DPRR>."
 
     if (Class.BFP == Class.PDI):
-        Class.baliseCM5 = "À la date de constatation finale(1), <SJR1> clôture à un <SJR3> strictement supérieur à <PDI> de son <NDR>" 
+        Class.baliseCM5 = "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement supérieur à <PDI> de son <NDR>" 
     else: 
-        Class.baliseCM5 = "À la date de constatation finale(1), <SJR1> clôture à un <SJR3> strictement inférieur à <BFP> mais supérieur ou égal à <PDI> de son <NDR>"
+        Class.baliseCM5 = "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement inférieur à <BFP> mais supérieur ou égal à <PDI> de son <NDR>"
 
 
 
     if (Class.BFP == Class.PDI):
-        Class.baliseCM6= "À la date de constatation finale(1), <SJR1> clôture à un <SJR3> strictement supérieur à <BFP> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi majorée du coupon de <CPN> <Mémoire6>."
+        Class.baliseCM6= "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement supérieur à <BFP> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi majorée du coupon de <CPN> <Mémoire6>."
     else:
-       Class.baliseCM6 = "À la date de constatation finale(1), <SJR1> clôture à un <SJR3> strictement inférieur à <BFP> de son <NDR> (<NSM> dans cet exemple) mais strictement supérieur à <PDI> de son <NDR>. L’investisseur récupère alors l’intégralité de son capital initialement investi."
+       Class.baliseCM6 = "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement inférieur à <BFP> de son <NDR> (<NSM> dans cet exemple) mais strictement supérieur à <PDI> de son <NDR>. L’investisseur récupère alors l’intégralité de son capital initialement investi."
     
 
     

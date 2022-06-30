@@ -1,6 +1,6 @@
 from ast import Pass, Return
 from asyncio import exceptions
-from tkinter import EXCEPTION
+from tkinter import EXCEPTION, font
 from unittest import registerResult
 from matplotlib import ticker
 from pandas_datareader import data
@@ -16,15 +16,11 @@ def get_value_array(yearstoadd, start_date , df, tickers):
     bdays=BDay()
     start = start_date - relativedelta(years=yearstoadd)
     start = start.strftime('%Y-%m-%d')
-    print(start)
-    print(df)
     mask = (df[tickers[0]] >= start) # JOUR SUIVANT
 
-    name = tickers[0]
-
     result = df[mask]["Unnamed: 1"].iloc[0]
-    result = df["Unnamed: 1"].iloc[0] / result
-    print(result)
+    result = df["Unnamed: 1"].iloc[-1] / result -1
+    result = result * 100
 
     return result
     
@@ -36,7 +32,7 @@ def indice_simple_tickers(tickers, Class, Name):
     fig = px.line(data_frame = df[tickers[0]]
                         ,x = df[tickers[0]]
                         ,y = [df["Unnamed: 1"]],
-                        title="En points",
+                        title="Points",
                         )
 
     fig.update_traces(line_color='#B9A049')
@@ -47,8 +43,15 @@ def indice_simple_tickers(tickers, Class, Name):
                 showgrid=False,
                 title="",
                 ticks='inside',
+                
                 visible= True,
                 showticklabels = True,
+                tickfont=dict(
+                    family='Proxima Nova',
+                    size=12,
+                    color='rgb(82, 82, 82)',
+                    
+                    )
             ),
             yaxis=dict(
                 showgrid=True,
@@ -60,29 +63,49 @@ def indice_simple_tickers(tickers, Class, Name):
                 gridcolor='rgb(242, 242, 242)',
                 linecolor='rgb(0, 0, 0)',
                 linewidth= 1,
-                title=None,
+                title=None, 
                 tickfont=dict(
                     family='Proxima Nova',
-                    size=13,
+                    size=12,
                     color='rgb(82, 82, 82)',
+                    
                     )
             ),#E5EBF7  
+                title=dict(
+        x = 0.1,
+        y=0.85,
+        font=dict(
+        family="Proxima Nova",
+            size=14,
+        )
+        ),
             showlegend = False,
             plot_bgcolor='white',
         )
+
+    fig.layout.xaxis.color = 'black'
+    fig.layout.yaxis.color = 'black'
+
     fig.data[0].line.color = 'rgb(197, 175, 92)'
     fig.data[0].line.width = 1
     first_date= df[tickers[0]].iloc[0]
     last_date = df[tickers[0]].iloc[-1]
     max_value = df["Unnamed: 1"].max() + 2/100 * df["Unnamed: 1"].max()
 
+    
+    fig.add_annotation(x=last_date + relativedelta(months=6), y=-20, ax=first_date - relativedelta(days=30), ay=-20, xref='x', yref='y', axref='x', ayref='y',
+     text='', showarrow=False, arrowhead=3, arrowwidth=1, arrowcolor='white')
 
-    fig.add_annotation(x=last_date + relativedelta(months=6), y=0, ax=first_date - relativedelta(days=15), ay=0, xref='x', yref='y', axref='x', ayref='y',
-     text='', showarrow=True, arrowhead=3, arrowwidth=1, arrowcolor='black')
+    fig.add_annotation(x=first_date - relativedelta(days=50), y=max_value + max_value/5, ax=first_date - relativedelta(days=50) , ay=-20, xref='x', yref='y', axref='x', ayref='y',
+     text='', showarrow=False, arrowhead=3, arrowwidth=1, arrowcolor='white')
 
-    fig.add_annotation(x=first_date - relativedelta(days=15), y=max_value, ax=first_date - relativedelta(days=15) , ay=0, xref='x', yref='y', axref='x', ayref='y',
+
+    fig.add_annotation(x=last_date + relativedelta(months=6), y=25, ax=first_date - relativedelta(days=40), ay=25, xref='x', yref='y', axref='x', ayref='y',
      text='', showarrow=True, arrowhead=3, arrowwidth=1, arrowcolor='black')
     
+    fig.add_annotation(x=first_date - relativedelta(days=15), y=max_value + max_value/5, ax=first_date - relativedelta(days=15) , ay=10, xref='x', yref='y', axref='x', ayref='y',
+     text='', showarrow=True, arrowhead=3, arrowwidth=1, arrowcolor='black')
+
     time_to_add_style = relativedelta(days=5)    
     time_to_add = relativedelta(years=1)    
     

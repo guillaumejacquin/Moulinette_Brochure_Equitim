@@ -382,7 +382,8 @@ def elementsToReplaceCalcul(Class, shapes):
     deg = float(Class.DEG)
     deg = ("{:.2f}".format(deg))
         
-   
+    for ticker in Class.Yahoo_value_name:
+        Class.legende_tickers =  Class.legende_tickers + "\n" + ticker
 
     replace_text({'<WALLY>': str(Class.WALLY)}, shapes)
     replace_text({'<DUREE>': str(Class.DUREE)}, shapes)
@@ -434,12 +435,7 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<GCE>': gce}, shapes)
     replace_text({'<ABAC>': Class.ABAC}, shapes)
     replace_text({'<NDR>': Class.NDR }, shapes)
-    print("?????????????????", Class.NDR)
-    if (Class.type_bar == "degressif"):
-        #Class.BVC = "La barrière de versement du coupon est dégressive au fil du temps. Elle est fixée à <BCPN>% du <NDR> en fin <DU> <F0> 1, puis décroît de <DEG>% chaque <F0> à partir de la fin <DU> <F0> <DDPP> (inclus), pour atteindre <DBAC> du <NDR> à la fin <DU> <F0> <DPRR>."
-        Class.BRA = "La barrière de remboursement anticipé automatique est dégressive au fil du temps. Elle est fixée à " + str(Class.BAC)  + " du " + str(Class.NDR) + "en fin de " + str(str(deg).replace(".", ",")) + "% chaque " + Class.F0 + ", pour atteindre , " + str(Class.ABDAC) + "% du "+ str(Class.NDR) + " à la fin du "  + Class.F0 + " " + str(Class.ADPR) +"."
-        # Class.BVC = "La barrière de versement du coupon est dégressive au fil du temps. Elle est fixée à <BCPN>% du <NDR>"
-        pass
+
     replace_text({'<ADPR>': Class.ADPR}, shapes)
     replace_text({'<SJR1>': Class.SJR1}, shapes)
     replace_text({'<SJR2>': Class.SJR2}, shapes)
@@ -494,6 +490,7 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<DIVERSACTION>': Class.DIVERSACTION}, shapes) 
 
     replace_text({'<DDPP>': Class.DDPP}, shapes) 
+    print("ahhhh", Class.legende_tickers)
     replace_text({'<legendeticker>':  Class.legende_tickers}, shapes)
     replace_text({'<ticker>':  Class.legende_tickers}, shapes)
     cpr1 = str(Class.CPR1) + "%"
@@ -510,6 +507,8 @@ def hardcode_replace(Class, shapes):
     replace_text({" , ": ", "}, shapes)
     replace_text({"(1)": '\u00281\u0029'}, shapes)
     replace_text({"(2)": '\u00282\u0029'}, shapes)
+    replace_text({"%%%": '%'}, shapes)
+
     Class.ABAC= Class.ABAC.replace("(1)", '\u00281\u0029')
 
 def TRA_replace(Class, shapes):
@@ -617,9 +616,6 @@ def TRA_replace(Class, shapes):
     tra_mp = tra_mp + "%" 
     replace_text({'<TRA.MP>': tra_mp}, shapes)
 
-
-
-
     Dates_maj(Class, shapes)
 
 def Dates_maj(Class, shapes):
@@ -682,8 +678,6 @@ def Replace_Boucle_Dates(Class, shapes):
     replace_text({'<Datespaiement6>': Class.Datespaiement6}, shapes)
     replace_text({'<Datespaiement7>': Class.Datespaiement7}, shapes)
     replace_text({'<Datespaiement8>': Class.Datespaiement8}, shapes)
-    
-   
 
     replace_text({'<dates_constat_autocall>': Class.dates_constat_autocall}, shapes)
     replace_text({'<dates_paiement_autocall>': Class.dates_paiement_autocall}, shapes)
@@ -796,9 +790,6 @@ def ChangeTextOnPpt(Class):
     # from colormath.color_objects import sRGBColor
     compteur = 0
     compteur_tab = 1
-    
-    tbl = None
-
 
     for slide in prs.slides:
         for shape in slide.shapes:
@@ -816,7 +807,8 @@ def ChangeTextOnPpt(Class):
                             try:
                                 cell = table.cell(row_idx, col_idx)
                                 # cell.text = str(Class.Yahoo_value_name[row_idx -1]) +" " + str(Class.Yahoo_value_dividende[row_idx -1])
-                                cell.text = Class.NOMSOUSJACENTP1
+                                cell_tmp = Class.NOMSOUSJACENTP1.split('ET')
+                                cell.text = cell_tmp[row_idx - 1]
 
                             except Exception:
                                 print("pas de tableau de perf")

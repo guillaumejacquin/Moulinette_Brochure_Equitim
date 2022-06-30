@@ -21,7 +21,7 @@ def tds(Class):
 
         tmp = (date_time_obj0 + relativedelta(days=7))                 #je verifie que le premier element et le 2 eme ont bien 7 jours d'écarts pour rajouter le hebdomadaire.
         tmp = tmp.strftime('%d-%m-%Y')
-
+        
         if (tmp == date_time_obj1):
             hebdo = " hebdomadaire "
 
