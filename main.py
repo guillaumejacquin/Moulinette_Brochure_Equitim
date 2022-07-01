@@ -55,6 +55,9 @@ from calculs.PERIODEDEREMBOURSEMENT import *
 from calculs.bra import *
 from calculs.ANNUALISE import *
 from calculs.DUREE import *
+from calculs.environ import *
+from calculs.exclus import *
+
 #traitement des données
 def start_processus_template(Class):
     PDC1(Class)
@@ -121,6 +124,8 @@ def start_processus_template(Class):
     ANNUALISE(Class)
     decrement(Class)
     duree(Class)
+    environ(Class)
+    exclus(Class)
     # ABAC2_MAJ(Class)
     ALL_TRA(Class)
 

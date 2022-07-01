@@ -254,7 +254,6 @@ def athena_annotations(Class, fig):
 
     if frequence == "jours":
         prefix= "J"
- 
     if frequence == "année":
         prefix = "A"
     
@@ -267,6 +266,7 @@ def athena_annotations(Class, fig):
     if frequence == "semestre":
         prefix = "S"
 
+    Class.prefix = prefix
 
     fig.add_shape(type="line",
             x0=20, y0=premier_niveau_autocall, x1=22.5 , y1=premier_niveau_autocall ,
@@ -365,6 +365,7 @@ def phoenix_annotations(Class, fig):
     if frequence == "semestre":
         prefix = "S"
 
+    Class.prefix = prefix
 
     #legende
     fig.add_annotation(x=27, y=113 ,text= ("Seuil de versement des coupons" ), showarrow=False,

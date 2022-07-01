@@ -142,6 +142,7 @@ class InformationsForm():
 
         self.PR1_1 = ""
 
+        self.R1 = ""
 
         self.ABAC2 = ""
         self.type_bar2 = ""
@@ -154,11 +155,14 @@ class InformationsForm():
         self.PAGE = ""
         self.DUREE = "de <1PR> à <DPRR> <F0><F0s>"
         self.BRA = "<BAC> du <NDR> <SJR7>"
-        self.BVC = "<ABAC> du <NDR> <SJR7>"
+        self.BVC = "<ABAC>"
         self.ANNUALISE = "soit (<GCA> par année écoulée)"
         self.WALLY = "WALLY LE BOSS D EQUITIM"
         self.DDCI_M_B_Strike = ""
-        self.PERIODE_DE_REMBOURSEMENT = "de la fin <DU> <F0> <1PR> jusqu'à la fin <DU> <F0> <ADPR>"
+        self.environ = ""
+        self.prefix = ""
+        self.exclus = ""
+        self.PERIODE_DE_REMBOURSEMENT = "à partir de la fin <DU> <F0> <1PR> jusqu'à la fin <DU> <F0> <ADPR>"
         self.PERIODE_DE_REMBOURSEMENT2 = "des <F0><F0s> <1PR> à <ADPR>"
         self.decrement = "Les fluctuations du prix du produit en cours de vie sont également plus importantes en cas de baisse des marchés en raison de la méthode de prélèvement forfaitaire en points."
         self.DIVERSACTION = ", et ne bénéficie pas de la diversification offerte par les indices de marchés actions"

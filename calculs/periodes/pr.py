@@ -5,12 +5,12 @@ def PR1(Class):
     frequence = Class.F0
 
     #on transforme en date
-    date_time_obj = datetime.strptime(Class.PDC2, '%Y-%m-%d')
-    date_time_obj2 = datetime.strptime(Class.DR1, '%Y-%m-%d')
+    date_time_obj = datetime.strptime(Class.DDCI, '%Y-%m-%d')
+    date_time_obj2 = datetime.strptime(Class.DPR, '%Y-%m-%d')
 
     #soustraction des 2 dates
     diff = abs(date_time_obj2 - date_time_obj)
-
+    print("iciiiiiiiiiii les enfoirés, ", Class.DPR, Class.DDCI)
     #Calcul à la louche, pour arrondir
     years = diff.days / 365
     months = diff.days / 30

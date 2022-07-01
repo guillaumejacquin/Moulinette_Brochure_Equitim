@@ -32,6 +32,7 @@ def balisedeg(Class):
     else:
         Class.baliseCM3 = "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> mais supérieur ou égal à <PDI> de son <NDR>"
 
+    Class.baliseCM3 = Class.baliseCM3.replace("(1)", '\u00281\u0029')
 
     if (Class.type_bar == "degressif" or Class.type_bar == "airbag") and float(Class.DBAC) == float(Class.PDI):
         Class.baliseCM4 = """À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement supérieur à <DBAC> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi majorée d’un <GC> de <CPN> par <F0> écoulé depuis le <DDCI> (soit un gain total de <GCE> total)."""
@@ -39,6 +40,7 @@ def balisedeg(Class):
     else: 
         Class.baliseCM4 = """À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi.
         """
+    Class.baliseCM4 = Class.baliseCM4.replace("(1)", '\u00281\u0029')
 
     if (Class.type_bar2 == "oui"):
         Class.balisedeg4 = "La barrière de versement du coupon est dégressive au fil du temps. Elle est fixée à <BCPN>% du <NDR> en fin <DU> <F0> 1, puis décroît de <DEG>% chaque <F0> à partir de la fin <DU> <F0> <DDPP> (inclus), pour atteindre <DBAC> du <NDR> à la fin <DU> <F0> <DPRR>."

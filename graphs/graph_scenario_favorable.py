@@ -514,6 +514,7 @@ def is_athena_or_phoenix_annotations(Class, fig):
         perfmax = (f'{float(perfmax):.2f}')
         string = str(perfmax)  +"% ="
         string = string.replace(".", ",")
+        Class.R1 = string[:-2]
 
         cpn = float(Class.CPN)
         len_cpn = (str(cpn)[::-1].find('.'))

@@ -50,7 +50,7 @@ def duree(Class):
     #avant derniere periode
 
     if (Class.F0 == "jours"):
-        Class.DUREE = " de " + str(first) + " à  " +  str(second) + "ans"   
+        Class.DUREE = " de " + str(first) + " à " +  str(second) + " ans"   
     #avant derniere date 
 
         

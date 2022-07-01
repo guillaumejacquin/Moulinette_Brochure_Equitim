@@ -364,6 +364,9 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<baliseCM2>': Class.baliseCM2}, shapes)
     replace_text({'<baliseCM22>': Class.baliseCM22}, shapes) 
 
+    Class.baliseCM3 = Class.baliseCM3.replace("(1)", '\u00281\u0029')
+    Class.baliseCM4 = Class.baliseCM4.replace("(1)", '\u00281\u0029')
+
     replace_text({'<baliseCM3>': Class.baliseCM3}, shapes) 
     replace_text({'<baliseCM4>': Class.baliseCM4}, shapes)
     replace_text({'<baliseCM5>': Class.baliseCM5}, shapes)
@@ -416,6 +419,8 @@ def elementsToReplaceCalcul(Class, shapes):
 
 
     replace_text({'<PDIPERF>': pdiperf}, shapes)
+    replace_text({'<P>': Class.prefix}, shapes)
+
     replace_text({'<1PR>': Class.PR1}, shapes)
     replace_text({'<DPRR>': Class.DPRR}, shapes)
     replace_text({'<TDP>': Class.TDP}, shapes)
@@ -427,13 +432,19 @@ def elementsToReplaceCalcul(Class, shapes):
     gce = ("{:.2f}".format(Class.GCE))
     gce = str(gce) + "%"
     gce = gce.replace(".", ",")
+
+    if (str(Class.inconvenient == "NULL")):
+        Class.inconvenient = ""
     replace_text({'<inconv>': Class.inconvenient}, shapes)
     replace_text({'<inconvénient>': Class.inconvenient}, shapes)
-    
+    replace_text({'<R1>': Class.R1}, shapes)
+
 
 
     replace_text({'<GCE>': gce}, shapes)
     replace_text({'<ABAC>': Class.ABAC}, shapes)
+    replace_text({'<decrement>': Class.decrement}, shapes)
+
     replace_text({'<NDR>': Class.NDR }, shapes)
 
     replace_text({'<ADPR>': Class.ADPR}, shapes)
@@ -465,6 +476,8 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<SITE>': Class.Site}, shapes)
     replace_text({'<DPCI>': Class.DPCI}, shapes) 
     replace_text({'<DPCI_MAJ>':  Class.DPCI_MAJ}, shapes)
+    replace_text({'<environ>':  Class.environ}, shapes)
+    replace_text({'<exclus>':  Class.exclus}, shapes)
 
     replace_text({'<NOMP1>': Class.NOMP1}, shapes) 
     replace_text({'<NOMSOUSJACENTP1>': Class.NOMSOUSJACENTP1}, shapes) 
@@ -508,6 +521,7 @@ def hardcode_replace(Class, shapes):
     replace_text({"(1)": '\u00281\u0029'}, shapes)
     replace_text({"(2)": '\u00282\u0029'}, shapes)
     replace_text({"%%%": '%'}, shapes)
+    replace_text({" .": '.'}, shapes)
 
     Class.ABAC= Class.ABAC.replace("(1)", '\u00281\u0029')
 
@@ -542,7 +556,11 @@ def TRA_replace(Class, shapes):
     tra_echeance_perte_a = Class.TRA_echeance_perte_A.replace(".", ",")
     tra_echeance_perte_a = tra_echeance_perte_a + "%"
     replace_text({'<TRA.ECHEANCE.PERTE.A>': tra_echeance_perte_a}, shapes)
-    replace_text({'<BALISECMTRA>': Class.TRA_A_S2_100}, shapes)
+
+    # cmtra  = Class.BaliseCMTRA.replace(".", ",")
+    cmtra =  Class.BaliseCMTRA
+
+    replace_text({'<BALISECMTRA>': cmtra}, shapes)
     
     tra_tout_p = Class.TRA_TOUT_P.replace(".", ",")
     tra_tout_p = tra_tout_p + "%"
