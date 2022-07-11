@@ -387,7 +387,7 @@ def bloc2(Class, name, whitestrap=False):
     mystring = mystring.replace(".", ",")
     fig.add_annotation(
         x=(15),
-        y=(niveau_coupon[0] + (130-niveau_coupon[0]) /2 +5),
+        y=(niveau_autocall[0] + (130 - niveau_autocall[0])/1.8),
         text=mystring,
         showarrow=False,
         font=dict(color=black, size=10)
@@ -398,7 +398,7 @@ def bloc2(Class, name, whitestrap=False):
     mystring = mystring.replace(".", ",")
     fig.add_annotation(
         x=(32),
-        y=(float(Class.DBAC) + (130 - float(Class.DBAC)) /2 +5),
+        y=(niveau_autocall[-1] + (130 - niveau_autocall[0])/1.8),
         text=mystring,
         showarrow=False,
         font=dict(color=black, size=10)

@@ -62,6 +62,8 @@ class InformationsForm():
     
     #AUTRES VARIABLES, ICI CALCULS
     def var_calculs(self):
+        self.F0M = ""
+
         self.NDR = ""
         self.DDCI = ""
         self.DPCI = ""
@@ -69,6 +71,8 @@ class InformationsForm():
         self.PDC2 = ""
         self.DDR = ""
         self.DDR1 = ""
+        self.PR1_1 = ""
+
         self.DIC = ""
         self.PDIPERF = ""
         self.DTRAT = ""
@@ -166,6 +170,9 @@ class InformationsForm():
         self.PERIODE_DE_REMBOURSEMENT2 = "des <F0><F0s> <1PR> à <ADPR>"
         self.decrement = "Les fluctuations du prix du produit en cours de vie sont également plus importantes en cas de baisse des marchés en raison de la méthode de prélèvement forfaitaire en points."
         self.DIVERSACTION = ", et ne bénéficie pas de la diversification offerte par les indices de marchés actions"
+        
+        
+        self.ADDPLUSIFAUTOCALL = ""
         self.var_degressivite()
 
     def var_degressivite(self):

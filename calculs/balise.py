@@ -21,7 +21,7 @@ def balise(Class):
 
     if (strike == "strike normal"):
         sjr3_tmp = sjr3[:-1]
-        mystring = "Le "+ Class.NDR + " correspond au " + sjr3_tmp + " de clôture " + sjr7 + " " + Class.NOMSOUSJACENT +  " le " + ddi
+        mystring = "Le "+ Class.NDR + " correspond au " + sjr3_tmp + " de clôture " + sjr7 + " " + Class.NOMSOUSJACENT +  " le " + ddi + "."
 
     if (strike == "strike moyen"):
         DCI_split = list(str(Class.DCI).split(", "))
@@ -38,7 +38,7 @@ def balise(Class):
             hebdo = " hebdomadaire "
 
         string = "Le" +  Class.NDR + "correspond à la moyenne arithmétique "+ hebdo +" des " + Class.SJR5 + " de clôture aux dates suivantes : " + Class.DCI + "."
-        mystring = "Le "+ Class.NDR + " correspond à la moyenne arithmétique "+ hebdo + " des " + sjr3 + " de clôture " + sjr7 + " " + Class.NOMSOUSJACENT + " du " + ddi2 + " au " + ddi
+        mystring = "Le "+ Class.NDR + " correspond à la moyenne arithmétique "+ hebdo + " des " + sjr3 + " de clôture " + sjr7 + " " + Class.NOMSOUSJACENT + " du " + ddi2 + " au " + ddi + "."
 
     if (strike == "best strike"):
         mystring = "Le "+ Class.NDR + " correspond au " + sjr3 + " de clôture " + sjr7 + " " + Class.NOMSOUSJACENT + " le plus bas observé aux dates suivantes : \n" + Class.DCI + "."

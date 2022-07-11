@@ -74,7 +74,6 @@ def add_articles():
     Myclass.ADCF = Myclass.ADCF[0:10]
     tmp = Myclass.ADCF
     Myclass.ADCF = tmp[6:10] + "-" + tmp[3:5] + "-" + tmp[0:2]
-    # print("33333", Myclass.ADCF)
     Myclass.F0 = data["F0"]
     TSJ = data["TSJ"]
     Myclass.TSJ = list(TSJ.split(", "))
@@ -93,7 +92,8 @@ def add_articles():
     Myclass.BAC_is_degressif = data["BAC_is_degressif"]
     
     Myclass.BCPN = data["BCPN"]
-    Myclass.BCPN = str(Myclass.DEG).replace(",", ".")
+    
+    Myclass.BCPN = str(Myclass.BCPN).replace(",", ".")
 
     Myclass.BCPN_is_degressif = data["BCPN_is_degressif"]
 

@@ -10,7 +10,6 @@ def PR1(Class):
 
     #soustraction des 2 dates
     diff = abs(date_time_obj2 - date_time_obj)
-    print("iciiiiiiiiiii les enfoirés, ", Class.DPR, Class.DDCI)
     #Calcul à la louche, pour arrondir
     years = diff.days / 365
     months = diff.days / 30

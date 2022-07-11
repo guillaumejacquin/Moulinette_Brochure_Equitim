@@ -120,12 +120,11 @@ def F1_MAJ(Class):
     DDR_maj_constructor = Class.F1[8:10] + " " + month_string + " " + Class.F1[0:4] 
     Class.F1_MAJ = DDR_maj_constructor
 
-
 # def ABAC2_MAJ(Class):
-#     print("AHHHHHHHHHHH", )
 #     month_string = (Class.ABAC2[5:7])
 #     month_string = int(month_string)
 #     month_string = (month[month_string])
+
 
 #     DDR_maj_constructor = Class.ABAC2[8:10] + " " + month_string + " " + Class.ABAC2[0:4] 
 #     Class.ABAC2_MAJ = DDR_maj_constructor

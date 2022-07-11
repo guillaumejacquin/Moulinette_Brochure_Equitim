@@ -57,6 +57,7 @@ from calculs.ANNUALISE import *
 from calculs.DUREE import *
 from calculs.environ import *
 from calculs.exclus import *
+from calculs.ADDPLUSIFAUTOCALL import *
 
 #traitement des données
 def start_processus_template(Class):
@@ -159,7 +160,8 @@ def start_processus_template(Class):
 
 
     Class.DCI = Class.DCI.replace("-", "/") #on remplace le style(plus joli le 11/05/2020 plutot que 11-05-2020)
-
+    
+    ADDPLUSIFAUTOCALL(Class)
     ChangeTextOnPpt(Class)
 
 def main(Class):

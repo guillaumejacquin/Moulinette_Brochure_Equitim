@@ -388,7 +388,8 @@ def phoenix_annotations(Class, fig):
                     color="black"
                     ),   
         start_green_line = 20
-    
+        
+     
     else:
         fig.update_xaxes(tickangle=0,
                     tickmode = 'array',
@@ -399,7 +400,7 @@ def phoenix_annotations(Class, fig):
                     ),
         start_green_line = 30
     
-
+      
 
         tmp = avant_dernier_niveau_de_reference + 2 * pasdedegressivite
         compteur = 0
@@ -485,6 +486,13 @@ def smallgraph1(Class, name):
     texte(Class, fig)
     is_athena_or_phoenix_annotations(Class, fig)
 
+    Class.first = str(1)
+    Class.p2 = str(2)
+    #prappel
+    last = float(Class.DPRR)
+    Class.last_2 = str(last - 2)
+    Class.last_1 = str(last - 1)
+    Class.last = str(last)
 
     #fig.show()
     fig.write_image(name, format="png", scale=2, engine='kaleido')

@@ -2,10 +2,7 @@ from cmd import Cmd
 from dataclasses import dataclass
 from datetime import date
 from typing import List
-from unicodedata import name
 
-from pyparsing import col
-from calculs.abac import abac
 from pptx import Presentation
 from PIL import Image
 from pptx.util import Inches
@@ -141,17 +138,17 @@ def excel(Class):
        {
     "Nom": "Dates de premier rappel",
     "Balise": "<DPR>",
-    "Result": Class.DPR,
+    "Result": Class.DPR_affichage,
     },
     {
     "Nom": "Avant dernière date de constatation",
     "Balise": "<ADCF>",
-    "Result": Class.ADCF,
+    "Result": Class.ADCF_affichage,
     },
        {
     "Nom": "Date de constatation finale",
     "Balise": "<DCF>",
-    "Result": Class.DCF,
+    "Result": Class.DCF_affichage,
     },
        {
     "Nom": "Type de strike",
@@ -161,17 +158,17 @@ def excel(Class):
        {
     "Nom": "Date de remboursement premier rappel",
     "Balise": "<DR1>",
-    "Result": Class.DR1,
+    "Result": Class.DR1_affichage,
     },
     {
     "Nom": "Avant dernière date de remboursement",
     "Balise": "<DADR>",
-    "Result": Class.DADR,
+    "Result": Class.DADR_affichage,
     },
     {
     "Nom": "Date d'échéance",
     "Balise": "<DEC>",
-    "Result": Class.DEC,
+    "Result": Class.DEC_affichage,
     },
     {
     "Nom": "Jour de référence",
@@ -267,7 +264,10 @@ def elementsToReplaceRemplacement(Class, shapes):
     replace_text({'<DCI_MAJ>':  Class.DCI_MAJ}, shapes)
 
     replace_text({'<1DR>':  Class.DR1_affichage}, shapes)
+    replace_text({'<PR1+1>':  str(int(Class.PR1)+1)}, shapes)
+
     replace_text({'<DPR>':  Class.DPR_affichage}, shapes)
+    
     replace_text({'<DCF>':  Class.DCF_affichage}, shapes)
     replace_text({'<DCF_MAJ>':  Class.DCF_MAJ}, shapes)
     replace_text({'<DEC>':  Class.DEC_affichage}, shapes)
@@ -277,7 +277,11 @@ def elementsToReplaceRemplacement(Class, shapes):
     else:
         Class.F0_affichage = Class.F0
 
+    Class.F0M = str(Class.F0_affichage).capitalize()
+
+    replace_text({'<F0M>':  Class.F0M}, shapes)
     replace_text({'<F0>':  Class.F0_affichage}, shapes)
+
     replace_text({'<DDCI>':  Class.DDCI_affichage}, shapes)
     replace_text({'<DDCI_MAJ>':  Class.DDCI_MAJ}, shapes)
     replace_text({'<DDCI_M_B_STRIKE>':  Class.DDCI_M_B_Strike}, shapes)
@@ -305,6 +309,7 @@ def elementsToReplaceRemplacement(Class, shapes):
 
     cpn = str(cpn) + "%"
     cpn = cpn.replace(".", ",")
+    cpn = cpn.rstrip()
     replace_text({'<CPN>':  cpn}, shapes)
     pdi = Class.PDI + "%"
     replace_text({'<PDI>':  pdi}, shapes)
@@ -320,7 +325,7 @@ def elementsToReplaceRemplacement(Class, shapes):
     if (Class.F0 == "jours"):
         Class.BCPN = Class.BCPN + "% environ"
     else:
-        Class.BCPN = Class.BCPN + "%"
+        Class.BCPN = Class.BCPN
 
 
     replace_text({'<BCPN>':  Class.BCPN}, shapes)
@@ -330,6 +335,14 @@ def elementsToReplaceRemplacement(Class, shapes):
     replace_text({'<COM>':  com}, shapes)
     nsd = Class.NSD + "%"
     replace_text({'<NSD>':  nsd}, shapes)
+
+
+    replace_text({'<first>':  Class.first}, shapes)
+    replace_text({'<P2>':  Class.p2}, shapes)
+    replace_text({'<last-2>':  Class.last_2}, shapes)
+    replace_text({'<last-1>':  Class.last_1}, shapes)
+    replace_text({'<last>':  Class.last}, shapes)
+
     nsm = Class.NSM + "%"
     replace_text({'<NSM>':  nsm}, shapes)
     nsf = str(Class.NSF) + "%"
@@ -355,7 +368,9 @@ def elementsToReplaceRemplacement(Class, shapes):
     replace_text({'<DEG>':  deg}, shapes)
 
 def elementsToReplaceCalcul(Class, shapes):
-    replace_text({'<balisedeg1>': Class.balisedeg}, shapes) 
+    replace_text({'<balisedeg1>': Class.balisedeg}, shapes)
+    replace_text({'<ADDPLUSIFAUTOCALL>': Class.ADDPLUSIFAUTOCALL}, shapes) 
+
     replace_text({'<balisedeg2>': Class.balisedeg2}, shapes)     
     replace_text({'<balisedeg3>': Class.balisedeg3}, shapes)
     replace_text({'<balisedeg4>': Class.balisedeg4}, shapes) 
@@ -421,7 +436,9 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<PDIPERF>': pdiperf}, shapes)
     replace_text({'<P>': Class.prefix}, shapes)
 
-    replace_text({'<1PR>': Class.PR1}, shapes)
+    pr1= str(Class.PR1)
+    pr1 = pr1[3:5] + "/"+ pr1[0:2] + "/" +  pr1[6:10]
+    replace_text({'<1PR>': Class.PR1},  shapes)
     replace_text({'<DPRR>': Class.DPRR}, shapes)
     replace_text({'<TDP>': Class.TDP}, shapes)
     replace_text({'<GC>': Class.GC}, shapes)
@@ -485,8 +502,9 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<type_bar2>': Class.type_bar2}, shapes) 
     replace_text({'<1PR-1>': Class.PR1_1}, shapes) 
     replace_text({'<ABAC2>': Class.ABAC2}, shapes) 
-    replace_text({'<ABAC2_MAJ>': Class.ABAC2_MAJ}, shapes) 
+    replace_text({'<ABAC2_MAJ>': Class.ABAC2_MAJ}, shapes)
     replace_text({'<gainoucoupon>': Class.GainOuCoupon}, shapes) 
+    replace_text({'<gain>': Class.GainOuCoupon}, shapes) 
     replace_text({'<PERIODE_DE_REMBOURSEMENT>': Class.PERIODE_DE_REMBOURSEMENT}, shapes) 
     replace_text({'<PERIODE_DE_REMBOURSEMENT2>': Class.PERIODE_DE_REMBOURSEMENT2}, shapes) 
 
@@ -503,7 +521,6 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<DIVERSACTION>': Class.DIVERSACTION}, shapes) 
 
     replace_text({'<DDPP>': Class.DDPP}, shapes) 
-    print("ahhhh", Class.legende_tickers)
     replace_text({'<legendeticker>':  Class.legende_tickers}, shapes)
     replace_text({'<ticker>':  Class.legende_tickers}, shapes)
     cpr1 = str(Class.CPR1) + "%"
@@ -519,11 +536,17 @@ def hardcode_replace(Class, shapes):
     replace_text({"l' année": "l'année"}, shapes)
     replace_text({" , ": ", "}, shapes)
     replace_text({"(1)": '\u00281\u0029'}, shapes)
+    replace_text({"%  ": '% '}, shapes)
+    replace_text({"%   ": '% '}, shapes)
+
+
+    replace_text({".\u00281\u0029.": '\u00281\u0029.'}, shapes)
+
     replace_text({"(2)": '\u00282\u0029'}, shapes)
     replace_text({"%%%": '%'}, shapes)
-    replace_text({" .": '.'}, shapes)
+    replace_text({"%%": '%'}, shapes)
 
-    Class.ABAC= Class.ABAC.replace("(1)", '\u00281\u0029')
+    replace_text({" .": '.'}, shapes)
 
 def TRA_replace(Class, shapes):
     tra_a_s1 = Class.TRA_A_S1.replace(".", ",")
@@ -957,7 +980,7 @@ def ChangeTextOnPpt(Class):
     #     rId = prs.slides._sldIdLst[1].rId
     #     prs.part.drop_rel(rId)
     #     del prs.slides._sldIdLst[1]
-    
+    hardcode_replace(Class, shapes)
     prs.save(NAME)
 
 
