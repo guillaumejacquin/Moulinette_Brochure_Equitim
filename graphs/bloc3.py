@@ -82,14 +82,10 @@ def bloc3(Class, name, whitestrap=True):
         secondvaluexabciss = Class.F0 + Class.F0s + " " +  str(second_value)  + " à " + str(int(Class.DPRR) - 1) 
         thirdvaluexabciss = Class.F0  +" " + str(Class.DPRR)
 
-
     # Periode + le nombre (exempla trimestre 1 a 3)
     firstvaluexabciss = firstvaluexabciss.capitalize()
     secondvaluexabciss = secondvaluexabciss.capitalize()
     thirdvaluexabciss = thirdvaluexabciss.capitalize()
-
-
-
 
     # len_autocall = (str(niveau_autocall[0])[::-1].find('.'))
     # if (len_autocall < 2):
@@ -110,8 +106,7 @@ def bloc3(Class, name, whitestrap=True):
                     tickmode = 'array',
                     tickvals = [0],
                     ticktext= ["","", "", ""],
-                    color="black"       
-
+                    color="black"
                     ),
     #LIGNE NOIRE
     fig.add_shape( # add a lignes premier block line
@@ -141,7 +136,6 @@ def bloc3(Class, name, whitestrap=True):
         x0=17, x1=37, y0=niveau_autocall[2], y1=niveau_autocall[3]
     )
 
-    
     if (Class.BCPN_is_degressif == "oui"):
         fig.add_annotation(x=48, y=niveau_autocall[4] + 3, text=str(niveau_autocall[4]) + "%", showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=green ),align="left",
@@ -332,7 +326,6 @@ def bloc3(Class, name, whitestrap=True):
 
     cpn = str(cpn).replace(".", ",")
 
- 
     gce = ("{:.2f}".format(float(Class.GCE)))
     gce = gce.replace(".", ",")
 
@@ -482,7 +475,6 @@ def bloc3(Class, name, whitestrap=True):
         font=dict(color=black,size=12)
     )
 
-
     fig.add_shape(type="line",
     x0=50.5, y0=116, x1=60, y1=116,
     line=dict(color=green,width=3),  line_dash="dot")
@@ -497,14 +489,12 @@ def bloc3(Class, name, whitestrap=True):
                     font=dict(family="Proxima Nova", size=13, color=black ), align="left"
                     )
 
-
     fig.add_shape(type="line",
     x0=50.5, y0=77, x1=60, y1=77,
     line=dict(color=blue,width=3),  line_dash="dot")
     fig.add_annotation(x=55, y=71.5,text= ("Seuil de détachement des coupons"), showarrow=False,
                     font=dict(family="Proxima Nova", size=13, color=black ), align="left"
                     )
-
 
     fig.add_shape(type="line",
     x0=51, y0=50, x1=60, y1=50,
@@ -536,11 +526,8 @@ def bloc3(Class, name, whitestrap=True):
                                 pad=0),
                             paper_bgcolor='white')
 
-
-
     fig.write_image(name, format="png", scale=2, engine='kaleido')
     # fig.show()
-
 
     return(fig)
 
