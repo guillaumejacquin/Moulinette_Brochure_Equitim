@@ -457,7 +457,6 @@ def bloc3(Class, name, whitestrap=True):
             text=mystring,
             showarrow=False,
             font=dict(color=black,size=10),
-            # align="left"
         )
         
     if (Class.CPN_is_memoire == "oui"):
@@ -482,8 +481,8 @@ def bloc3(Class, name, whitestrap=True):
     if (Class.F0 == "jours"):
         fig.add_annotation(x=55, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir de la fin du <br>" +" jours " + str(int(Class.PR1)) + " jusqu'à la fin du " + str(Class.F0) +"<br> " + str(int(Class.DPRR)-1) ), showarrow=False,
                     font=dict(family="Proxima Nova", size=13, color=black ), align="left"
-                    )    
-                    
+        )    
+
     else:
         fig.add_annotation(x=55, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir de la fin du <br>" + Class.F0 +" " + str(int(Class.PR1)) + " jusqu'à la fin du " + str(Class.F0) +"<br> " + str(int(Class.DPRR)-1) ), showarrow=False,
                     font=dict(family="Proxima Nova", size=13, color=black ), align="left"
@@ -512,8 +511,8 @@ def bloc3(Class, name, whitestrap=True):
     
     fig.update_layout(
                             legend=dict(
-                                itemclick="toggleothers",
-                                itemdoubleclick="toggle"),
+                            itemclick="toggleothers",
+                            itemdoubleclick="toggle"),
                             autosize=True,
                             width=1400,#1400
                             height=675,#800

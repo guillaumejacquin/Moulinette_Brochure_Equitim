@@ -18,11 +18,11 @@ def balisedeg(Class):
 
     #INCOMPHRENSION#
     if (Class.type_bar == "degressif" or Class.type_bar == "airbag") and Class.DBAC == Class.PDI:
-        Class.baliseCM2 = "Le capital n’est donc exposé à un risque de perte à l’échéance\u00281\u0029 que si <SJR1> clôture à un <SJR3> strictement inférieur à <PDI> de son <NDR> à la date de constatation finale(1)."
+        Class.baliseCM2 = "Le capital n’est donc exposé à un risque de perte à l’échéance\u00281\u0029 que si <SJR1> clôture à un <SJR3> strictement inférieur à <PDI> de son <NDR> à la date de constatation finale⁽¹⁾."
         # Class.deleteblocs.append("Cas médian :")
     else:
         pdi = Class.PDI.replace(".",",")
-        Class.baliseCM22 = ("Sinon, si le mécanisme automatique de remboursement anticipé n’a pas été activé au préalable et si, à la date de constatation finale(1), <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> de son <NDR> mais supérieur ou égal à  <PDI> % de ce dernier, l’investisseur récupère l’intégralité de son capital initialement investi. Le capital n’est donc exposé à un risque de perte à l’échéance(1) que si <SJR1> clôture à un <SJR3> strictement inférieur à <PDI> de son <NDR> à la date de constatation finale(1).")
+        Class.baliseCM22 = ("Sinon, si le mécanisme automatique de remboursement anticipé n’a pas été activé au préalable et si, à la date de constatation finale⁽¹⁾, <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> de son <NDR> mais supérieur ou égal à  <PDI> % de ce dernier, l’investisseur récupère l’intégralité de son capital initialement investi. Le capital n’est donc exposé à un risque de perte à l’échéance⁽¹⁾ que si <SJR1> clôture à un <SJR3> strictement inférieur à <PDI> de son <NDR> à la date de constatation finale⁽¹⁾.")
         Class.baliseCM22 = Class.baliseCM22.replace("(1)", '\u00281\u0029')
 
     #!INCOMPREHENSION!#

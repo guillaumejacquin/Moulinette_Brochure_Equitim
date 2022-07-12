@@ -380,7 +380,7 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<baliseCM22>': Class.baliseCM22}, shapes) 
 
     Class.baliseCM3 = Class.baliseCM3.replace("(1)", '\u00281\u0029')
-    Class.baliseCM4 = Class.baliseCM4.replace("(1)", '\u00281\u0029')
+    Class.baliseCM4 = Class.baliseCM4.replace("(1)", '⁽¹⁾')
 
     replace_text({'<baliseCM3>': Class.baliseCM3}, shapes) 
     replace_text({'<baliseCM4>': Class.baliseCM4}, shapes)
@@ -538,6 +538,7 @@ def hardcode_replace(Class, shapes):
     replace_text({"(1)": '\u00281\u0029'}, shapes)
     replace_text({"%  ": '% '}, shapes)
     replace_text({"%   ": '% '}, shapes)
+    replace_text({"% %": '% '}, shapes)
 
 
     replace_text({".\u00281\u0029.": '\u00281\u0029.'}, shapes)

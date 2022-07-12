@@ -323,7 +323,7 @@ def athena_annotations(Class, fig):
         dcf_tmp = str(Class.DCF)
         dcf_tmp = dcf_tmp[8:10] + "/"+ dcf_tmp[5:7]+ "/" + dcf_tmp[0:4]
 
-        dr1_tmp = str(Class.DR1)
+        dr1_tmp = str(Class.DPR)
         dr1_tmp = dr1_tmp[8:10] + "/"+ dr1_tmp[5:7]+ "/" + dr1_tmp[0:4]
         fig.update_xaxes(tickangle=0,
                         tickmode = 'array',

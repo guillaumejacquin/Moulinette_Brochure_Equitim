@@ -50,7 +50,7 @@ def PAGE(Class): #balise pour le bas de page
         Class.PAGE = "page 7"
 
 
-    if (Class.Typologie == "coupon_autocall"):
+    if (Class.Typologie == "coupon autocall"):
                 Class.PAGE = "page 7"
     else:
         Class.PAGE = "page 8"
