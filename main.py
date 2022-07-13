@@ -58,7 +58,7 @@ from calculs.DUREE import *
 from calculs.environ import *
 from calculs.exclus import *
 from calculs.ADDPLUSIFAUTOCALL import *
-
+from calculs.worst import *
 #traitement des données
 def start_processus_template(Class):
     PDC1(Class)
@@ -79,7 +79,6 @@ def start_processus_template(Class):
     abac(Class)
     f1_f2(Class)
     SJR(Class)
-
 
     tds(Class)
     DCF(Class)
@@ -127,6 +126,8 @@ def start_processus_template(Class):
     duree(Class)
     environ(Class)
     exclus(Class)
+    worst(Class)
+
     # ABAC2_MAJ(Class)
     ALL_TRA(Class)
 
@@ -165,14 +166,15 @@ def start_processus_template(Class):
     ChangeTextOnPpt(Class)
 
 def main(Class):
+    try:
         start = time.time()
         start_processus_template(Class)
         end = time.time()
         elapsed = end - start
         print("Votre pdf a été réalisé en", round(elapsed, 2), "secondes")
         return(0)
-    # except Exception:
-    #     return(1)
+    except Exception:
+        return(1)
 
 
 

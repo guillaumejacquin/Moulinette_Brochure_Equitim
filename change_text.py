@@ -254,7 +254,8 @@ def elementsToReplaceRemplacement(Class, shapes):
     replace_text({'<PDINSM>': Class.PDINSM}, shapes)
     replace_text({'<TEST>': Class.ETPDI}, shapes) 
 
-    replace_text({'<EBAC>': Class.EBAC}, shapes) 
+    ebac = Class.EBAC + "%"
+    replace_text({'<EBAC>': ebac}, shapes) 
 
     replace_text({'<NOM>':  Class.Nom}, shapes)
     replace_text({'<droit>':  Class.Droit}, shapes)
@@ -277,12 +278,16 @@ def elementsToReplaceRemplacement(Class, shapes):
     else:
         Class.F0_affichage = Class.F0
 
-    Class.F0M = str(Class.F0_affichage).capitalize()
+    Class.F0M = str(Class.F0).capitalize()
+    Class.F0SM = str(Class.F0s).capitalize()
 
     replace_text({'<F0M>':  Class.F0M}, shapes)
+    replace_text({'<F0SM>':  Class.F0SM}, shapes)
+
     replace_text({'<F0>':  Class.F0_affichage}, shapes)
 
     replace_text({'<DDCI>':  Class.DDCI_affichage}, shapes)
+
     replace_text({'<DDCI_MAJ>':  Class.DDCI_MAJ}, shapes)
     replace_text({'<DDCI_M_B_STRIKE>':  Class.DDCI_M_B_Strike}, shapes)
 
@@ -379,7 +384,7 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<baliseCM2>': Class.baliseCM2}, shapes)
     replace_text({'<baliseCM22>': Class.baliseCM22}, shapes) 
 
-    Class.baliseCM3 = Class.baliseCM3.replace("(1)", '\u00281\u0029')
+    Class.baliseCM3 = Class.baliseCM3.replace("(1)", '⁽¹⁾')
     Class.baliseCM4 = Class.baliseCM4.replace("(1)", '⁽¹⁾')
 
     replace_text({'<baliseCM3>': Class.baliseCM3}, shapes) 
@@ -472,9 +477,17 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<SJR5>': Class.SJR5}, shapes)
     replace_text({'<SJR6>': Class.SJR6}, shapes)
     replace_text({'<SJR8>': Class.SJR8}, shapes)
-
     replace_text({'<SJR7>': Class.SJR7}, shapes)
 
+    replace_text({'<SJR1M>': Class.SJR1M}, shapes)
+    replace_text({'<SJR2M>': Class.SJR2M}, shapes)
+    replace_text({'<SJR3M>': Class.SJR3M}, shapes)
+    replace_text({'<SJR4M>': Class.SJR4M}, shapes)
+    replace_text({'<SJR5M>': Class.SJR5M}, shapes)
+    replace_text({'<SJR6M>': Class.SJR6M}, shapes)
+    replace_text({'<SJR7M>': Class.SJR7M}, shapes)
+    replace_text({'<SJR8M>': Class.SJR8M}, shapes)
+    
     replace_text({'<F1>': Class.F1}, shapes)
     replace_text({'<F1_MAJ>':  Class.F1_MAJ}, shapes)
 
@@ -523,6 +536,8 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<DDPP>': Class.DDPP}, shapes) 
     replace_text({'<legendeticker>':  Class.legende_tickers}, shapes)
     replace_text({'<ticker>':  Class.legende_tickers}, shapes)
+    replace_text({'<worst>':  Class.worst}, shapes)
+
     cpr1 = str(Class.CPR1) + "%"
     cpr1 = cpr1.replace(".", ",")
     replace_text({'<CPR1>': cpr1}, shapes)
@@ -539,6 +554,7 @@ def hardcode_replace(Class, shapes):
     replace_text({"%  ": '% '}, shapes)
     replace_text({"%   ": '% '}, shapes)
     replace_text({"% %": '% '}, shapes)
+    replace_text({"  ": ' '}, shapes)
 
 
     replace_text({".\u00281\u0029.": '\u00281\u0029.'}, shapes)
@@ -792,7 +808,7 @@ def replace_text(replacements: dict, shapes: List):
 
 #load le ppt, remplace les balises et le sauvegarde
 def ChangeTextOnPpt(Class):
-    NAME = "result/"+ Class.Nom + "- " + Class.Isin + "result.pptx" 
+    NAME = "result/"+ Class.Nom + " - " + Class.Isin + ".pptx" 
     prs_string = "templates/"+ Class.template + ".pptx" 
     prs = Presentation(prs_string)
     shapes = getAllSlides(prs)
@@ -836,7 +852,9 @@ def ChangeTextOnPpt(Class):
     for slide in prs.slides:
         for shape in slide.shapes:
             if shape.has_table:
+                
                 table = shape.table
+            
                 numberoftickers = len(Class.Yahoo) -1 #pour savoir le nombre de rows a ajouter
                 if(compteur_tab == 1 and len(Class.Yahoo) > 1):  #On ajoute des rows pour le tableau de performance des tickers yahoo
                     for newcolumn in range((numberoftickers)):
@@ -844,13 +862,20 @@ def ChangeTextOnPpt(Class):
 
                 for row_idx, row in enumerate(table.rows): 
                     for col_idx, cell in enumerate(row.cells):
+                        cell = table.cell(row_idx, col_idx)
+                        # cell.text = 'TEST DE LA STREET'
+                        paragraph = cell.text_frame.paragraphs[0]
+                        paragraph.font.size = Pt(7)
 
                         if (compteur_tab == 1 and col_idx == 0 and row_idx > 0): #on ajoute les sousjacent a la premiere colonne de chaque ligne
                             try:
+
                                 cell = table.cell(row_idx, col_idx)
+                            
                                 # cell.text = str(Class.Yahoo_value_name[row_idx -1]) +" " + str(Class.Yahoo_value_dividende[row_idx -1])
                                 cell_tmp = Class.NOMSOUSJACENTP1.split('ET')
                                 cell.text = cell_tmp[row_idx - 1]
+                                paragraph.font.size = Pt(7)
 
                             except Exception:
                                 print("pas de tableau de perf")
@@ -986,8 +1011,8 @@ def ChangeTextOnPpt(Class):
 
 
     #le ppt de sauvegarde
-    NAME = "result/Base graphique "+ Class.Nom + "- " + Class.Isin + "result.pptx" 
-    prs_string = "templates/Base graphique.pptx" 
+    NAME = "result/Base Graphique "+ Class.Nom + " - " + Class.Isin + ".pptx" 
+    prs_string = "templates/Base Graphique.pptx" 
     prs = Presentation(prs_string)
     shapes = getAllSlides(prs)
     Class.shapes = shapes

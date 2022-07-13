@@ -1,0 +1,3 @@
+def worst(Class):
+    if (Class.TSJ == "wo action" or Class.TSJ == "wo indice"):
+        Class.worst = "⁽⁴⁾ L’action la moins performante sera définie comme l’action qui génère la moins bonne performance au titre du calcul suivant à la date d’observation : (cours de l'Action en date de constatation – Cours de Référence) / Cours de Référence. Dans l’éventualité où plusieurs actions génèreraient une performance identique, l'action la moins performante sera déterminée par l’Agent de Détermination."

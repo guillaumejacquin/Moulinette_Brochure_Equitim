@@ -11,9 +11,9 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<AppLayout />}>
-                    <Route index element={<MultiStepForm />} />
-                    <Route path='/mytemplates' element={<Last_form />} />
-                    <Route path='/newtemplate' element={<Last_form />} />
+                    <Route index element={<Last_form />} />
+                    <Route path='/mytemplates' element={<Blank />} />
+                    <Route path='/newtemplate' element={<Blank />} />
                     <Route path='/mysousjacents' element={<Blank />} />
                     <Route path='/newsousjacent' element={<Blank />} />
                 </Route>

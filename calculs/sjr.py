@@ -68,6 +68,14 @@ def SJR(Class):
         Class.SJR7 = "du panier équipondéré"
         Class.SJR8 = "Les indices"
 
+    Class.SJR1M = Class.SJR1.capitalize()
+    Class.SJR2M = Class.SJR2.capitalize()
+    Class.SJR3M = Class.SJR3.capitalize()
+    Class.SJR4M = Class.SJR4.capitalize()
+    Class.SJR5M = Class.SJR5.capitalize()
+    Class.SJR6M = Class.SJR6.capitalize()
+    Class.SJR7M = Class.SJR7.capitalize()
+    Class.SJR8M = Class.SJR8.capitalize()
 
 #equipondere action ou equipondéré indice
 

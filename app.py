@@ -92,9 +92,10 @@ def add_articles():
     Myclass.BAC_is_degressif = data["BAC_is_degressif"]
     
     Myclass.BCPN = data["BCPN"]
-    
     Myclass.BCPN = str(Myclass.BCPN).replace(",", ".")
 
+    if (Myclass.BCPN == ""):
+        Myclass.BCPN = Myclass.BAC
     Myclass.BCPN_is_degressif = data["BCPN_is_degressif"]
 
     Myclass.COM = data["COM"]

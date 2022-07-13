@@ -366,7 +366,7 @@ def bloc3(Class, name, whitestrap=True):
         font=dict(color=black,size=12)
     )
   
-    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>Le capital initial diminué de <br> l'intégralité de la baisse enregistrée <br> par l'indice entre <br> la date de constatation initiale <br> et la date de constatation finale"
+    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>Le capital initial diminué de <br> l'intégralité de la baisse enregistrée <br> par <srj6> entre <br> la date de constatation initiale <br> et la date de constatation finale"
     mystring = mystring.replace("(1)", "⁽¹⁾")
 
     if (niveau_capital < 0 ):

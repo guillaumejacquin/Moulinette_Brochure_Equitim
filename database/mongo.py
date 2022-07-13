@@ -85,37 +85,37 @@ def takeinformations(Class):
                 mot = ""
             else:
                 mot = " et "
-            
-            test = result[0]
- 
-            Class.NOMSOUSJACENT = Class.NOMSOUSJACENT + mot + (test["Equity"]) #on ajoute le sous jacent + ce qu on avait avant
-            Class.DIVIDENDE = Class.DIVIDENDE + mot + test["Dividende"]
-            Class.SPONSOR = Class.SPONSOR + mot + test["Sponsor"]
-            Class.Site = Class.Site + mot + test["SiteWeb"]
-            Class.TICKER = Class.TICKER + mot + test["Ticker"]
-            Class.BLOCDIVIDENDE = Class.BLOCDIVIDENDE + mot + test["Equity"] + " , la performance positive ou négative de ce placement dépendant de l'évolution "+ Class.SJR7+ " " + Class.NOMSOUSJACENT +" (" + test["Dividende"] + " ; code Bloomberg : " + test["Ticker"] +  " ;  <sponsor> : "+ test["Sponsor"] +  " ; " + test["SiteWeb"] + ")" 
-            
             try:
-                Class.inconvenient = str(Class.inconvenient) + mot + test["Inconvénient"]
-            except Exception:
-                Class.inconvenient = str(Class.inconvenient) + mot + "NULL"
-
-            Class.Yahoo.append(test["Yahoo"])
-            Class.Yahoo_value_name.append(test["Equity"])
-            Class.Yahoo_value_dividende.append(test["Dividende"])
-
-            # except Exception: #au cas ou si ca marche pas, pour éviter que ca crash
-            #     Class.NOMSOUSJACENT + mot + ("ERREUR LES POTES")
-            #     Class.DIVIDENDE = Class.DIVIDENDE + mot + "ERREUR"
-            #     Class.SPONSOR = Class.SPONSOR + mot + "ERREUR"
-            #     Class.Site = Class.Site + mot + "ERREUR"
-            #     Class.TICKER = Class.TICKER + mot + "ERREUR"
-                #Class.Yahoo.append(test["Yahoo"])
+                test = result[0]
+            
+                Class.NOMSOUSJACENT = Class.NOMSOUSJACENT + mot + (test["Equity"]) #on ajoute le sous jacent + ce qu on avait avant
+                Class.DIVIDENDE = Class.DIVIDENDE + mot + test["Dividende"]
+                Class.SPONSOR = Class.SPONSOR + mot + test["Sponsor"]
+                Class.Site = Class.Site + mot + test["SiteWeb"]
+                Class.TICKER = Class.TICKER + mot + test["Ticker"]
+                Class.BLOCDIVIDENDE = Class.BLOCDIVIDENDE + mot + test["Equity"] + " , la performance positive ou négative de ce placement dépendant de l'évolution "+ Class.SJR7+ " " + Class.NOMSOUSJACENT +" (" + test["Dividende"] + " ; code Bloomberg : " + test["Ticker"] +  " ;  <sponsor> : "+ test["Sponsor"] +  " ; " + test["SiteWeb"] + ")" 
                 
-                # Class.Yahoo_value_name.append(test["Equity"])
-                # Class.Yahoo_value_dividende.append("dividende inconnu")
+                try:
+                    Class.inconvenient = str(Class.inconvenient) + mot + test["Inconvénient"]
+                except Exception:
+                    Class.inconvenient = str(Class.inconvenient) + mot + "NULL"
 
-                # Class.BLOCDIVIDENDE = "ERRORRRRRRRRRR ERRORRRRRRRRRRRRRR ERRORRRRRR"
+                Class.Yahoo.append(test["Yahoo"])
+                Class.Yahoo_value_name.append(test["Equity"])
+                Class.Yahoo_value_dividende.append(test["Dividende"])
+
+            except Exception: #au cas ou si ca marche pas, pour éviter que ca crash
+                    Class.NOMSOUSJACENT + mot + ("ERREUR LES POTES")
+                    Class.DIVIDENDE = Class.DIVIDENDE + mot + "ERREUR"
+                    Class.SPONSOR = Class.SPONSOR + mot + "ERREUR"
+                    Class.Site = Class.Site + mot + "ERREUR"
+                    Class.TICKER = Class.TICKER + mot + "ERREUR"
+                    Class.Yahoo.append(test["Yahoo"])
+                    
+                    Class.Yahoo_value_name.append(test["Equity"])
+                    Class.Yahoo_value_dividende.append("dividende inconnu")
+
+                    Class.BLOCDIVIDENDE = "Le produit n'est pas identifié dans la Database"
 
             compteur+=1
 

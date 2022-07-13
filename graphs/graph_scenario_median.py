@@ -220,13 +220,12 @@ def texte(Class, fig):
     if pasdedegressivite == 0:
         degressive = ""
     else:
-        degressive = "dégressivité"
+        degressive = "dégressif"
     
     if (Class.Typologie == "coupon autocall"):
         text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(int(Class.PR1)) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR) + " et de versement des gains à l'échéance"
         x_a = 44.5
     
-
     else:
         text = "Seuil d'activation du mécanisme "  + degressive +" de remboursement anticipé automatique <br> à partir de la fin du " + str(Class.F0)+ " " + str(int(Class.PR1)) +  " jusqu'à la fin du "+ str(Class.F0)+ " " + str(Class.ADPR)
         x_a = 44.5

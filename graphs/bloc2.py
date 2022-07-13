@@ -1,7 +1,6 @@
 from cgitb import text
 from optparse import Values
 import plotly.graph_objects as go
-import kaleido
 
 
 #on arrive au bloc des deux graphs , j'ignorais encore qu'on pouvait des fonctions (j'avais eu un bug), bonne chance pour la lecture
@@ -44,10 +43,6 @@ def bloc2(Class, name, whitestrap=False):
     niveau_capital = float(Class.PDI) #Ligne rouge
     niveau_median = niveau_coupon[0] - niveau_capital
 
-   
-    #:
-    # !Variables des courbes
-
 #Size des blocs (positions + taille)
     labels = [5, 27]
     widths = [20,10]
@@ -65,15 +60,7 @@ def bloc2(Class, name, whitestrap=False):
         "x2":  '#D9CD9F',
         "x3":  '#F7F4E9',
     }
-    # len_autocall = (str(niveau_autocall[0])[::-1].find('.'))
-    # if (len_autocall < 2):
-    #         niveau_autocall[0] = (f'{float(niveau_autocall[0]):.2f}')
 
-    # len_autocall = (str(niveau_capital)[::-1].find('.'))
-    # if (len_autocall < 2):
-    #         nniveau_capital = (f'{float(nniveau_capital[0]):.2f}')
-
-    #la boucle du dictionnaire data (avec color) pour tracer les blocs
     for key in data:
         fig.add_trace(
             go.Bar(
@@ -105,7 +92,6 @@ def bloc2(Class, name, whitestrap=False):
     showarrow=True, arrowhead=3, arrowwidth=2, arrowcolor='black',align="left")
     #LES ARROWS, 
 
-
     fig.update_xaxes(tickangle=0,
                     tickmode = 'array',
                     tickvals = [14, 31.5],
@@ -119,9 +105,7 @@ def bloc2(Class, name, whitestrap=False):
                     tickvals = [0],
                     ticktext= ["","", "", ""],
                     ),
-
 #     #LIGNE VERTE
-
 
     fig.add_trace(go.Scatter(x=[5,25,25,5],
                             y=[130 ,130 ,niveau_autocall[1],niveau_autocall[0]],
@@ -175,7 +159,6 @@ def bloc2(Class, name, whitestrap=False):
         x0=27, x1=37, y0=niveau_capital, y1=niveau_capital
     )
 
-
     if ((niveau_capital) <= -2):
         fig.add_shape( # add la ligne horizontale deuxieme block line degressive
         type="line", line_color=red, line_width=2, opacity=1, line_dash="dash",
@@ -207,7 +190,6 @@ def bloc2(Class, name, whitestrap=False):
 
 #     #ici on remplace les valeurs x (ecrites abcisses(ne plus avoir 10 20 30 40 mais trimestre1 etc))
 #         # ajout des petites lignes nulles
-  
 
     fig.add_shape(type="line",
     x0=x0, y0=niveau_autocall[0], x1=x1, y1=niveau_autocall[0],
@@ -275,7 +257,6 @@ def bloc2(Class, name, whitestrap=False):
     x0=37.5, y0=115, x1=44.5, y1=115,
     line=dict(color=green,width=1),  line_dash="dot")   
     
-    
     if (Class.F0 == "jours"):
         fig.add_annotation(x=41.5, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir du  <br>  " + dr1_tmp  +  " (inclus) au "  +  adcf_tmp + " (inclus) <br> et de versement des gains à <br> l'échéance"), showarrow=False,
                     font=dict(family="Proxima Nova", size=12, color=black ), align="left"
@@ -284,7 +265,6 @@ def bloc2(Class, name, whitestrap=False):
         fig.add_annotation(x=41.5, y=101,text= ("Seuil d'activation du <br> mécanisme de <br> remboursement anticipé <br> automatique à partir de la fin du <br>" + Class.F0  + " " + str(int(Class.PR1)) + " jusqu'à la fin du " + Class.F0 + " "  + str(int(Class.DPRR) -1) + " <br> et de versement des gains à <br> l'échéance"), showarrow=False,
                     font=dict(family="Proxima Nova", size=12, color=black ), align="left"
                     )
-
 
     fig.add_shape(type="line",
     x0=37.73, y0=58, x1=45, y1=58,
@@ -302,7 +282,6 @@ def bloc2(Class, name, whitestrap=False):
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
         })
-
 
     if (whitestrap == False): #La bande blanche
         fig.add_trace(go.Scatter(x=[5,25,25,5], 
@@ -330,7 +309,6 @@ def bloc2(Class, name, whitestrap=False):
                                 showlegend=False,
                                 mode='lines',  
                                 hoverinfo ='none',))     
-
       
         fig.add_trace(go.Scatter(x=[27,37,37,27], 
                                 y=[130 ,130 + 1, niveau_autocall[2] +1, niveau_autocall[2] + 1],
@@ -369,7 +347,7 @@ def bloc2(Class, name, whitestrap=False):
     if (Class.type_strike == "best strike"):
         mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité <br> de la baisse enregistrée par <br> l'action la moins performante <br> entre la date de constatation initiale <br> et la date de constatation finale <br><br> <b>(perte en capital partielle voire totale)</b>"
     else:
-        mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité  <br> de la baisse enregistrée par <br> l"+ str(Class.SJR1) + " entre <br> la date de constatation initiale  <br> et la date de constatation finale."
+        mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité  <br> de la baisse enregistrée par <br> "+ str(Class.SJR1) + " entre <br> la date de constatation initiale  <br> et la date de constatation finale."
     
     fig.add_annotation(
         x=32,
@@ -378,12 +356,9 @@ def bloc2(Class, name, whitestrap=False):
         showarrow=False,
         font=dict(color=black, size=10)
     )                        
-
-
     cpn = Class.CPN.replace(".", ",")
 
-    
-    mystring = "<b>Remboursement anticipé automatique :</b> <br> <br> L'intégralité du capital initial<br>+<br>Un gain de " + cpn + "% par " + Class.F0 +  " " + Class.F2  + " écoulé <br> depuis la date de constatation initiale <br> (soit un gain de "+ str(gca) + "% par année écoulée)"
+    mystring = "<b>Remboursement anticipé automatique :</b> <br> <br> L'intégralité du capital initial<br>+<br>Un gain de " + cpn + "% par " + Class.F0 +  " " + Class.F2  + " <br> depuis la date de constatation initiale <br> (soit un gain de "+ str(gca) + "% par année écoulée)"
     mystring = mystring.replace(".", ",")
     fig.add_annotation(
         x=(15),
@@ -393,8 +368,7 @@ def bloc2(Class, name, whitestrap=False):
         font=dict(color=black, size=10)
     )      
 
-
-    mystring = "<b>Remboursement à l'échéance : </b><br><br>L'intégralité du capital initial<br>+<br>Un gain de " + str(cpn) + "% par " + Class.F0  + " " +Class.F2 + " écoulé <br> depuis la date de constatation initiale <br> (soit un gain total de "+ str(gce) + "%)"
+    mystring = "<b>Remboursement à l'échéance : </b><br><br>L'intégralité du capital initial<br>+<br>Un gain de " + str(cpn) + "% par " + Class.F0  + " " +Class.F2 + " <br> depuis la date de constatation initiale <br> (soit un gain total de "+ str(gce) + "%)"
     mystring = mystring.replace(".", ",")
     fig.add_annotation(
         x=(32),
@@ -403,8 +377,7 @@ def bloc2(Class, name, whitestrap=False):
         showarrow=False,
         font=dict(color=black, size=10)
     )   
-
-    
+  
     mystring = "<b>Remboursement à l'échéance : </b><br><br>L'intégralité du capital initial est versé"
     mystring_first = "<b>Remboursement à l'échéance : </b><br>*"
     mystring_second = "L'intégralité du capital initial"
@@ -426,7 +399,6 @@ def bloc2(Class, name, whitestrap=False):
         font=dict(color=black, size=10)
     )       
 
-   
     else:
         if (float(Class.DBAC) == float(Class.PDI)):
             mystring = "<b>Remboursement à l'échéance : </b><br><br> Le capital initial diminué de l'intégralité <br> de la baisse enregistrée par <br> l'action la moins performante <br> entre la date de constatation initiale <br> et la date de constatation finale <br><br> <b>(perte en capital partielle voire totale)</b>"
@@ -459,4 +431,3 @@ def bloc2(Class, name, whitestrap=False):
     fig.write_image(name, format="png", scale=2, engine='kaleido') #enregistrer l'image
     #fig.show()
     return(fig)
-

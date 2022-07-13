@@ -19,7 +19,7 @@ def GCA(Class):
     if frequence == "mois":
         i = 12
     if frequence == "jours":
-        i = 365
+        i = 36.5
     
     #le nombre de coupon à l'année
     GCA = float(Class.CPN) * i

@@ -1,31 +1,15 @@
 
 import "./last_form.css";
-import { useState } from 'react';
-import Container from "@material-ui/core/Container";
+import { useState, useEffect } from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { FaPiedPiperAlt } from 'react-icons/fa';
-import { FaInternetExplorer } from 'react-icons/fa';
-import { ButtonGroup } from '@material-ui/core';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+
 import FormControl from '@mui/material/FormControl';
 
-import { FaJs } from 'react-icons/fa';
-import { GiNotebook } from "react-icons/gi";
-import { VscGraphLine } from "react-icons/vsc";
-import { GiSpiralLollipop } from "react-icons/gi";
-import { useModal } from 'react-hooks-use-modal';
-import PreLoader2 from "../components/PreLoader2";
-import PreLoader1 from "../components/preloader";
-
-
-import DatePicker from '@mui/lab/DatePicker';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-import * as success from "../components/1127-success.json";
 
 
 const Last_form = () => {
@@ -73,11 +57,13 @@ const Last_form = () => {
     const [jdr, setjdr] = useState('')
 
     const [response, setResponse] = useState("")
+    const [buttonisclicked, setbuttonisclicked] = useState("")
+
     const [NJO, setNJO] = useState("")
 
 
     const menu_déroulant = (template, settemplate) => {
-      const names = ['BNP', "crédit suisse", "SG", "goldman sachs fci", "morgan", "goldman sachs International", "Natixis"]
+      const names = ['BNP Paribas', "Crédit Suisse", "Société Générale", "Goldman Sachs FCI", "Morgan Stanley", "Goldman Sachs International", "Natixis"]
       
       function importAll(r) {
         return r.keys().map(r);
@@ -91,7 +77,7 @@ const Last_form = () => {
 
 
     <FormControl>
-        <InputLabel id="template">template</InputLabel>
+        <InputLabel id="template">Template</InputLabel>
 
         <Select
               labelId="template"
@@ -129,6 +115,8 @@ const Last_form = () => {
                         style={{width:"30%"}}
                         label="ISIN <ISIN>"
                         name="Isin"
+                        inputProps={{ maxLength: 12 }}
+
                         onChange={(e)=>setISIN(e.target.value)}
                         margin="normal"
                         variant="outlined"
@@ -137,7 +125,7 @@ const Last_form = () => {
 
                         <FormControl>
 
-                        <InputLabel style={{marginTop:"7%"}}id="Droit">Droit</InputLabel>
+                        <InputLabel style={{marginTop:"7%", marginLeft:"5%"}}id="Droit">Droit</InputLabel>
                                 <Select
                                 style={{marginTop:"7%"}}
                                 sx={{ m: 1, minWidth: 200 }}
@@ -240,7 +228,7 @@ const Last_form = () => {
                     <div className="thirdbloctitle" style={{marginLeft:"1%"}}>
                         <div style={{width:"80%", marginLeft:"0%", marginTop:"14.55%"}}>
                         <FormControl>
-                            <InputLabel style={{marginTop:"0%", marginLeft:"8.4%"}}id="Type de strike">Type de strike</InputLabel>
+                            <InputLabel style={{marginTop:"0%"}}id="Type de strike">Type de strike</InputLabel>
                             <Select
                                 sx={{  minWidth: 200 }}
 
@@ -375,14 +363,18 @@ const Last_form = () => {
             ABDAC:ABDAC, DBAC:DBAC, DEG:DEG, type_strike:type_strike,
             type_bar:type_bar, sous_jacent:sous_jacent, template:template, DDP:DDP, type_bar2:type_bar2, NJO:NJO, jdr:jdr
           })
+
+          
       };
       // setLoading(true);
       let test = ""
       fetch('http://localhost:5000/add', requestOptions)
           .then(response => response.json())
-          .then(response => setResponse(response))  
           .then(response => test = (response))
-          .catch(error => console.log(error))
+          .then(console.log("response", response))
+          .then(response => setResponse(response))
+          .then(response => setbuttonisclicked("true"))
+
         }
     
     const second_bloc = () => {
@@ -496,7 +488,7 @@ const Last_form = () => {
                                         label="type_bar"
                                         onChange={(e)=>settype_bar(e.target.value)}
                                         >
-                                        <MenuItem value={"degressif"}>Dégressive</MenuItem>
+                                        <MenuItem value={"  "}>Dégressive</MenuItem>
                                         <MenuItem value={"airbag"}>Airbag</MenuItem>
                                         <MenuItem value={"normal"}>Normale</MenuItem>
                                     </Select> 
@@ -617,7 +609,7 @@ const Last_form = () => {
 
     return (
     <div> 
-        <h1> LA MOULINETTE BROCHURE DE WALLY </h1>
+        <h1> LA MOULINETTE BROCHURE </h1>
         <h3> INFORMATIONS GENERALES </h3>
         <div className="rect" style={{marginTop:"1.3%"}}>
             {first_bloc()}
@@ -644,6 +636,7 @@ const Last_form = () => {
           >
             Générer la brochure
           </Button>
+          {/* {Error()} */}
         </div>
     </div>
     );

@@ -161,6 +161,7 @@ class InformationsForm():
         self.BRA = "<BAC> du <NDR> <SJR7>"
         self.BVC = "<ABAC>"
         self.ANNUALISE = "soit (<GCA> par année écoulée)"
+        self.worst = ""
         self.WALLY = "WALLY LE BOSS D EQUITIM"
         self.DDCI_M_B_Strike = ""
         self.environ = ""

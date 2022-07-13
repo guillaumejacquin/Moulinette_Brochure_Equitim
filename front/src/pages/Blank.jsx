@@ -1,6 +1,6 @@
 const Blank = () => {
     return (
-    <div>This is OUAIS OUAIS page</div>
+    <div>Page non crée</div>
     );
 };
 
