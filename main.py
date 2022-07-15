@@ -67,7 +67,6 @@ def start_processus_template(Class):
     dec(Class)
     dic(Class)
     pdiperf(Class)
-    bra(Class)
     PR1(Class)
     DPRR(Class)
     adcf(Class)
@@ -79,6 +78,7 @@ def start_processus_template(Class):
     abac(Class)
     f1_f2(Class)
     SJR(Class)
+    bra(Class)
 
     tds(Class)
     DCF(Class)
