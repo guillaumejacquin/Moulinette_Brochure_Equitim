@@ -1,4 +1,3 @@
-from cgitb import small
 from P_D_E.myclass import *
 from calculs.dates.DR1 import DR1
 from calculs.style.SJR6P1 import SJR6P1
@@ -59,6 +58,7 @@ from calculs.environ import *
 from calculs.exclus import *
 from calculs.ADDPLUSIFAUTOCALL import *
 from calculs.worst import *
+
 #traitement des données
 def start_processus_template(Class):
     PDC1(Class)
@@ -149,7 +149,6 @@ def start_processus_template(Class):
         indice_main(Class, "graph5.png")
     else:
         Class.graph5 = bloc4(Class, "graph5.png")
-    #èèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèèè
 
     Class.smallgraph1 = smallgraph1(Class, "graph_scenario_def.png")
     Class.smallgraph2 = smallgraph2(Class, "graph_scenario_median.png")
@@ -163,6 +162,10 @@ def start_processus_template(Class):
     Class.DCI = Class.DCI.replace("-", "/") #on remplace le style(plus joli le 11/05/2020 plutot que 11-05-2020)
     
     ADDPLUSIFAUTOCALL(Class)
+
+
+
+    #Appel la suite du code, donc ne pas rajouter de nouvelle balise en dessous 
     ChangeTextOnPpt(Class)
 
 def main(Class):

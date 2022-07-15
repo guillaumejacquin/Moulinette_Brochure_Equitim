@@ -716,6 +716,7 @@ def Replace_Boucle_Dates(Class, shapes):
     
     replace_text({'<Datesconstatations1>': date_constatation}, shapes)
     replace_text({'<Datesconstatations2>': Class.Datesconstatations2}, shapes)
+
     replace_text({'<Datesconstatations3>': date_constatation3}, shapes)
     replace_text({'<Datesconstatations4>': Class.Datesconstatations4}, shapes)
 

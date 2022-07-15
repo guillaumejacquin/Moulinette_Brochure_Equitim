@@ -1,58 +1,51 @@
-from re import S
-
 
 class InformationsForm():
     def __init__(self):
         #LES VARIABLES QU ON VA REMPLIR INITIEES VIA LE FORMULAIRE
-        self.template = "testmercredi"
-        self.Nom = "Actions BSV Mensuel Avril 2022"
-        self.Typologie = "athéna"
-        self.Droit = "français"
-        self.Isin = "FR0014009DK8"
-        self.Emission = "2022-04-22"
-        self.DCI = "14-04-2022, 18-03-2022"
-        self.DR1 = "2023-04-14"
-        self.DPR = "2023-04-28"
-        self.DADR = "2027-06-28"
-        self.DCF = "2027-07-14"
-        self.DEC = "2027-07-28"
-        self.ADCF = "2027-06-14"
+        self.template = ""
+        self.Nom = ""
+        self.Typologie = ""
+        self.Droit = ""
+        self.Isin = ""
+        self.Emission = ""
+        self.DCI = ""
+        self.DR1 = ""
+        self.DPR = ""
+        self.DADR = ""
+        self.DCF = ""
+        self.DEC = ""
+        self.ADCF = ""
 
-        self.F0 = "mois"
+        self.F0 = ""
         self.TSJ = ["BNP FP Equity", "STLA FP Equity", "VIE FP Equity", "", ""]
 
-
-        self.PCS1 = "Euronext Paris"
-        self.PCS2 = "Euronext Paris"
-        self.PCS3 = "Euronext Paris"
+        self.PCS1 = ""
+        self.PCS2 = ""
+        self.PCS3 = ""
         self.PCS4 = ""
         self.PCS5 = ""
 
-
-        self.CPN = "1.00"
+        self.CPN = ""
         self.CPN_is_memoire = ""
-        self.PDI = "50"
-        self.BAC = "95"
-        self.BAC_is_degressif = "oui"
-        self.BCPN = "95"
+        self.PDI = ""
+        self.BAC = ""
+        self.BAC_is_degressif = ""
+        self.BCPN = ""
         self.BCPN_is_degressif = ""
 
-        self.COM = "1.0"
-        self.NSD = "30"
-        self.NSM = "70"
-        self.NSF = "115"
+        self.COM = ""
+        self.NSD = ""
+        self.NSM = ""
+        self.NSF = ""
 
-        self.ABDAC = "67.5"
-        self.DBAC = "66.95"
-        self.DEG = "0.55"
+        self.ABDAC = ""
+        self.DBAC = ""
+        self.DEG = ""
 
+        self.type_strike = ""
+        self.type_bar = ""
 
-        self.type_strike = "best strike"
-        self.type_bar = "degressif"
-
-        #self.sous_jacent_nom = ""
-        self.sous_jacent = "wo action"
-        #self.typeoffre = ""
+        self.sous_jacent = ""
     
         self.DDP = ""
         self.NJO = ""
@@ -286,6 +279,3 @@ class InformationsForm():
         self.dates_constat_phoenix = ""
         self.dates_paiement_phoenix = ""
         self.dates_last_remboursement_rappel = ""
-
-#Graph 2 blocs, si strike moyen ou best strike, afficher dans les blocs en haut la date max des constatations initiales
-#niveau de référence cours de référence bloc 2
