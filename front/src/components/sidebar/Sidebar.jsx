@@ -59,7 +59,7 @@ const Sidebar = () => {
 
     return <div className='sidebar'>
         <div className="sidebar__logo">
-            Equitim
+            Equitim - La Moulinette
         </div>
         <div ref={sidebarRef} className="sidebar__menu">
             <div

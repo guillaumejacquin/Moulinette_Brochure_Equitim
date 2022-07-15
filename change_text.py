@@ -374,7 +374,6 @@ def elementsToReplaceRemplacement(Class, shapes):
 
 def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<balisedeg1>': Class.balisedeg}, shapes)
-    replace_text({'<ADDPLUSIFAUTOCALL>': Class.ADDPLUSIFAUTOCALL}, shapes) 
 
     replace_text({'<balisedeg2>': Class.balisedeg2}, shapes)     
     replace_text({'<balisedeg3>': Class.balisedeg3}, shapes)
@@ -541,11 +540,12 @@ def elementsToReplaceCalcul(Class, shapes):
     cpr1 = str(Class.CPR1) + "%"
     cpr1 = cpr1.replace(".", ",")
     replace_text({'<CPR1>': cpr1}, shapes)
-    TRA_replace(Class, shapes)
+    replace_text({'<ADDPLUSIFAUTOCALL>': Class.ADDPLUSIFAUTOCALL}, shapes) 
+
 
     #CHANGER LE NOM DE LA BALISE ET DE LA CLASS dans myclass.py
     replace_text({'<balise>': Class.balise}, shapes)
-
+    TRA_replace(Class, shapes)
 
 def hardcode_replace(Class, shapes):
     replace_text({"l' année": "l'année"}, shapes)
@@ -901,7 +901,6 @@ def ChangeTextOnPpt(Class):
                 compteur_tab +=1
 
 
-
             if shape.has_text_frame:
                 if ("<graph1>" in shape.text):
                     cur_text = shape.text
@@ -963,51 +962,51 @@ def ChangeTextOnPpt(Class):
     excel(Class) 
     # prs.slides.remove(0)
    
-    # if(Class.Typologie == "coupon autocall"):  #SUPPRIMER LES PAGES EN FONCTION DE SI C EST ATHENA OU PHOENIX       athena: 3,5,6,8;10, 13
-    #     rId = prs.slides._sldIdLst[12].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[12]
+    if(Class.Typologie == "coupon autocall"):  #SUPPRIMER LES PAGES EN FONCTION DE SI C EST ATHENA OU PHOENIX athena: 3,5,6,8;10, 13
+        rId = prs.slides._sldIdLst[12].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[12]
 
-    #     rId = prs.slides._sldIdLst[9].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[9]
+        rId = prs.slides._sldIdLst[9].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[9]
 
-    #     rId = prs.slides._sldIdLst[7].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[7]
+        rId = prs.slides._sldIdLst[7].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[7]
     
-    #     rId = prs.slides._sldIdLst[5].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[5]
+        rId = prs.slides._sldIdLst[5].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[5]
 
-    #     rId = prs.slides._sldIdLst[4].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[4]
+        rId = prs.slides._sldIdLst[4].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[4]
         
-    #     rId = prs.slides._sldIdLst[2].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[2]
+        rId = prs.slides._sldIdLst[2].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[2]
     
-    # else:
-    #     rId = prs.slides._sldIdLst[11].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[11]
+    else:
+        rId = prs.slides._sldIdLst[11].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[11]
 
-    #     rId = prs.slides._sldIdLst[8].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[8]
+        rId = prs.slides._sldIdLst[8].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[8]
 
-    #     rId = prs.slides._sldIdLst[6].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[6]
+        rId = prs.slides._sldIdLst[6].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[6]
         
-    #     rId = prs.slides._sldIdLst[3].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[3]
+        rId = prs.slides._sldIdLst[3].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[3]
 
-    #     rId = prs.slides._sldIdLst[1].rId
-    #     prs.part.drop_rel(rId)
-    #     del prs.slides._sldIdLst[1]
+        rId = prs.slides._sldIdLst[1].rId
+        prs.part.drop_rel(rId)
+        del prs.slides._sldIdLst[1]
     hardcode_replace(Class, shapes)
     prs.save(NAME)
 
@@ -1032,7 +1031,3 @@ def ChangeTextOnPpt(Class):
 
     prs.save(NAME)
 
-
-
-
-#balise.py     if (strike == "best strike"): rajouter à la fin si cest de l'action, ou de l'indice ou des actions ou des indices   + NOM
