@@ -78,7 +78,10 @@ def bloc3(Class, name, whitestrap=True):
             if (int(Class.PR1) -1 == 0):
                 second_value = int(Class.PR1) + 1
 
-        firstvaluexabciss = Class.F0 + Class.F0s + " 1 à " +  str(int(Class.PR1) -1)
+        if (int(Class.PR1) == 1 or int(Class.PR1) == 2):
+            firstvaluexabciss = Class.F0 + Class.F0s + " 1"
+        else:
+            firstvaluexabciss = Class.F0 + Class.F0s + " 1 à " +  str(int(Class.PR1) -1)
         secondvaluexabciss = Class.F0 + Class.F0s + " " +  str(second_value)  + " à " + str(int(Class.DPRR) - 1) 
         thirdvaluexabciss = Class.F0  +" " + str(Class.DPRR)
 
@@ -366,7 +369,7 @@ def bloc3(Class, name, whitestrap=True):
         font=dict(color=black,size=12)
     )
   
-    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>Le capital initial diminué de <br> l'intégralité de la baisse enregistrée <br> par <srj6> entre <br> la date de constatation initiale <br> et la date de constatation finale"
+    mystring = "<b>Remboursement à l'échéance(1)</b> :<br><br>Le capital initial diminué de <br> l'intégralité de la baisse enregistrée <br> par <sjr6> entre <br> la date de constatation initiale <br> et la date de constatation finale"
     mystring = mystring.replace("(1)", "⁽¹⁾")
 
     if (niveau_capital < 0 ):
