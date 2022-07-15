@@ -21,7 +21,7 @@ import shutil
 def excel(Class):
 
     original = "database/Resultat.xlsx"
-    target = "result/"+ Class.Nom + "- " + Class.Isin + "result.xlsx"
+    target = "result/"+ Class.Nom + "- " + Class.Isin + ".xlsx"
     shutil.copyfile(original, target)
     #le dictionnaire qu'on va injecter dans l excel
     balises_ref = [
@@ -808,7 +808,8 @@ def replace_text(replacements: dict, shapes: List):
 
 #load le ppt, remplace les balises et le sauvegarde
 def ChangeTextOnPpt(Class):
-    NAME = "result/"+ Class.Nom + " - " + Class.Isin + ".pptx" 
+    #NAME = "result/"+ "BC - " + Class.Nom + " - " + Class.Isin + ".pptx" 
+    NAME = f'''result/BC - {Class.Nom} - {Class.Isin}.pptx'''
     prs_string = "templates/"+ Class.template + ".pptx" 
     prs = Presentation(prs_string)
     shapes = getAllSlides(prs)
