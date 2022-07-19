@@ -1,9 +1,6 @@
-from ast import Pass, Return
 from asyncio import exceptions
 from tkinter import EXCEPTION, font
 from unittest import registerResult
-from matplotlib import ticker
-from pandas_datareader import data
 import pandas as pd
 import plotly.express as px
 from pandas.tseries.offsets import Day, BDay
