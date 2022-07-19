@@ -1,7 +1,7 @@
 def balisedeg(Class):
     deg = float(Class.DEG)
     deg = ("{:.2f}".format(deg))
-    if (Class.type_bar == "degressif" or Class.type_bar == "airbag"):
+    if (Class.type_bar == "degressif" or Class.type_bar == "  " or Class.type_bar == "airbag"):
         Class.balisedeg = ", ou si à la date de constatation finale⁽¹⁾, <SJR1> clôture à un <SJR3> supérieur ou égal à <DBAC> de son <NDR>"
         Class.balisedeg2 = "La barrière de remboursement anticipé automatique est dégressive au fil du temps. Elle est fixée à <BAC> du <NDR>  en fin de <F0> <1PR>, puis décroît de " + str(str(deg).replace(".",",")) +"% chaque <F0>, pour atteindre <ABDAC>% du <NDR> à la fin du <F0> <ADPR>."
         Class.balisedeg3 = "<balisedeg2>"
@@ -11,13 +11,13 @@ def balisedeg(Class):
         Class.balisedeg2 = ""
         Class.balisedeg3 = "<BAC> DU <NDR> de <SJR1>"
 
-    if ((Class.type_bar == "degressif" or Class.type_bar == "airbag") and Class.DBAC == Class.PDI):
+    if ((Class.type_bar == "degressif" or Class.type_bar == "  " or Class.type_bar == "airbag") and Class.DBAC == Class.PDI):
         Class.baliseCM = ""
         Class.deleteblocs.append("Cas médian :")
         Class.deleteblocs.append("(Soit un Taux de Rendement Annuel net de")
 
     #INCOMPHRENSION#
-    if (Class.type_bar == "degressif" or Class.type_bar == "airbag") and Class.DBAC == Class.PDI:
+    if (Class.type_bar == "degressif" or Class.type_bar == "  " or Class.type_bar == "airbag") and Class.DBAC == Class.PDI:
         Class.baliseCM2 = "Le capital n’est donc exposé à un risque de perte à l’échéance\u00281\u0029 que si <SJR1> clôture à un <SJR3> strictement inférieur à <PDI> de son <NDR> à la date de constatation finale⁽¹⁾."
         # Class.deleteblocs.append("Cas médian :")
     else:
@@ -27,14 +27,14 @@ def balisedeg(Class):
 
     #!INCOMPREHENSION!#
 
-    if (Class.type_bar == "degressif" or Class.type_bar == "airbag") and float(Class.DBAC) == float(Class.PDI):
+    if (Class.type_bar == "degressif" or Class.type_bar == "  " or Class.type_bar == "airbag") and float(Class.DBAC) == float(Class.PDI):
         Class.baliseCM3 = "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement supérieur à <DBAC> de son <NDR>"
     else:
         Class.baliseCM3 = "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> mais supérieur ou égal à <PDI> de son <NDR>"
 
     Class.baliseCM3 = Class.baliseCM3.replace("(1)", '⁽¹⁾')
 
-    if (Class.type_bar == "degressif" or Class.type_bar == "airbag") and float(Class.DBAC) == float(Class.PDI):
+    if (Class.type_bar == "degressif" or Class.type_bar == "  "  or Class.type_bar == "airbag") and float(Class.DBAC) == float(Class.PDI):
         Class.baliseCM4 = "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement supérieur à <DBAC> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi majorée d’un <GC> de <CPN> par <F0> écoulé depuis le " + Class.DDCI_affichage + " (soit un gain total de <GCE>)."
 
     else: 

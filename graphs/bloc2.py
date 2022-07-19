@@ -132,11 +132,11 @@ def bloc2(Class, name, whitestrap=False):
 
     autocall2 = str(autocall2).replace(".", ",")
 
-    if (Class.type_bar == "degressif"):
+    if (Class.type_bar == "degressif" or Class.type_bar == "  "):
         fig.add_annotation(x=24, y=niveau_autocall[1] + 5,text=str(autocall1) + "%", showarrow=False,
                         font=dict( family="Proxima Nova", size=14, color=green ),align="left",
                         )
-    if (Class.type_bar == "degressif"):
+    if (Class.type_bar == "degressif" or Class.type_bar == "  "):
         fig.add_annotation(x=36, y=niveau_autocall[2] + 3, text=str(str(autocall2)) + "%", showarrow=False,
                     font=dict( family="Proxima Nova", size=14, color=green ),align="left",
                     )

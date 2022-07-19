@@ -112,7 +112,7 @@ def traces(Class, fig):
     # line=dict(color=green, width=3),  line_dash="dash")
 
     add_remontee_var = 0    
-    if Class.type_bar == "degressif":
+    if Class.type_bar == "degressif" or Class.type_bar == "  ":
         add_remontee_var = 1
     # fig.add_shape(type="line",
     # x0=69, y0=avant_dernier_niveau_de_reference + add_remontee_var, x1=73, y1=avant_dernier_niveau_de_reference + add_remontee_var,

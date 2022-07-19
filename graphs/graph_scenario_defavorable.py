@@ -116,7 +116,7 @@ def traces(Class, fig):
 
 
     add_remontee_var = 0    
-    if Class.type_bar == "degressif":
+    if Class.type_bar == "degressif" or Class.type_bar == "  ":
         add_remontee_var = 1
 
 
@@ -275,7 +275,7 @@ def athena_annotations(Class, fig):
 
     add_remontee_var = 0
     
-    if Class.type_bar == "degressif":
+    if Class.type_bar == "degressif" or Class.type_bar == "  ":
         add_remontee_var = 4
 
     fig.add_shape(type="line",

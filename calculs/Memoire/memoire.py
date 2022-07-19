@@ -36,7 +36,7 @@ def Memoire6(Class):
         Class.Memoire6 = ""
 
 def BFP(Class):
-    if (Class.type_bar == "degressif"):
+    if (Class.type_bar == "degressif" or Class.type_bar == "  "):
         Class.BFP = Class.DBAC
     else:
         Class.BFP = "<BCPN>"

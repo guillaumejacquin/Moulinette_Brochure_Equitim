@@ -51,7 +51,7 @@ def params(fig):
 def traces(Class, fig):
 
     add_remontee_var = 0    
-    if Class.type_bar == "degressif":
+    if Class.type_bar == "degressif" or Class.type_bar == "  ":
         add_remontee_var = 1
 
 def texte(Class, fig):

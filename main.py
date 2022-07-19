@@ -169,15 +169,12 @@ def start_processus_template(Class):
     ChangeTextOnPpt(Class)
 
 def main(Class):
-    try:
         start = time.time()
         start_processus_template(Class)
         end = time.time()
         elapsed = end - start
         print("Votre pdf a été réalisé en", round(elapsed, 2), "secondes")
         return(0)
-    except Exception:
-        return(1)
 
 
 

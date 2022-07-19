@@ -41,7 +41,9 @@ def balise(Class):
         mystring = "Le "+ Class.NDR + " correspond à la moyenne arithmétique "+ hebdo + " des " + sjr3 + " de clôture entre " + sjr7 + " " + Class.NOMSOUSJACENT + " du " + ddi2 + " au " + ddi + "."
 
     if (strike == "best strike"):
-        mystring = "Le "+ Class.NDR + " correspond au " + sjr3 + " de clôture entre " + sjr7 + " " + Class.NOMSOUSJACENT + " le plus bas observé aux dates suivantes : \n" + Class.DCI + "."
+        dci = Class.DCI
+        dci = dci.replace("-", "/")
+        mystring = "Le "+ Class.NDR + " correspond au " + sjr3 + " de clôture entre " + sjr7 + " " + Class.NOMSOUSJACENT + " le plus bas observé aux dates suivantes : \n" + dci + "."
 
     Class.balise = mystring
 
