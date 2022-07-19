@@ -38,7 +38,7 @@ def balisedeg(Class):
         Class.baliseCM4 = "À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement supérieur à <DBAC> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi majorée d’un <GC> de <CPN> par <F0> écoulé depuis le " + Class.DDCI_affichage + " (soit un gain total de <GCE>)."
 
     else: 
-        Class.baliseCM4 = """À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> de son <NDR> (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi.
+        Class.baliseCM4 = """À la date de constatation finale\u00281\u0029, <SJR1> clôture à un <SJR3> strictement inférieur à <DBAC> de son <NDR> mais supérieur ou égal à <PDI> de ce dernier (<NSM> dans cet exemple). L’investisseur récupère alors l’intégralité de son capital initialement investi.
         """
     Class.baliseCM4 = Class.baliseCM4.replace("(1)", '\u00281\u0029')
 
