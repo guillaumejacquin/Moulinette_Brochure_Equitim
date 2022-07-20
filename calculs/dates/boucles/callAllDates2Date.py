@@ -45,8 +45,9 @@ def callAllDates2Date(Class):
     # Class.Datesremb7 = get_all_dates_between_2_dates_with_special_begin_njo(Class, Class.DDCI, Class.DCF, Class.DDCI, True)
     # Class.Datesremb8 = get_all_dates_between_2_dates_with_special_begin_njo(Class, Class.DDCI, Class.DCF, Class.DDCI, True)
     
-    Class.Datespaiement1 = get_all_dates_between_2_dates_with_special_begin_njo(Class, Class.DDCI, Class.DEC, Class.DDCI,Class.DEC, True, False, "paiement1")
-    # Class.Datespaiement1 += dcf
+    Class.Datespaiement1 = get_all_dates_between_2_dates_with_special_begin_njo(Class, Class.DDCI, Class.DEC, Class.DDCI,Class.DEC, False, False, "paiement1")
+
+    # Class.Datespaiement1 += dcf    # Class.Datespaiement1 += dcf
     #Class.Datespaiement1 = str(Class.DCF) + Class.Datespaiement1
     #print("date de paiement coupon = ", Class.Datespaiement1)
 

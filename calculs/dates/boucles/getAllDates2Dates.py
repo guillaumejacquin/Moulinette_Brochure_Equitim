@@ -147,7 +147,6 @@ def get_all_dates_between_2_dates_with_special_begin_njo(Class, date_départ, da
 
         
         var_date_depart = var_date_depart + time_to_add
-    
     if (exclus == True):
         result_dates = result_dates[1:]
 

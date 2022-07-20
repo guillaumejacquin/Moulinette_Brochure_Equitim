@@ -150,7 +150,10 @@ def boucleTRA(Class, date1, date2, df, variable, variable2, exception=""):
 
     except Exception:
             result = 0
-            print("je chiale") #message d'erreur
+            first_date = datetime.strptime(date1, '%Y-%m-%d')
+            second_date = datetime.strptime(date2, '%Y-%m-%d')
+            print("je chiale ", first_date, second_date) #message d'erreur
+            print(df)
 
 
     return(result)
