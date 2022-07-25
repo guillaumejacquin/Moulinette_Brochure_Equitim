@@ -1,5 +1,4 @@
 def abac(Class):
-    print("iodzajoijzadjoiazdjoiazdojiazdijazodijoazdoji", Class.type_bar)
     if (Class.type_bar == "" or Class.type_bar == "degressif"):
         Class.ABAC = "la barrière dégressive de remboursement anticipé automatique⁽¹⁾"
     else:

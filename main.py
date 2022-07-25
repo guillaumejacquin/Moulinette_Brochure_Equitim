@@ -61,6 +61,7 @@ from calculs.worst import *
 
 #traitement des données
 def start_processus_template(Class):
+
     PDC1(Class)
     PDC2(Class)
     today_date(Class)

@@ -1,5 +1,5 @@
 def adcf(Class):
-    dcf = Class.DCF
+    dcf = Class.ADCF
     annee = dcf[0:4]
     mois = dcf[5:7]
     jours = dcf[8:10]

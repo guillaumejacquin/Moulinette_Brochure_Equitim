@@ -18,7 +18,6 @@ def tra_athena(Class):
     Class.TRA_F_A = (xirr_test(Class, Class.PDC2, Class.DR1, tra_a)) #Scénario Favorable Athena( -100, CPN*1PR+100)
     Class.TRA_F_SJ = (xirr_test(Class, Class.PDC2, Class.DR1, Class.NSF)) #Scénario Favorable SJ( -100 , NSF)
     tra_mra_min_a =  float(Class.CPN)*float(Class.ADPR)+100 #Mécanisme de remboursement échéance perte (-100, PDI)
-    Class.ADCF = Class.ADCF[0:10]
 
     Class.TRA_MIN_A = (xirr_test(Class, Class.PDC2, Class.DADR, tra_mra_min_a))#Mécanisme de remboursement anticipé MIN(-100, CPN*ADPR+100)
     Class.TRA_echeance_perte_A = (xirr_test(Class, Class.PDC2, Class.DEC, Class.PDI))#Mécanisme de remboursement échéance perte(-100, PDI)

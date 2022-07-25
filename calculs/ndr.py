@@ -1,6 +1,6 @@
 #tout me semble clair ici
 def ndr(Class):
-    if Class.TDP == "action" and Class.type_strike == "strike normal":
+    if Class.TDP == "action" and Class.type_strike == "strike normal" and Class.sous_jacent != "equipondéré action":
         Class.NDR = "Cours Initial" #la
 
     elif Class.TDP == "action" and (Class.type_strike == "best strike" or Class.type_strike == "strike moyen"):
@@ -12,6 +12,7 @@ def ndr(Class):
     elif Class.TDP == "indice" and (Class.type_strike == "best strike" or Class.type_strike == "strike moyen"):
         Class.NDR = "Niveau de Référence"
 
+    
     elif (Class.sous_jacent == "equipondéré indice" or Class.sous_jacent == "equipondéré action"):
         Class.NDR = "Niveau initial"
     else:
