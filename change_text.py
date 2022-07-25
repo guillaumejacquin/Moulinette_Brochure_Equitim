@@ -229,7 +229,10 @@ def excel(Class):
         ws_tra["A3"] = "1"  
         ws_tra["A4"] = "1"  
         ws_tra["A5"] = "1"  
-        ws_tra["A6"] = "1"  
+        ws_tra["A6"] = "1" 
+
+    ws_tra['A1'] = "TRA.D.A"
+    ws_tra['A2'] = Class.TRA_A_S1
 
     wb.save(target)
 
@@ -441,8 +444,9 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<P>': Class.prefix}, shapes)
 
     pr1= str(Class.PR1)
-    pr1 = pr1[3:5] + "/"+ pr1[0:2] + "/" +  pr1[6:10]
-    replace_text({'<1PR>': Class.PR1},  shapes)
+    # pr1 = pr1[3:5] + "/"+ pr1[0:2] + "/" +  pr1[6:10]
+    print("pr1", pr1)
+    replace_text({'<1PR>': str(Class.PR1)},  shapes)
     replace_text({'<DPRR>': Class.DPRR}, shapes)
     replace_text({'<TDP>': Class.TDP}, shapes)
     replace_text({'<GC>': Class.GC}, shapes)
@@ -467,8 +471,8 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<decrement>': Class.decrement}, shapes)
 
     replace_text({'<NDR>': Class.NDR }, shapes)
-
-    replace_text({'<ADPR>': Class.ADPR}, shapes)
+    print("adpr = ", Class.ADPR)
+    replace_text({'<ADPR>': str(Class.ADPR)}, shapes)
     replace_text({'<SJR1>': Class.SJR1}, shapes)
     replace_text({'<SJR2>': Class.SJR2}, shapes)
     replace_text({'<SJR3>': Class.SJR3}, shapes)

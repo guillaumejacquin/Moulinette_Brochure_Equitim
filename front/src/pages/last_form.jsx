@@ -488,7 +488,7 @@ const Last_form = () => {
                                         label="type_bar"
                                         onChange={(e)=>settype_bar(e.target.value)}
                                         >
-                                        <MenuItem value={"  "}>Dégressive</MenuItem>
+                                        <MenuItem value={"degressif"}>Dégressive</MenuItem>
                                         <MenuItem value={"airbag"}>Airbag</MenuItem>
                                         <MenuItem value={"normal"}>Normale</MenuItem>
                                     </Select> 

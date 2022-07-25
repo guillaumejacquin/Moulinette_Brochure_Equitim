@@ -20,7 +20,7 @@ def balise(Class):
 
 
     if (strike == "strike normal"):
-        sjr3_tmp = sjr3[:-1]
+        sjr3_tmp = sjr3
         mystring = "Le "+ Class.NDR + " correspond au " + sjr3_tmp + " de clôture entre " + sjr7 + " " + Class.NOMSOUSJACENT +  " le " + ddi + "."
 
     if (strike == "strike moyen"):
