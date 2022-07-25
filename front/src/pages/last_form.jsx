@@ -1,4 +1,3 @@
-
 import "./last_form.css";
 import { useState, useEffect } from 'react';
 import TextField from "@material-ui/core/TextField";
@@ -9,6 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
@@ -374,14 +374,23 @@ const Last_form = () => {
           .then(console.log("response", response))
           .then(response => setResponse(response))
           .then(response => setbuttonisclicked("true"))
-
         }
-    
+    const loading_spinner = () => {
+        if(buttonisclicked === "true"){ 
+            return(
+                <div className="loading_spinner">
+                    <CircularProgress />    
+                </div>
+            )
+        }
+    }
+
     const second_bloc = () => {
         return(
             <div className="text_rec">
                 <div className="column1">
-                    
+                    {loading_spinner()}
+
                 <FormControl>
 
                     <InputLabel style={{marginTop:"7%"}}id="Typologie">Typologie</InputLabel>

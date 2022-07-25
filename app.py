@@ -163,7 +163,7 @@ def add_articles():
 
 
     print("------------------------------")
-
+    
     resultmain = main(Myclass)  
     if resultmain == 0:
         return jsonify("True")
