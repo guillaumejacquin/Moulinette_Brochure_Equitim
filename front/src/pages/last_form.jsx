@@ -375,21 +375,12 @@ const Last_form = () => {
           .then(response => setResponse(response))
           .then(response => setbuttonisclicked("true"))
         }
-    const loading_spinner = () => {
-        if(buttonisclicked === "true"){ 
-            return(
-                <div className="loading_spinner">
-                    <CircularProgress />    
-                </div>
-            )
-        }
-    }
+
 
     const second_bloc = () => {
         return(
             <div className="text_rec">
                 <div className="column1">
-                    {loading_spinner()}
 
                 <FormControl>
 
