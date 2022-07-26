@@ -2,12 +2,16 @@ def balisedeg(Class):
     deg = float(Class.DEG)
     deg = ("{:.2f}".format(deg))
     if (Class.type_bar == "degressif" or Class.type_bar == "  "):
-        Class.balisedeg = ", ou si à la date de constatation finale⁽¹⁾, <SJR1> clôture à un <SJR3> supérieur ou égal à <DBAC>% de son <NDR>"
-        Class.balisedeg2 = "La barrière de remboursement anticipé automatique est dégressive au fil du temps. Elle est fixée à <BAC> du <NDR>  en fin de <F0> <1PR>, puis décroît de " + str(str(deg).replace(".",",")) +"% chaque <F0>, pour atteindre <ABDAC> du <NDR> à la fin du <F0> <ADPR>."
+        Class.balisedeg1 = ", ou si à la date de constatation finale⁽¹⁾, <SJR1> clôture à un <SJR3> supérieur ou égal à <DBAC>% de son <NDR>"
+        Class.balisedeg2 = "La barrière de remboursement anticipé automatique est dégressive au fil du temps. Elle est fixée à <BAC> du <NDR>  en fin <DU> <F0> <1PR>, puis décroît de " + str(str(deg).replace(".",",")) +"% chaque <F0>, pour atteindre <ABDAC> du <NDR> à la fin du <F0> <ADPR>."
+        
+        if (Class.Typologie == "année"):
+            Class.balisedeg2 = "La barrière de remboursement anticipé automatique est dégressive au fil du temps. Elle est fixée à <BAC> du <NDR>  en fin de l' <F0> <1PR>, puis décroît de " + str(str(deg).replace(".",",")) +"% chaque <F0>, pour atteindre <ABDAC> du <NDR> à la fin du <F0> <ADPR>."
+
         Class.balisedeg3 = "<balisedeg2>"
 
     else:
-        Class.balisedeg = ""
+        Class.balisedeg1 = ""
         Class.balisedeg2 = ""
         Class.balisedeg3 = "<BAC> DU <NDR> de <SJR1>"
 
@@ -60,3 +64,4 @@ def balisedeg(Class):
     Class.baliseCM4 = Class.baliseCM4.replace("(1)", '⁽¹⁾')
     Class.baliseCM5 = Class.baliseCM5.replace("(1)", '⁽¹⁾')
     Class.baliseCM6 = Class.baliseCM6.replace("(1)", '⁽¹⁾')
+

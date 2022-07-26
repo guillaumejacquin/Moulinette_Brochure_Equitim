@@ -18,6 +18,7 @@ def tra_athena(Class):
     Class.TRA_F_A = (xirr_test(Class, Class.PDC2, Class.DR1, tra_a)) #Scénario Favorable Athena( -100, CPN*1PR+100)
     Class.TRA_F_SJ = (xirr_test(Class, Class.PDC2, Class.DR1, Class.NSF)) #Scénario Favorable SJ( -100 , NSF)
     tra_mra_min_a =  float(Class.CPN)*float(Class.ADPR)+100 #Mécanisme de remboursement échéance perte (-100, PDI)
+    Class.ADCF = Class.ADCF[0:10]
 
     Class.TRA_MIN_A = (xirr_test(Class, Class.PDC2, Class.DADR, tra_mra_min_a))#Mécanisme de remboursement anticipé MIN(-100, CPN*ADPR+100)
     Class.TRA_echeance_perte_A = (xirr_test(Class, Class.PDC2, Class.DEC, Class.PDI))#Mécanisme de remboursement échéance perte(-100, PDI)
@@ -151,9 +152,7 @@ def boucleTRA(Class, date1, date2, df, variable, variable2, exception=""):
             result = 0
             first_date = datetime.strptime(date1, '%Y-%m-%d')
             second_date = datetime.strptime(date2, '%Y-%m-%d')
-            print("je chiale ", first_date, second_date) #message d'erreur
-            print(df)
-
+            print("un tra a fail, veuillez vérifier les dates rentrées ", first_date, second_date) #message d'erreur
 
     return(result)
 
@@ -184,8 +183,6 @@ def ALL_TRA(Class):
         compteur = relativedelta(years=+1)    
 
     #on appelle le dataframe pour les tra_max
-    tmp = Class.Datespaiement1[0:12]
-    Class.Datespaiement1 = tmp + Class.Datespaiement1
     dataframe_dates = Class.Datespaiement1.split(", ")
     
     df = pd.DataFrame({'col':dataframe_dates})

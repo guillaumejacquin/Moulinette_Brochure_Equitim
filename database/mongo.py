@@ -4,7 +4,6 @@ from pymongo import MongoClient
 from openpyxl import load_workbook
 import certifi
 
-from calculs.style.NOMSOUSJACENTP1 import NOMSOUSJACENTP1
 
 ca = certifi.where()
 # from calculs.sponsor import sponsor
@@ -82,9 +81,16 @@ def takeinformations(Class):
     compteur = 0
     for result in myresults:
             if compteur == 0:
-                mot = ""
-            else:
+                mot = " "
+                perf = " "
+                
+            if compteur == 1:
                 mot = " et "
+                perf = ", la performance positive ou négative de ce placement dépendant de l'évolution "
+            
+            if compteur > 2:
+                mot = " et "
+                perf = ""
             try:
                 test = result[0]
             
@@ -93,7 +99,6 @@ def takeinformations(Class):
                 Class.SPONSOR = Class.SPONSOR + mot + test["Sponsor"]
                 Class.Site = Class.Site + mot + test["SiteWeb"]
                 Class.TICKER = Class.TICKER + mot + test["Ticker"]
-                Class.BLOCDIVIDENDE = Class.BLOCDIVIDENDE + mot + test["Equity"] + " , la performance positive ou négative de ce placement dépendant de l'évolution "+ Class.SJR7+ " " + Class.NOMSOUSJACENT +" (" + test["Dividende"] + " ; code Bloomberg : " + test["Ticker"] +  " ;  <sponsor> : "+ test["Sponsor"] +  " ; " + test["SiteWeb"] + ")" 
                 
                 try:
                     Class.inconvenient = str(Class.inconvenient) + mot + test["Inconvénient"]
@@ -117,6 +122,31 @@ def takeinformations(Class):
 
                     Class.BLOCDIVIDENDE = "Le produit n'est pas identifié dans la Database"
 
+
             compteur+=1
+        
+    ticker = Class.Yahoo
+    try:
+        if (len(ticker == 1)):
+            Class.BLOCDIVIDENDE = (f"{myresults[0][0]['Equity']} et {myresults[1][0]['Equity']}, la performance positive ou négative de ce placement dépendant de l'évolution de {Class.SJR7} {myresults[0][0]['Equity']} ({myresults[0][0]['Dividende']}; code Bloomberg : {myresults[0][0]['Ticker']}; place de cotation : {myresults[0][0]['Sponsor']}; {myresults[0][0]['SiteWeb']})")
+
+        elif (len(ticker) == 2):
+            Class.BLOCDIVIDENDE = (f"{myresults[0][0]['Equity']} et {myresults[1][0]['Equity']}, la performance positive ou négative de ce placement dépendant de l'évolution de {Class.SJR7} entre {myresults[0][0]['Equity']} ({myresults[0][0]['Dividende']}; code Bloomberg : {myresults[0][0]['Ticker']}; place de cotation : {myresults[0][0]['Sponsor']}; {myresults[0][0]['SiteWeb']}) et {myresults[1][0]['Equity']} ({myresults[1][0]['Dividende']}; code Bloomberg : {myresults[1][0]['Ticker']}; place de cotation : {myresults[1][0]['Sponsor']}; {myresults[1][0]['SiteWeb']})")
+
+        elif (len(ticker) == 3):
+            Class.BLOCDIVIDENDE = (f"{myresults[0][0]['Equity']} et {myresults[1][0]['Equity']}, la performance positive ou négative de ce placement dépendant de l'évolution de {Class.SJR7} entre {myresults[0][0]['Equity']} ({myresults[0][0]['Dividende']}; code Bloomberg : {myresults[0][0]['Ticker']}; place de cotation : {myresults[0][0]['Sponsor']}; {myresults[0][0]['SiteWeb']}) et {myresults[1][0]['Equity']} ({myresults[1][0]['Dividende']}; code Bloomberg : {myresults[1][0]['Ticker']}; place de cotation : {myresults[1][0]['Sponsor']}; {myresults[1][0]['SiteWeb']}) et {myresults[2][0]['Equity']} ({myresults[2][0]['Dividende']}; code Bloomberg : {myresults[2][0]['Ticker']}; place de cotation : {myresults[2][0]['Sponsor']}; {myresults[2][0]['SiteWeb']})")
+        
+        elif (len(ticker) == 4):
+            Class.BLOCDIVIDENDE = (f"{myresults[0][0]['Equity']} et {myresults[1][0]['Equity']}, la performance positive ou négative de ce placement dépendant de l'évolution de {Class.SJR7} entre {myresults[0][0]['Equity']} ({myresults[0][0]['Dividende']}; code Bloomberg : {myresults[0][0]['Ticker']}; place de cotation : {myresults[0][0]['Sponsor']}; {myresults[0][0]['SiteWeb']}) et {myresults[1][0]['Equity']} ({myresults[1][0]['Dividende']}; code Bloomberg : {myresults[1][0]['Ticker']}; place de cotation : {myresults[1][0]['Sponsor']}; {myresults[1][0]['SiteWeb']}) et {myresults[2][0]['Equity']} ({myresults[2][0]['Dividende']}; code Bloomberg : {myresults[1][0]['Ticker']}; place de cotation : {myresults[2][0]['Sponsor']}; {myresults[2][0]['SiteWeb']}) et {myresults[3][0]['Equity']} ({myresults[3][0]['Dividende']}; code Bloomberg : {myresults[3][0]['Ticker']}; place de cotation : {myresults[3][0]['Sponsor']}; {myresults[3][0]['SiteWeb']})")
+
+        elif (len(ticker) == 5):
+            Class.BLOCDIVIDENDE = (f"{myresults[0][0]['Equity']} et {myresults[1][0]['Equity']}, la performance positive ou négative de ce placement dépendant de l'évolution de {Class.SJR7} entre {myresults[0][0]['Equity']} ({myresults[0][0]['Dividende']}; code Bloomberg : {myresults[0][0]['Ticker']}; place de cotation : {myresults[0][0]['Sponsor']}; {myresults[0][0]['SiteWeb']}) et {myresults[1][0]['Equity']} ({myresults[1][0]['Dividende']}; code Bloomberg : {myresults[1][0]['Ticker']}; place de cotation : {myresults[1][0]['Sponsor']}; {myresults[1][0]['SiteWeb']}) et {myresults[2][0]['Equity']} ({myresults[2][0]['Dividende']}; code Bloomberg : {myresults[1][0]['Ticker']}; place de cotation : {myresults[2][0]['Sponsor']}; {myresults[2][0]['SiteWeb']}) et {myresults[3][0]['Equity']} ({myresults[3][0]['Dividende']}; code Bloomberg : {myresults[3][0]['Ticker']}; place de cotation : {myresults[3][0]['Sponsor']}; {myresults[3][0]['SiteWeb']})  et {myresults[4][0]['Equity']} ({myresults[4][0]['Dividende']}; code Bloomberg : {myresults[4][0]['Ticker']}; place de cotation : {myresults[4][0]['Sponsor']}; {myresults[4][0]['SiteWeb']})")
+
+        else:
+            Class.BLOCDIVIDENDE  = "errror"
+
+    except Exception:
+        Class.BLOCDIVIDENDE = "error"
+        print("error")
 
 # add_value()

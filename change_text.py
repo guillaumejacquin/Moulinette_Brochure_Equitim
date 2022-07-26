@@ -201,7 +201,6 @@ def excel(Class):
     ws_date = wb['DATE']
 
     for i in range(len(balises_ref)):
-        print(balises_ref[i]["Nom"])
         a = "a"+ str(i+1)
         b = "b"+ str(i+1)
         c = "c"+ str(i+1)
@@ -376,7 +375,7 @@ def elementsToReplaceRemplacement(Class, shapes):
     replace_text({'<DEG>':  deg}, shapes)
 
 def elementsToReplaceCalcul(Class, shapes):
-    replace_text({'<balisedeg1>': Class.balisedeg}, shapes)
+    replace_text({'<balisedeg1>': Class.balisedeg1}, shapes)
 
     replace_text({'<balisedeg2>': Class.balisedeg2}, shapes)     
     replace_text({'<balisedeg3>': Class.balisedeg3}, shapes)
@@ -444,8 +443,6 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<P>': Class.prefix}, shapes)
 
     pr1= str(Class.PR1)
-    # pr1 = pr1[3:5] + "/"+ pr1[0:2] + "/" +  pr1[6:10]
-    print("pr1", pr1)
     replace_text({'<1PR>': str(Class.PR1)},  shapes)
     replace_text({'<DPRR>': Class.DPRR}, shapes)
     replace_text({'<TDP>': Class.TDP}, shapes)
@@ -471,7 +468,6 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<decrement>': Class.decrement}, shapes)
 
     replace_text({'<NDR>': Class.NDR }, shapes)
-    print("adpr = ", Class.ADPR)
     replace_text({'<ADPR>': str(Class.ADPR)}, shapes)
     replace_text({'<SJR1>': Class.SJR1}, shapes)
     replace_text({'<SJR2>': Class.SJR2}, shapes)
@@ -789,19 +785,6 @@ def replace_text(replacements: dict, shapes: List):
                             new_text = cur_text.replace(str(match), str(replacement))
                             run.text = new_text
 
-                            # if("www" in run.text):
-                            #     array_text_split = run.text.split(' ')
-                            #     # print(run[0])
-                            #     print(run.text[0])
-
-                            #     for word in array_text_split:
-                            #         print(word)
-                            #         print("ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
-                            #         if ("www" in word):
-                            #             print(word)
-                            #             print("yeah")
-                            #             hlink = run.text.hyperlink
-                            #             hlink.address = 'https://' + str(new_text)
 
             if shape.has_table:
                 for row in shape.table.rows:

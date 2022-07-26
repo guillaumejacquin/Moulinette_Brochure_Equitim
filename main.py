@@ -61,6 +61,7 @@ from calculs.worst import *
 
 #traitement des données
 def start_processus_template(Class):
+    ndr(Class)
 
     PDC1(Class)
     PDC2(Class)
@@ -156,7 +157,6 @@ def start_processus_template(Class):
     Class.smallgraph3 = smallgraph3(Class, "graph_scenario_fav.png")
     Class.header = header(Class, "graph_legende.png")
     SV(Class)
-    balisedeg(Class)
     BaliseCMTRA(Class)
 
 
@@ -164,6 +164,7 @@ def start_processus_template(Class):
     
     ADDPLUSIFAUTOCALL(Class)
 
+    balisedeg(Class)
 
 
     #Appel la suite du code, donc ne pas rajouter de nouvelle balise en dessous 
