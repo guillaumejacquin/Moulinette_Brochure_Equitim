@@ -122,10 +122,8 @@ def add_articles():
 
     Myclass.type_strike = data["type_strike"]
     Myclass.type_bar = data["type_bar"]
-    print("ahhhhh", type(Myclass.type_bar))
 
     if (Myclass.type_bar == ""):
-        print("yesssssssssss")
         Myclass.type_bar == "degressif"
     
     if (Myclass.type_bar == "degressif"):

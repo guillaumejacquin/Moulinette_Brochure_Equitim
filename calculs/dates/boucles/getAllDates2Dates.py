@@ -69,6 +69,9 @@ def get_all_dates_between_2_dates_with_special_begin(Class, date_départ, date_d
     if (exclus == True):
         result_dates = result_dates[1:-1] #si l option exclus est ajoutée: On retire le premier élément
 
+    if result_dates[0] == result_dates[1]:
+        result_dates = result_dates[1:]
+        
     real_result = ', '.join(result_dates)
     return(real_result)
 
@@ -148,6 +151,9 @@ def get_all_dates_between_2_dates_with_special_begin_njo(Class, date_départ, da
         
         var_date_depart = var_date_depart + time_to_add
     if (exclus == True):
+        result_dates = result_dates[1:]
+
+    if result_dates[0] == result_dates[1]:
         result_dates = result_dates[1:]
 
     real_result = ', '.join(result_dates)
