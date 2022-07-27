@@ -57,7 +57,6 @@ def SJR(Class):
         Class.SJR7 = "de l'indice le moins performant"
         Class.SJR8 = "Les indices"
 
-
     if sousjacent == "equipondéré indice":
         Class.SJR1 = "le panier équipondéré"
         Class.SJR2 = "celui-ci"

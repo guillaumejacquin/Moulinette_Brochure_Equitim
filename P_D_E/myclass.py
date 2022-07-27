@@ -152,7 +152,7 @@ class InformationsForm():
         self.PAGE = ""
         self.DUREE = "de <1PR> à <DPRR> <F0><F0s>"
         self.BRA = "<BAC> du <NDR> <SJR7>"
-        self.BVC = "<ABAC>"
+        self.BVC = '<BCPN>% de son <NDR>'
         self.ANNUALISE = "soit (<GCA> par année écoulée)"
         self.worst = ""
         self.WALLY = "WALLY LE BOSS D EQUITIM"
@@ -198,7 +198,9 @@ class InformationsForm():
         self.BaliseCMTRA = "" #oui
         #PHOENIX
         self.TRA_MP = "" #oui
- 
+        self.PERIODE_DE_REMBOURSEMENTM = ""
+        self.SFPASANNEE = ""
+        self.entre = " entre "
         self.TRA_D_P = "" #oui
         self.TRA_M_P = "" #oui
         self.TRA_M_PM = "" #oui

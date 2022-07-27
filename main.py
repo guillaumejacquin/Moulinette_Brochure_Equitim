@@ -58,7 +58,8 @@ from calculs.environ import *
 from calculs.exclus import *
 from calculs.ADDPLUSIFAUTOCALL import *
 from calculs.worst import *
-
+from calculs.SFPASANNEE import *
+from calculs.entre import *
 #traitement des données
 def start_processus_template(Class):
     ndr(Class)
@@ -129,7 +130,8 @@ def start_processus_template(Class):
     environ(Class)
     exclus(Class)
     worst(Class)
-
+    sfpasannee(Class)
+    entre(Class)
     # ABAC2_MAJ(Class)
     ALL_TRA(Class)
 

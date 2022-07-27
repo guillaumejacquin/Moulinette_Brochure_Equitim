@@ -9,6 +9,10 @@ def balisedeg(Class):
             Class.balisedeg2 = "La barrière de remboursement anticipé automatique est dégressive au fil du temps. Elle est fixée à <BAC> du <NDR>  en fin de l' <F0> <1PR>, puis décroît de " + str(str(deg).replace(".",",")) +"% chaque <F0>, pour atteindre <ABDAC> du <NDR> à la fin du <F0> <ADPR>."
 
         Class.balisedeg3 = "<balisedeg2>"
+        
+    elif (Class.type_bar == "airbag" or Class.type_bar == "  "):
+            Class.balisedeg1 = ", ou si à la date de constatation finale⁽¹⁾, <SJR1> clôture à un <SJR3> supérieur ou égal à <DBAC>% de son <NDR>"
+
 
     else:
         Class.balisedeg1 = ""

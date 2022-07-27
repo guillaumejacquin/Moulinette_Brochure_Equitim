@@ -524,6 +524,7 @@ def is_athena_or_phoenix_annotations(Class, fig):
         str2 = "100% + " + str(int(prappel)) + " x " + str(cpn) + "%" 
         
         str2 = str2.replace(".", ",")
+        Class.r1 = str2
 
     else:
         perfmax = 100 + 1 * cpn
@@ -543,7 +544,8 @@ def is_athena_or_phoenix_annotations(Class, fig):
 
         string = str(perfmax)  + "% ="
         str2 ="100% + 1 x " + str(cpn) + "%"
-    
+        Class.r1 = str2
+
     fig.add_annotation(x=30, y=110 ,text= (string ), showarrow=False,
                         font=dict(family="Proxima Nova", size=16, color=blue), align="left")
 

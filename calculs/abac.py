@@ -10,4 +10,4 @@ def abac2(Class):
         Class.ABAC2 = "la barrière dégressive de versement du coupon"
 
     else:
-        Class.ABAC2 = "la barrière dégressive de remboursement automatique⁽¹⁾"
+        Class.ABAC2 = str(Class.BCPN) + "% de son <NDR>"

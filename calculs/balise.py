@@ -14,15 +14,20 @@ def balise(Class):
     
     #de l' ou du
     if (Class.TDP == "action"):
-        du = "de l'"
+        Class.DU = "de l'"
     else:
-        du = "du"
+        Class.DU = "du"
+
+    if (Class.sous_jacent == "equipondéré action" or Class.sous_jacent == "equipondéré indice"):
+        Class.DU = "du"
 
 
+    fin = ""
     if (strike == "strike normal"):
         sjr3_tmp = sjr3
-        mystring = "Le "+ Class.NDR + " correspond au " + sjr3_tmp + " de clôture entre " + sjr7 + " " + Class.NOMSOUSJACENT +  " le " + ddi + "."
-
+        mystring = "Le "+ Class.NDR + " correspond au " + sjr3_tmp + " de clôture entre " + sjr1 + " " + Class.NOMSOUSJACENT +  " le " + ddi + "."
+        fin =  " le " + ddi + "."
+    
     if (strike == "strike moyen"):
         DCI_split = list(str(Class.DCI).split(", "))
         dci0 = DCI_split[0]
@@ -37,13 +42,17 @@ def balise(Class):
         if (tmp == date_time_obj1):
             hebdo = " hebdomadaire "
 
-        string = "Le" +  Class.NDR + "correspond à la moyenne arithmétique "+ hebdo +" des " + Class.SJR5 + " de clôture aux dates suivantes : " + Class.DCI + "."
-        mystring = "Le "+ Class.NDR + " correspond à la moyenne arithmétique "+ hebdo + " des " + sjr3 + " de clôture entre " + sjr7 + " " + Class.NOMSOUSJACENT + " du " + ddi2 + " au " + ddi + "."
+        mystring = "Le "+ Class.NDR + " correspond à la moyenne arithmétique "+ hebdo + " des " + sjr3 + " de clôture entre " + str(Class.SJR8).lower() + " " + Class.NOMSOUSJACENT + " du " + ddi2 + " au " + ddi + "."
+        fin = " du " + ddi2 + " au " + ddi + "."
 
     if (strike == "best strike"):
         dci = Class.DCI
         dci = dci.replace("-", "/")
-        mystring = "Le "+ Class.NDR + " correspond au " + sjr3 + " de clôture entre " + sjr7 + " " + Class.NOMSOUSJACENT + " le plus bas observé aux dates suivantes : \n" + dci + "."
+        mystring = "Le "+ Class.NDR + " correspond au " + sjr3 + " de clôture entre " + sjr1 + " " + Class.NOMSOUSJACENT + " le plus bas observé aux dates suivantes : \n" + dci + "."
+        fin =  " le plus bas observé aux dates suivantes : \n" + dci + "."
+
+    if (Class.sous_jacent == "equipondéré action"):
+        mystring = "Le "+ Class.NDR + " correspond au cours de clôture des actions "  + Class.NOMSOUSJACENT + " " + fin
 
     Class.balise = mystring
 

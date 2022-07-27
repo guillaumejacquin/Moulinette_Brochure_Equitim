@@ -402,6 +402,7 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<BLOCDIVIDENDE>': Class.BLOCDIVIDENDE}, shapes)
     bloc2 = str(Class.BLOCDIVIDENDE).capitalize()
     replace_text({'<BLOCDIVIDENDE2>': bloc2}, shapes)
+    replace_text({'<BLOCDIVIDENDE3>': str(Class.BLOCDIVIDENDE3)}, shapes)
 
     deg = float(Class.DEG)
     deg = ("{:.2f}".format(deg))
@@ -410,7 +411,10 @@ def elementsToReplaceCalcul(Class, shapes):
         Class.legende_tickers =  Class.legende_tickers + "\n" + ticker
 
     replace_text({'<WALLY>': str(Class.WALLY)}, shapes)
+    replace_text({'<SFPASANNEE>': str(Class.SFPASANNEE)}, shapes)
+
     replace_text({'<DUREE>': str(Class.DUREE)}, shapes)
+    replace_text({'<ENTRE>': str(Class.entre)}, shapes)
 
     replace_text({'<BRA>': str(Class.BRA)}, shapes)
     replace_text({'<BVC>': str(Class.BVC)}, shapes)
@@ -457,6 +461,7 @@ def elementsToReplaceCalcul(Class, shapes):
 
     if (str(Class.inconvenient == "NULL")):
         Class.inconvenient = ""
+        
     replace_text({'<inconv>': Class.inconvenient}, shapes)
     replace_text({'<inconvénient>': Class.inconvenient}, shapes)
     replace_text({'<R1>': Class.R1}, shapes)
@@ -519,6 +524,7 @@ def elementsToReplaceCalcul(Class, shapes):
     replace_text({'<gain>': Class.GainOuCoupon}, shapes) 
     replace_text({'<PERIODE_DE_REMBOURSEMENT>': Class.PERIODE_DE_REMBOURSEMENT}, shapes) 
     replace_text({'<PERIODE_DE_REMBOURSEMENT2>': Class.PERIODE_DE_REMBOURSEMENT2}, shapes) 
+    replace_text({'<PERIODE_DE_REMBOURSEMENT_MAJ>': Class.PERIODE_DE_REMBOURSEMENTM}, shapes) 
 
     replace_text({'<DDP>': Class.DDP}, shapes) 
     replace_text({'<Mémoire>': Class.Memoire}, shapes) 

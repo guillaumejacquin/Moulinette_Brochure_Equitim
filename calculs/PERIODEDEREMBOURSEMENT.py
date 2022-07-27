@@ -8,3 +8,5 @@ def periodederemboursement(Class):
     if (Class.F0 == "jours"):
         Class.PERIODE_DE_REMBOURSEMENT = "chaque jour de bourse, du " + dr1_tmp + " (inclus) jusqu'à la date de constatation finale (exclue)"
         Class.PERIODE_DE_REMBOURSEMENT2 = "chaque jour de bourse, du " + dr1_tmp + " (inclus) jusqu'à la date de constatation finale (exclue)"
+
+    Class.PERIODE_DE_REMBOURSEMENTM = Class.PERIODE_DE_REMBOURSEMENT.capitalize()

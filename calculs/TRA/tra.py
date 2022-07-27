@@ -1,4 +1,5 @@
 from datetime import date
+from email.policy import default
 from operator import index
 from tkinter import E
 from pandas import array
@@ -109,11 +110,16 @@ def boucleTRA(Class, date1, date2, df, variable, variable2, exception=""):
     #on met le dataframe au format de dates
     #premiere date 
     pd.options.mode.chained_assignment = None 
+
     try:  
         df_tmp["flux"] = float(variable)
+        df_tmp.loc[-1] = ['45', 'Dean',]  # adding a row
+        df_tmp.index = df_tmp.index + 1  # shifting index
+        df_tmp.sort_index(inplace=True)
         df_tmp["flux"].loc[0] = -100
         df_tmp["flux"].loc[-1] = float(variable2)
         df_tmp["dates"].loc[0] = first_date
+
         
 
         df_tmp["dates"] = pd.to_datetime(df_tmp['dates'], format='%Y-%m-%d')
@@ -122,6 +128,7 @@ def boucleTRA(Class, date1, date2, df, variable, variable2, exception=""):
         df2 = df_tmp[ df_tmp['dates'] <= second_date]
         df2["flux"].iloc[-1] += 100
         #on cree un deuxième dataframe mon pote
+       
 
         if (exception == "med_p"):
             df2["flux"].iloc[-1] = float(Class.PDI)
@@ -139,7 +146,9 @@ def boucleTRA(Class, date1, date2, df, variable, variable2, exception=""):
         #toujours l'appel a la fonction xirr
 
     except Exception:
-        print("non")
+        print("Erreur dataframe tra")
+        print(df_tmp)
+
 
     try:
              
@@ -205,6 +214,7 @@ def ALL_TRA(Class):
     Class.TRA_MRA_MIN_P = (xirr_test(Class, Class.PDC2, Class.DADR, 100 + float(Class.CPN)))
 
     Class.TRA_F_P = (boucleTRA(Class, Class.PDC2, Class.DR1, df, Class.CPN, float(Class.CPN)+100)) #Scénario favorable phoenix
+
     df = pd.DataFrame({'col':dataframe_dates})
     df.columns=["dates"]
     # df.drop(df.tail(1).index,inplace=True)
@@ -213,6 +223,7 @@ def ALL_TRA(Class):
     # Class.MDR_TRA_TOUT_SAUF_P = (boucleTRA(Class, Class.PDC2, df2, Class.CPN, 100)) #TRA remboursement échéance médian max( -100,CPN,…,100)
     
     Class.TRA_TOUT_P = (boucleTRA(Class, Class.PDC2,Class.DEC, df, Class.CPN, Class.PDI)) #Scénario favorable phoenix( -100,CPN,…,PDI)
+
     df = pd.DataFrame({'col':dataframe_dates})
     df.columns=["dates"]
     Class.TRA_MED_P = (boucleTRA(Class, Class.PDC2,Class.DEC, df, Class.CPN, Class.PDI, "med_p")) #Scénario favorable phoenix( -100,CPN,…,PDI)
