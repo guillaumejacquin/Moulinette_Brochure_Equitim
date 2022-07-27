@@ -461,13 +461,10 @@ def elementsToReplaceCalcul(Class, shapes):
 
     if (str(Class.inconvenient == "NULL")):
         Class.inconvenient = ""
-        
+ 
     replace_text({'<inconv>': Class.inconvenient}, shapes)
     replace_text({'<inconvénient>': Class.inconvenient}, shapes)
     replace_text({'<R1>': Class.R1}, shapes)
-
-
-
     replace_text({'<GCE>': gce}, shapes)
     replace_text({'<ABAC>': Class.ABAC}, shapes)
     replace_text({'<decrement>': Class.decrement}, shapes)
