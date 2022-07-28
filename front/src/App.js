@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
 import Blank from './pages/Blank';
 import Last_form from './pages/last_form';
+import React from 'react';
 
 import {MultiStepForm} from './pages/Form'
 function App() {

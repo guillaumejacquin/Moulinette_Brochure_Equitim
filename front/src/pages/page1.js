@@ -6,16 +6,19 @@ import { FaPiedPiperAlt } from 'react-icons/fa';
 import { FaInternetExplorer } from 'react-icons/fa';
 import { ButtonGroup } from '@material-ui/core';
 import { FaJs } from 'react-icons/fa';
-import Page1 from "../pages/page1";
+import Page2 from "./page2";
+import React from 'react';
 
-const Page2 = ({ formData, setForm, navigation }) => { 
+const Page1 = ({ formData, setForm, navigation }) => { 
+  const { go } = navigation;
+
   const { firstName, lastName, nickName } = formData;
 
   const premiertab = () => {
     return(
       <div style={{width: "20%", border: '1px solid grey', borderRadius:"4%", height:"5%", marginLeft:"10%"}}>
         <Container maxWidth="xs" style={{marginTop: "10%", marginBottom:"10%"}}>
-          <h3 style={{textAlign:"center"}}> <FaPiedPiperAlt/> Premier Bloc de la page2</h3>
+          <h3 style={{textAlign:"center"}}> <FaPiedPiperAlt/> Premier Bloc</h3>
           <TextField label="Nom" name="Nom" 
           style={{marginTop:"8%"}}
             onChange={(e)=>setNom(e.target.value)}
@@ -102,7 +105,6 @@ const Page2 = ({ formData, setForm, navigation }) => {
 
   const [Nom, setNom] = useState('')
   const [Droit_applicable, setDroit] = useState('')
-  const { go } = navigation;
   const props = { formData, navigation};
 
 
@@ -110,8 +112,8 @@ return (
   <div style={{height: "100%"}}>
     <div>
     <ButtonGroup variant="outlined" aria-label="outlined button group" size="large" style={{marginLeft:"20%"}}>
-      <Button onClick={() => navigation.go("Page1")} style={{maxWidth: '100px', maxHeight: '100px', minWidth: '200PX', minHeight: '100px'}} > UN               </Button>
-      <Button  style={{maxWidth: '100px', maxHeight: '100px', minWidth: '200PX', minHeight: '100px'}} > DEUX</Button>
+      <Button  style={{maxWidth: '100px', maxHeight: '100px', minWidth: '200PX', minHeight: '100px'}} > UN               </Button>
+      <Button onClick={() => navigation.go("Page2")} style={{maxWidth: '100px', maxHeight: '100px', minWidth: '200PX', minHeight: '100px'}} > DEUX</Button>
       <Button style={{maxWidth: '100px', maxHeight: '100px', minWidth: '200PX', minHeight: '100px'}}> TROIS </Button>
     </ButtonGroup>
 
@@ -163,6 +165,6 @@ return (
   
 }
 
-export default Page2;
+export default Page1;
 
 

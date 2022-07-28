@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './sidebar.scss';
+import React from 'react';
 
 const sidebarNavItems = [
     {

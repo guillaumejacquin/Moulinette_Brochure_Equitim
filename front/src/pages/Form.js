@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm, useStep } from "react-hooks-helper";
-import Page1 from "../pages/page1";
-import Page2 from "../pages/page2";
+import Page1 from "./page1";
+import Page2 from "./page2";
 import Page_beta from "./page_beta";
 
 
