@@ -711,7 +711,6 @@ def Replace_Boucle_Dates(Class, shapes):
         date_constatation = Class.Datesconstatations1
         date_constatation3 = Class.Datesconstatations3
     if (Class.F0 == "mois"):
-        print("asssssssssss",Class.DDCI[-2:])
         jours = Class.DDCI[-2:]
         datesremb1 = "Le " + str(Class.NJO) + "e jour ouvré suivant la date de constatation mensuelle."
         datesremb3 = datesremb1
