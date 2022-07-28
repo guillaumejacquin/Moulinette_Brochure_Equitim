@@ -18,6 +18,7 @@ def dic(Class):
   
     mystring = jours + "/" + mois + "/" + annee
     Class.DDCI = max_value
+    
     Class.DPCI = min_value
     Class.DDCI_affichage = mystring
 

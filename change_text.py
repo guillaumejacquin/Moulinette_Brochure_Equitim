@@ -701,8 +701,9 @@ def Replace_Boucle_Dates(Class, shapes):
         Class.Datespaiement1 = "Chaque jour de bourse entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
 
     elif (Class.F0 == "mois"):
-        jours = str(Class.PDC1)[8:10]
-        date_constatation = "chaque " + jours + " du mois, à partir de la fin du  mois, à partir de la date du " + Class.PDC1 + "(inclus),  et jusqu'au " + Class.DCF + " (inclus), ou le jour ouvré suivant si le " + jours + " du mois n'est pas un jour ouvré"
+        date_premier =  Class.Datesconstatations1[11:22]
+        jours = Class.DDCI[-2:]
+        date_constatation = "chaque " + jours + " du mois, à partir de la date du " + str(date_premier) + " (inclus),  et jusqu'au " + Class.DCF_affichage + " (inclus), ou le jour ouvré suivant si le " + jours + " du mois n'est pas un jour ouvré"
         date_constatation3 = date_constatation
         Class.Datespaiement1 = date_constatation
 
@@ -710,8 +711,9 @@ def Replace_Boucle_Dates(Class, shapes):
         date_constatation = Class.Datesconstatations1
         date_constatation3 = Class.Datesconstatations3
     if (Class.F0 == "mois"):
-        jours = str(Class.PDC1)[8:10]
-        datesremb1 = "le " + Class.NJO + " de Bourse suivant la date de constatation mensuelle"
+        print("asssssssssss",Class.DDCI[-2:])
+        jours = Class.DDCI[-2:]
+        datesremb1 = "Le " + str(Class.NJO) + "e jour ouvré suivant la date de constatation mensuelle."
         datesremb3 = datesremb1
     else:
         datesremb1 = Class.Datesremb1
