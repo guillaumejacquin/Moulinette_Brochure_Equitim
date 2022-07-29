@@ -17,7 +17,6 @@ def callAllDates2Date(Class):
     # print("aiaiaiaiaiai", Class.DPR)
     # print("ici enculé", Class.Datesconstatations1)
     # print("---------------------------------------------------")
-    Class.Datesconstatations1 = Class.Datesconstatations1
 
     #Class.Datesconstatations2 = get_all_dates_between_2_dates_with_special_begin(Class, Class.DDCI, Class.DCF, Class.DR1, True)
 
@@ -67,6 +66,7 @@ def callAllDates2Date(Class):
     #Constatations coupons :
     Class.dates_constat_phoenix = get_all_dates_between_2_dates_with_special_begin(Class, Class.DDCI, Class.DEC, Class.DDCI, Class.DCF, False, False)
     Class.dates_constat_phoenix = Class.dates_constat_phoenix[12:]
+
     #Paiements coupons :
     Class.date_remb1 =  Class.dates_constat_phoenix[0:10]
     Class.date_remb1 =  Class.date_remb1.replace("/", "-")
@@ -82,4 +82,3 @@ def callAllDates2Date(Class):
     #Paiements :
     Class.dates_paiement_autocall = Class.date_remb1
 
-    Class.dates_constat_phoenix = get_all_dates_between_2_dates_with_special_begin(Class, Class.DDCI, Class.DEC, Class.DDCI, Class.DCF, False, False)

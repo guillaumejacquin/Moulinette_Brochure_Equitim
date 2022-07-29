@@ -689,8 +689,8 @@ def Dates_maj(Class, shapes):
     Replace_Boucle_Dates(Class, shapes)
 
 def Replace_Boucle_Dates(Class, shapes):
-
-    if Class.F0 == "jours":
+    #Si frequence = jours on change la liste (deja en string) de dates en phrases
+    if Class.F0 == "jours": 
         Class.dates_constat_autocall = "Chaque jour de bourse entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
         Class.dates_paiement_autocall = "Le " + str(Class.NJO) + "e jour ouvré suivant la date de constatation quotidienne."
         Class.Datesconstatations1 = Class.dates_constat_autocall
@@ -699,25 +699,52 @@ def Replace_Boucle_Dates(Class, shapes):
         datesremb1 = Class.Datesremb1
         date_constatation3 =  "Chaque jour de bourse entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
         Class.Datespaiement1 = "Chaque jour de bourse entre le " + Class.DPR_MAJ + " (inclus) et le " + Class.DCF_MAJ +"."
+    
 
+    #Creation d une variable de date (en string) temporaire egale a DDCI qu on convertit en format francais
+    tmp = Class.DDCI #derniere date de constat initiale
+    tmp = tmp[8:10] + "/" + tmp[5:7] + "/" + tmp[0:4]
+
+    #On jarte la premiere date de constat si la date de constatation est la même que DDCI
+    if (str(Class.Datesconstatations1[0:11]) == tmp):  
+                Class.Datesconstatations1 = (Class.Datesconstatations1[11:])    
+
+    #Si la frequence est en mois, alors comme en jours on change la liste de dates en string
     elif (Class.F0 == "mois"):
-        date_premier =  Class.Datesconstatations1[11:22]
-        jours = Class.DDCI[-2:]
-        date_constatation = "chaque " + jours + " du mois, à partir de la date du " + str(date_premier) + " (inclus),  et jusqu'au " + Class.DCF_affichage + " (inclus), ou le jour ouvré suivant si le " + jours + " du mois n'est pas un jour ouvré"
-        date_constatation3 = date_constatation
-        Class.Datespaiement1 = date_constatation
+        date_premier =  Class.dates_paiement_phoenix[0:11]
+        jours = Class.DEC[-2:]
 
+        jour_constat = Class.DDCI[-2:]
+        date_premier_phoenix_constat = Class.dates_constat_phoenix[0:11]
+        date_premier_autocall_constat = Class.dates_constat_autocall[0:11]
+
+        #si c est un phoenix ou athena, les phrases diffèrent
+        if (Class.Typologie == "coupon phoenix"):
+            Class.dates_constat_phoenix = "Tous  les " + jour_constat + " de chaque mois à partir du " + str(date_premier_phoenix_constat) + " (inclus), jusqu'au " + Class.DCF_affichage + " (inclus), ou le Jour de Bourse suivant si le " + jour_constat + " du mois n'est pas un Jour de Bourse. Toutes les dates peuvent faire l'objet d'ajustements en cas de jours non ouvrés."
+            date_constatation = "Tous  les " + jour_constat + " de chaque mois à partir du " + str(date_premier_phoenix_constat) + " (inclus), jusqu'au " + Class.DCF_affichage + " (inclus), ou le Jour de Bourse suivant si le " + jour_constat + " du mois n'est pas un Jour de Bourse. Toutes les dates peuvent faire l'objet d'ajustements en cas de jours non ouvrés."
+            date_constatation3 = date_constatation
+            Class.Datespaiement1 = "Le " + str(Class.NJO) + "e Jour de Bourse suivant la date de constation mensuelle. Toutes les dates peuvent faire l'objet d'ajustements en cas de jours non ouvrés."
+        else:
+            Class.dates_constat_autocall = "Tous  les " + jour_constat + " de chaque mois à partir du " + str(date_premier_autocall_constat) + " (inclus), jusqu'au " + Class.DCF_affichage + " (inclus), ou le Jour de Bourse suivant si le " + jour_constat + " du mois n'est pas un Jour de Bourse. Toutes les dates peuvent faire l'objet d'ajustements en cas de jours non ouvrés."
+            date_constatation = "Tous  les " + jour_constat + " de chaque mois à partir du " + str(date_premier_autocall_constat) + " (inclus), jusqu'au " + Class.DCF_affichage + " (inclus), ou le Jour de Bourse suivant si le " + jour_constat + " du mois n'est pas un Jour de Bourse. Toutes les dates peuvent faire l'objet d'ajustements en cas de jours non ouvrés."
+            date_constatation3 = date_constatation
+            Class.Datespaiement1 = "Le " + str(Class.NJO) + "e Jour de Bourse suivant la date de constation mensuelle. Toutes les dates peuvent faire l'objet d'ajustements en cas de jours non ouvrés."  
+    
+    
+    #Si la frequence n est ni en jours ni en mois
     else:
         date_constatation = Class.Datesconstatations1
         date_constatation3 = Class.Datesconstatations3
+    
+    #si la frequence est en mois, on continue de changer la liste de dates en phrases
     if (Class.F0 == "mois"):
         jours = Class.DDCI[-2:]
-        datesremb1 = "Le " + str(Class.NJO) + "e jour ouvré suivant la date de constatation mensuelle."
+        datesremb1 = "Le " + str(Class.NJO) + "e Jour de Bourse suivant la date de constation mensuelle à partir du " + Class.DR1_affichage + " (inclus). Toutes les dates peuvent faire l'objet d'ajustements en cas de jours non ouvrés."
         datesremb3 = datesremb1
     else:
         datesremb1 = Class.Datesremb1
         datesremb3 = datesremb1
-    
+
     replace_text({'<Datesconstatations1>': date_constatation}, shapes)
     replace_text({'<Datesconstatations2>': Class.Datesconstatations2}, shapes)
 
